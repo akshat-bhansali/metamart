@@ -39,7 +39,7 @@ const VideoBackground = () => {
         autoPlay
         muted
       >
-        <source src="/primary.mp4" type="video/mp4" />
+        <source src="/videos/init.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <video
@@ -51,7 +51,7 @@ const VideoBackground = () => {
         muted
         loop
       >
-        <source src="/init.mp4" type="video/mp4" />
+        <source src="/videos/primary.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
