@@ -1,8 +1,9 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stats } from "@react-three/drei";
-import Plane from "@/components/Plane";
-import Lights from "@/components/Lights";
+import Plane from "../../components/ThreeD/Plane";
+import Lights from "../../components/ThreeD/Lights";
+import { Character } from "../../components/ThreeD/Character";
 
 export default function page() {
   const testing = true;
@@ -16,6 +17,7 @@ export default function page() {
           {testing ? <Stats /> : null}
           <Lights />
             <Plane />
+            <Character/>
         </Canvas>
       </div>
     </>
