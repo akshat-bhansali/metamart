@@ -10,7 +10,7 @@ export default function page() {
   return (
     <>
       <div className="bg-gray-500 h-[100vh]">
-        <Canvas shadows   camera={{ position: [0, 10, 10], fov: 50 }}>
+        <Canvas shadows camera={{ position: [0, 10, 10], fov: 50 }}>
           {testing ? <axesHelper visible={testing} args={[200]} /> : null}
           {testing ? <gridHelper args={[10, 10]} /> : null}
           <OrbitControls />
