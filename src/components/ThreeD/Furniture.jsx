@@ -10,6 +10,10 @@ import { Chair2 } from './furniture/Chair2'
 import { Table } from './furniture/Table'
 import { Pc } from './furniture/Pc'
 import { Tele } from './furniture/Tele'
+import { TvStand } from './furniture/TvStand'
+import { Tv1 } from './furniture/Tv1'
+import { Tv2 } from './furniture/Tv2'
+import { Tv3 } from './furniture/Tv3'
 const Furniture = () => {
   return (
     <>
@@ -23,6 +27,10 @@ const Furniture = () => {
       <Table/>
       <Pc/>
       <Tele/>
+      <TvStand/>
+      <Tv1/>
+      <Tv2/>
+      <Tv3/>
     </>
   )
 }
