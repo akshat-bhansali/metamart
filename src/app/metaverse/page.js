@@ -15,6 +15,8 @@ import StoreWalls6 from "@/components/ThreeD/storeWalls/StoreWall6";
 import StoreFrame from "@/components/ThreeD/StoreFrame";
 import { Table } from "@/components/ThreeD/furniture/Table";
 import Furniture from "@/components/ThreeD/Furniture";
+import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
+import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 
 export default function page() {
   const testing = true;
@@ -31,6 +33,8 @@ export default function page() {
             <Character/>
             <StoreFrame/>
             <Furniture/>
+            <SittingChar/>
+            <SittingChar2/>
         </Canvas>
       </div>
     </>
