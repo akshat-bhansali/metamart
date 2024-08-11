@@ -2,13 +2,13 @@
 import { initializeApp, getApps } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCIb-dk7bmqjXuRVrA97yD1_VxjxxxpsXY",
-  authDomain: "sparkathon-a1cfb.firebaseapp.com",
-  projectId: "sparkathon-a1cfb",
-  storageBucket: "sparkathon-a1cfb.appspot.com",
-  messagingSenderId: "136684544716",
-  appId: "1:136684544716:web:bb087b5c6cd265c80f9869",
-  measurementId: "G-NKN3C9RK6T",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
