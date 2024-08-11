@@ -33,8 +33,8 @@ export function Door(props) {
           position={[0.407, 8.584, -0.005]}
           rotation={[-Math.PI, 0, -Math.PI]}
           scale={[0.154, 5.752, 0.362]}
-          material-transparent={false}  // Ensure it's not transparent
-          material-opacity={1}           // Set full opacity
+          material-transparent={false}
+          material-opacity={1}
         />
         <group
           name="DoorBoddy"

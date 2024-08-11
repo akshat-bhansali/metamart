@@ -13,6 +13,8 @@ import StoreWalls5 from "@/components/ThreeD/storeWalls/StoreWalls5";
 import { Door } from "@/components/ThreeD/storeWalls/Door";
 import StoreWalls6 from "@/components/ThreeD/storeWalls/StoreWall6";
 import StoreFrame from "@/components/ThreeD/StoreFrame";
+import { Table } from "@/components/ThreeD/Table";
+import Furniture from "@/components/ThreeD/Furniture";
 
 export default function page() {
   const testing = true;
@@ -28,6 +30,8 @@ export default function page() {
             <MapFloor />
             <Character/>
             <StoreFrame/>
+            <Table/>
+            <Furniture/>
         </Canvas>
       </div>
     </>
