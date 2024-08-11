@@ -36,7 +36,6 @@ const directionOffset = ({ forward, backward, left, right }) => {
 
 export function Character(props) {
   const { nodes, materials, animations } = useGLTF("./models/diya.glb");
-  console.log(animations);
   const { forward, backward, left, right, jump, shift, break_dance, backflip } = useInput();
   const currentAction = useRef("");
   const controlRef = useRef();
@@ -44,7 +43,7 @@ export function Character(props) {
 
   const gltf = useLoader(GLTFLoader, "./models/diya.glb");
   const { actions } = useAnimations(gltf.animations, gltf.scene);
-  gltf.scene.scale.set(3, 3, 3);
+  gltf.scene.scale.set(6, 6, 6);
   gltf.scene.traverse((object) => {
     if (object.isMesh) {
       object.castShadow = true;
@@ -107,7 +106,7 @@ export function Character(props) {
       walkDirection.normalize();
       walkDirection.applyAxisAngle(rotateAngle, newDirectionOffset);
 
-      const velocity = currentAction.current === "running" ? 10 : 5;
+      const velocity = currentAction.current === "running" ? 20 : 10;
       const moveX = walkDirection.x * velocity * delta;
       const moveZ = walkDirection.z * velocity * delta;
       gltf.scene.position.x += moveX;

@@ -12,12 +12,16 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        gradientBorder :
+          "linear-gradient(45deg, #7F00FF, #E100FF, #FF00F0, #E100FF, #7F00FF)",
       },
       animation: {
         slide: "slide 6s linear",
         bounce: "bounce 5s infinite",
         fadeIn: "fadeIn 1s ease-out",
         rotate: "rotate 3s linear infinite",
+        gradientBorder : "gradientBorder 5s linear infinite",
+        "spin-slow": "spin-slow 10s linear infinite",
       },
       keyframes: {
         slide: {
@@ -36,6 +40,10 @@ module.exports = {
         rotate: {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
+        },
+        "gradientBorder" : {
+          "0%": { backgroundPosition: "0% 0%" },
+          "100%": { backgroundPosition: "100% 100%" },
         },
       },
     },

@@ -19,13 +19,13 @@ export default function Home() {
   }, []);
   return (
     <div className="relative">
-      <div className="relative w-screen h-full z-1">
+      <div className="relative w-screen h-full">
         <VideoBackground />
       </div>
-      <div className="absolute inset-0 z-10  flex h-full w-full justify-center items-center">
-        <div className="flex flex-col justify-between h-full">
+      <div className="absolute inset-0 flex justify-center items-center">
+        <div className="flex flex-col justify-around w-full h-full ">
           <AnimatedText />
-          {showMain && <HomeButton />}
+          {showMain ? <HomeButton /> : <div></div>}
         </div>
       </div>
     </div>
