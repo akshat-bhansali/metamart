@@ -7,6 +7,9 @@ import { Sofa3 } from './furniture/Sofa3'
 
 import { Chair } from './furniture/Chair'
 import { Chair2 } from './furniture/Chair2'
+import { Table } from './furniture/Table'
+import { Pc } from './furniture/Pc'
+import { Tele } from './furniture/Tele'
 const Furniture = () => {
   return (
     <>
@@ -17,6 +20,9 @@ const Furniture = () => {
       <Plant2/>
       <Chair/>
       <Chair2/>
+      <Table/>
+      <Pc/>
+      <Tele/>
     </>
   )
 }

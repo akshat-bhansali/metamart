@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function Chair(props) {
   const { nodes, materials } = useGLTF('./models/chair.glb')
   return (
-    <group {...props} dispose={null} scale={[2,2,2]} position={[47,0,8]}  rotation-y={Math.PI * -0.1}>
+    <group {...props} dispose={null} scale={[2,2,2]} position={[47,0,6]}  rotation-y={Math.PI * -0.1}>
       <mesh
         name="Chair"
         castShadow

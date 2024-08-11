@@ -13,7 +13,7 @@ import StoreWalls5 from "@/components/ThreeD/storeWalls/StoreWalls5";
 import { Door } from "@/components/ThreeD/storeWalls/Door";
 import StoreWalls6 from "@/components/ThreeD/storeWalls/StoreWall6";
 import StoreFrame from "@/components/ThreeD/StoreFrame";
-import { Table } from "@/components/ThreeD/Table";
+import { Table } from "@/components/ThreeD/furniture/Table";
 import Furniture from "@/components/ThreeD/Furniture";
 
 export default function page() {
@@ -21,7 +21,7 @@ export default function page() {
   return (
     <>
       <div className="bg-gray-500 h-[100vh]">
-        <Canvas shadows camera={{ position: [0, 10, 10], fov: 50 }}>
+        <Canvas shadows camera={{ position: [0, 30, 55], fov: 50 }}>
           {testing ? <axesHelper visible={testing} args={[200]} /> : null}
           {testing ? <gridHelper args={[200, 200]} /> : null}
           <OrbitControls />
@@ -30,7 +30,6 @@ export default function page() {
             <MapFloor />
             <Character/>
             <StoreFrame/>
-            <Table/>
             <Furniture/>
         </Canvas>
       </div>
