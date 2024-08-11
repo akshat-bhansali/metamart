@@ -13,7 +13,7 @@ const Lights = () => {
       {/* main light */}
       <directionalLight
         color={"white"}
-        position={[0, 10, 10]}
+        position={[0, 50, 50]}
         ref={lightRef}
         castShadow
         shadow-camera-left={-50}

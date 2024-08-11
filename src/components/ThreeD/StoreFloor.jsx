@@ -2,11 +2,11 @@ import { useTexture } from '@react-three/drei';
 import React from 'react';
 import * as THREE from "three";
 
-const StoorFloor = () => {
-  const map = useTexture("./textures/store_floor/wood_floor_worn_diff_1k.png");
-  const displacementMap = useTexture("./textures/store_floor/wood_floor_worn_disp_1k.png");
-  const normalMap = useTexture("./textures/store_floor/wood_floor_worn_nor_gl_1k.png");
-  const roughMap = useTexture("./textures/store_floor/wood_floor_worn_rough_1k.png");
+const StoreFloor = () => {
+  const map = useTexture("./textures/store_floor/laminate_floor_02_diff_1k.png");
+  const displacementMap = useTexture("./textures/store_floor/laminate_floor_02_disp_1k.png");
+  const normalMap = useTexture("./textures/store_floor/laminate_floor_02_nor_gl_1k.png");
+  const roughMap = useTexture("./textures/store_floor/laminate_floor_02_rough_1k.png");
 
   const textureRepeat = 10; 
 
@@ -33,4 +33,4 @@ const StoorFloor = () => {
   );
 };
 
-export default StoorFloor;
+export default StoreFloor;
