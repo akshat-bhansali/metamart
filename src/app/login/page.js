@@ -4,9 +4,12 @@ import {
   signInWithGoogle,
   signUpWithEmail,
 } from "@/firebase/auth";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
+
 const AuthForm = () => {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,9 +17,14 @@ const AuthForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isLogin) {
-      await loginWithEmail(email, password);
+      if(await loginWithEmail(email, password))
+      router.push('/metaverse')
+      else alert('Some error occurred!')
+      
     } else {
-      await signUpWithEmail(email, password);
+      if(await signUpWithEmail(email, password))
+      router.push('/metaverse')
+      else alert('Some error occurred!')
     }
   };
 
@@ -73,7 +81,12 @@ const AuthForm = () => {
               </button>
               <button
                 type="button"
-                onClick={async () => await signInWithGoogle()}
+                onClick={async () => {
+                  if(await signInWithGoogle())
+                  router.push('/metaverse')
+                  else alert('Some error occurred!')
+                }
+                }
                 className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105 relative z-10"
               >
                 Sign In with Google
@@ -82,7 +95,7 @@ const AuthForm = () => {
             <div className="text-center">
               <button
                 type="button"
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={ () => setIsLogin(!isLogin)}
                 className="text-purple-400 hover:text-purple-300 font-semibold transition duration-300 relative z-10"
               >
                 {isLogin

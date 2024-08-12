@@ -10,11 +10,13 @@ export const signUpWithEmail = (email,password) => {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
+    return true;
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(error);
+    return false;
     // ..
   });
 }
@@ -25,12 +27,14 @@ export const loginWithEmail = (email,password) =>
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
+      return true;
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(error)
+      return false;
     });
 }
 
@@ -48,8 +52,11 @@ export const signInWithGoogle = async () => {
   try {
     await signInWithPopup(auth,googleAuthProvider);
     console.log('User signed in with Google!');
+    return true;
   } catch (error) {
     console.error('Error signing in with Google:', error.message);
+    return false;
   }
+
 };
 
