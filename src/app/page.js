@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import AnimatedText from "../components/AnimatedText";
-import VideoBackground from "../components/VideoBackground";
-import HomeButton from "@/components/HomeButton";
+import AnimatedText from "../components/HomePage/AnimatedText";
+import VideoBackground from "../components/HomePage/VideoBackground";
+import HomeButton from "@/components/HomePage/HomeButton";
 
 export default function Home() {
   const [showMain, setShowMain] = useState(false);
