@@ -14,6 +14,9 @@ import { TvStand } from './furniture/TvStand'
 import { Tv1 } from './furniture/Tv1'
 import { Tv2 } from './furniture/Tv2'
 import { Tv3 } from './furniture/Tv3'
+import { MainTable } from './furniture/MainTable'
+import { MainTable2 } from './furniture/MainTable2'
+import { Cash } from './furniture/Cash'
 const Furniture = () => {
   return (
     <>
@@ -31,6 +34,9 @@ const Furniture = () => {
       <Tv1/>
       <Tv2/>
       <Tv3/>
+      <MainTable/>
+      <MainTable2/>
+      <Cash/> 
     </>
   )
 }
