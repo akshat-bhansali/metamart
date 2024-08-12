@@ -20,6 +20,15 @@ import { Cash } from './furniture/Cash'
 import { Laptop1 } from './furniture/Laptop1'
 import { Laptop2 } from './furniture/Laptop2'
 import { Laptop23 } from './furniture/Laptop3'
+import { HelpDesk } from './furniture/HelpDesk'
+import { Mobile } from './furniture/Mobile'
+import { MobileStand } from './furniture/MobileStand'
+import { Mobile2 } from './furniture/Mobile2'
+import { MobileStand2 } from './furniture/MobileStand2'
+import { MobileStand3 } from './furniture/MobileStand3'
+import { MobileStand4 } from './furniture/MobileStand4'
+import { Mobile3 } from './furniture/Mobile3'
+import { Mobile4 } from './furniture/Mobile4'
 const Furniture = () => {
   return (
     <>
@@ -43,6 +52,15 @@ const Furniture = () => {
       <Laptop1/>
       <Laptop2/>
       <Laptop23/>
+      <HelpDesk/>
+      <Mobile/>
+      <MobileStand/>
+      <Mobile2/>
+      <MobileStand2/>
+      <MobileStand3/>
+      <MobileStand4/>
+      <Mobile3/>
+      <Mobile4/>
     </>
   )
 }

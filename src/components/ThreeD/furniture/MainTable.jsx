@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function MainTable(props) {
   const { nodes, materials } = useGLTF('./models/mainTable.glb')
   return (
-    <group {...props} dispose={null} position={[-7,0,20]}>
+    <group {...props} dispose={null} position={[-7,0,22]}>
     <mesh
       castShadow
       receiveShadow
