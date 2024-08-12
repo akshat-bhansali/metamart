@@ -29,6 +29,10 @@ import { MobileStand3 } from './furniture/MobileStand3'
 import { MobileStand4 } from './furniture/MobileStand4'
 import { Mobile3 } from './furniture/Mobile3'
 import { Mobile4 } from './furniture/Mobile4'
+import { Headphones } from './furniture/Headphones'
+import { Chair3 } from './furniture/Chair3'
+import { HeadphoneStand } from './furniture/HeadphoneStand'
+import { HeadphoneStand2 } from './furniture/HeadphoneStand2'
 const Furniture = () => {
   return (
     <>
@@ -61,6 +65,10 @@ const Furniture = () => {
       <MobileStand4/>
       <Mobile3/>
       <Mobile4/>
+      <Headphones/>
+      <HeadphoneStand/>
+      <Chair3/>
+      <HeadphoneStand2/>
     </>
   )
 }

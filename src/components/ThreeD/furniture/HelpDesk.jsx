@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function HelpDesk(props) {
   const { nodes, materials } = useGLTF('./models/helpDesk.glb')
   return (
-    <group {...props} dispose={null} scale={[2.3,2.3,2.3]} rotation-y={Math.PI * 3.6}>
+    <group {...props} dispose={null} scale={[2.3,2.3,2.3]} rotation-y={Math.PI * 3.4} position={[38,0,38]}>
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.054}>
         <mesh
           castShadow
