@@ -14,6 +14,12 @@ import { TvStand } from './furniture/TvStand'
 import { Tv1 } from './furniture/Tv1'
 import { Tv2 } from './furniture/Tv2'
 import { Tv3 } from './furniture/Tv3'
+import { MainTable } from './furniture/MainTable'
+import { MainTable2 } from './furniture/MainTable2'
+import { Cash } from './furniture/Cash'
+import { Laptop1 } from './furniture/Laptop1'
+import { Laptop2 } from './furniture/Laptop2'
+import { Laptop23 } from './furniture/Laptop3'
 const Furniture = () => {
   return (
     <>
@@ -31,6 +37,12 @@ const Furniture = () => {
       <Tv1/>
       <Tv2/>
       <Tv3/>
+      <MainTable/>
+      <MainTable2/>
+      <Cash/> 
+      <Laptop1/>
+      <Laptop2/>
+      <Laptop23/>
     </>
   )
 }
