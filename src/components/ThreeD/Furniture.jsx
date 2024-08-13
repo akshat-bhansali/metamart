@@ -52,7 +52,23 @@ import { Lamp6 } from './furniture/Lamp6'
 import { Lamp7 } from './furniture/Lamp7'
 import { Lamp8 } from './furniture/Lamp8'
 import { Billboard } from './furniture/Billboard'
+import { Speaker } from './furniture/Speeaker'
+import { Speaker2 } from './furniture/Speaker2'
+import { Speaker3 } from './furniture/Speaker3'
+import { Speaker4 } from './furniture/Speaker4'
+import { Speaker5 } from './furniture/Speaker5'
+import { Speaker6 } from './furniture/Speaker6'
 
+import {PS5} from './furniture/PS5'
+import {PS52} from './furniture/PS52'
+import { Samsung } from './furniture/Samsung'
+import { PSLogo } from './furniture/PSLogo'
+import {PSLogo2} from './furniture/PSLogo2'
+import { PSConsole } from './furniture/PSConsole'
+import { PSConsole2 } from './furniture/PSConsole2'
+import { PSConsole3 } from './furniture/PSConsole3'
+import { PSConsole4 } from './furniture/PSConsole4'
+import { LegoDeadpool } from './furniture/LegoDeadpool'
 const Furniture = () => {
   return (
     <>
@@ -99,7 +115,7 @@ const Furniture = () => {
       <Chair3/>
       <HeadphoneStand2/>
       <HeadphoneStand3/>
-      <House/>
+      {/* <House/> */}
       <Lamp/>
       <Lamp2/>
       <Lamp3/>
@@ -108,6 +124,22 @@ const Furniture = () => {
       <Lamp6/>
       <Lamp7/>
       <Lamp8/>
+      <Speaker/>
+      <Speaker2/>
+      <Speaker3/>
+      <Speaker4/>
+      <Speaker5/>
+      <Speaker6/>
+      <PS5/>
+      <PS52/>
+      <PSLogo/>
+      <PSLogo2/>
+      <Samsung/>
+      <PSConsole/>
+      <PSConsole2/>
+      <PSConsole3/>
+      <PSConsole4/>
+      <LegoDeadpool/>
     </>
   )
 }
