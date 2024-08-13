@@ -2,12 +2,12 @@ import React, { useRef } from 'react'
 import { useGLTF, useTexture } from '@react-three/drei'
 import { AmbientLight, DirectionalLight } from '@react-three/fiber'
 
-export function Laptop23(props) {
+export function Laptop6(props) {
   const { nodes, materials } = useGLTF('./models/laptop3.glb')
 
   // Apply some basic light
   return (
-    <group {...props} dispose={null} scale={[10, 10, 10]} position={[16, 5, -16]}>
+    <group {...props} dispose={null} scale={[10, 10, 10]} position={[2, 5, -25]} rotation={[0,Math.PI,0]}>
       <directionalLight position={[10, 10, 5]} intensity={2} />
 
       <group rotation={[Math.PI / 2, 0, 0]}>

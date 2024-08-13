@@ -19,6 +19,9 @@ import { MainTable2 } from './furniture/MainTable2'
 import { Cash } from './furniture/Cash'
 import { Laptop1 } from './furniture/Laptop1'
 import { Laptop2 } from './furniture/Laptop2'
+import { Laptop4 } from './furniture/Laptop4'
+import { Laptop5 } from './furniture/Laptop5'
+import { Laptop6 } from './furniture/Laptop6'
 import { Laptop23 } from './furniture/Laptop3'
 import { HelpDesk } from './furniture/HelpDesk'
 import { Mobile } from './furniture/Mobile'
@@ -30,9 +33,17 @@ import { MobileStand4 } from './furniture/MobileStand4'
 import { Mobile3 } from './furniture/Mobile3'
 import { Mobile4 } from './furniture/Mobile4'
 import { Headphones } from './furniture/Headphones'
+import { Headphones2 } from './furniture/Headphones2'
+import { Headphones3 } from './furniture/Headphones3'
+import { Headphones4 } from './furniture/Headphones4'
+import { Headphones5 } from './furniture/Headphones5'
+import { Headphones6 } from './furniture/Headphones6'
 import { Chair3 } from './furniture/Chair3'
 import { HeadphoneStand } from './furniture/HeadphoneStand'
 import { HeadphoneStand2 } from './furniture/HeadphoneStand2'
+import { HeadphoneStand3 } from './furniture/HeadphoneStand3'
+import { House } from './House1'
+
 const Furniture = () => {
   return (
     <>
@@ -56,6 +67,10 @@ const Furniture = () => {
       <Laptop1/>
       <Laptop2/>
       <Laptop23/>
+      <Laptop4/>
+      <Laptop5/>
+      <Laptop6/>
+
       <HelpDesk/>
       <Mobile/>
       <MobileStand/>
@@ -66,9 +81,17 @@ const Furniture = () => {
       <Mobile3/>
       <Mobile4/>
       <Headphones/>
+      <Headphones2/>
+      <Headphones3/>
+      <Headphones4/>
+      <Headphones5/>
+      <Headphones6/>
       <HeadphoneStand/>
       <Chair3/>
       <HeadphoneStand2/>
+      <HeadphoneStand3/>
+      <House/>
+      
     </>
   )
 }

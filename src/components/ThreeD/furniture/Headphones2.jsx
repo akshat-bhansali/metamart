@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function Headphones2(props) {
   const { nodes, materials } = useGLTF('./models/headphones2.glb')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} position={[12.25,5.5,17.3]} scale={[0.4,0.4,0.4]} rotation={[Math.PI,Math.PI/2,Math.PI]} >
       <mesh
         castShadow
         receiveShadow
