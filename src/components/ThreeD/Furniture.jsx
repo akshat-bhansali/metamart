@@ -58,6 +58,12 @@ import { Speaker3 } from './furniture/Speaker3'
 import { Speaker4 } from './furniture/Speaker4'
 import { Speaker5 } from './furniture/Speaker5'
 import { Speaker6 } from './furniture/Speaker6'
+import { Speaker7 } from './furniture/Speaker7'
+import { Speaker8 } from './furniture/Speaker8'
+import { Speaker9 } from './furniture/Speaker9'
+import { Speaker10 } from './furniture/Speaker10'
+import { BoyStatue } from './furniture/BoyStatue'
+import { Headphones7 } from './furniture/Headphones7'
 
 import {PS5} from './furniture/PS5'
 import {PS52} from './furniture/PS52'
@@ -140,6 +146,12 @@ const Furniture = () => {
       <PSConsole3/>
       <PSConsole4/>
       <LegoDeadpool/>
+      <Speaker7/>
+      <Speaker8/>
+      <Speaker9/>
+      <Speaker10/>
+      <BoyStatue/>
+      <Headphones7/>
     </>
   )
 }
