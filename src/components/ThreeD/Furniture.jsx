@@ -20,9 +20,9 @@ import { Cash } from './furniture/Cash'
 import { Laptop1 } from './furniture/Laptop1'
 import { Laptop2 } from './furniture/Laptop2'
 import { Laptop4 } from './furniture/Laptop4'
+import { Laptop3 } from './furniture/Laptop3'
 import { Laptop5 } from './furniture/Laptop5'
 import { Laptop6 } from './furniture/Laptop6'
-import { Laptop23 } from './furniture/Laptop3'
 import { HelpDesk } from './furniture/HelpDesk'
 import { Mobile } from './furniture/Mobile'
 import { MobileStand } from './furniture/MobileStand'
@@ -75,7 +75,7 @@ const Furniture = () => {
       <Cash/> 
       <Laptop1/>
       <Laptop2/>
-      <Laptop23/>
+      <Laptop3/>
       <Laptop4/>
       <Laptop5/>
       <Laptop6/>

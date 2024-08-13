@@ -8,7 +8,7 @@ export function Tv2(props) {
 
   useEffect(() => {
     const video = document.createElement('video')
-    video.src = './videos/init.mp4' // Replace with your video file path
+    video.src = './videos/dhoni.mp4' // Replace with your video file path
     video.loop = true
     video.muted = true
     video.play()
