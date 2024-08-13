@@ -18,7 +18,6 @@ export function Lamp3(props) {
         rotation={[Math.PI / 2, 0, 0]}
       />
     </group>
-    <pointLight color={"yellow"} intensity={30} castShadow position={[-51.5,9,30]}/>
     </>
   )
 }
