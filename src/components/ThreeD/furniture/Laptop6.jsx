@@ -1,13 +1,38 @@
-import React, { useRef } from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
-import { AmbientLight, DirectionalLight } from '@react-three/fiber'
+import React, { useRef, useState } from "react";
+import { useGLTF } from "@react-three/drei";
+import { CircleGeometry, MeshStandardMaterial } from "three";
 
 export function Laptop6(props) {
-  const { nodes, materials } = useGLTF('./models/laptop3.glb')
+  const { nodes, materials } = useGLTF("./models/laptop3.glb");
+  const [hovered, setHovered] = useState(false);
+  const groupRef = useRef();
+  const outlineRef = useRef();
 
-  // Apply some basic light
+  const handlePointerOver = () => {
+    setHovered(true);
+    if (groupRef.current) {
+      groupRef.current.position.y += 0.5;
+    }
+  };
+
+  const handlePointerOut = () => {
+    setHovered(false);
+    if (groupRef.current) {
+      groupRef.current.position.y -= 0.5;
+    }
+  };
+
   return (
-    <group {...props} dispose={null} scale={[10, 10, 10]} position={[2, 5, -25]} rotation={[0,Math.PI,0]}>
+    <group
+      {...props}
+      ref={groupRef}
+      dispose={null}
+      scale={[10, 10, 10]}
+      position={[2, 5, -25]}
+      rotation={[0, Math.PI, 0]}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
+    >
       <directionalLight position={[10, 10, 5]} intensity={2} />
 
       <group rotation={[Math.PI / 2, 0, 0]}>
@@ -52,8 +77,24 @@ export function Laptop6(props) {
           material={materials.TouchPad_Silver}
         />
       </group>
+
+      {/* Circular Highlight Mesh */}
+      <mesh
+        ref={outlineRef}
+        geometry={new CircleGeometry(0.3, 32)} // Adjust size accordingly
+        position={[0, 0, -0.05]} // Slightly offset to be behind the laptop
+        rotation={[Math.PI / 2, 0, 0]}
+        material={
+          new MeshStandardMaterial({
+            color: hovered ? "blue" : "transparent",
+            transparent: true,
+            opacity: 0.5,
+            side: 2, // Double-side rendering to make sure it's visible from all angles
+          })
+        }
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('./models/laptop3.glb')
+useGLTF.preload("./models/laptop3.glb");

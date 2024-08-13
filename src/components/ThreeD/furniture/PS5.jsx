@@ -1,20 +1,48 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useState } from "react";
+import { useGLTF } from "@react-three/drei";
+import { CircleGeometry, MeshStandardMaterial } from "three";
 
 export function PS5(props) {
-  const { nodes, materials } = useGLTF('./models/2console.glb')
+  const { nodes, materials } = useGLTF("./models/2console.glb");
+  const [hovered, setHovered] = useState(false);
+  const groupRef = useRef();
+  const outlineRef = useRef();
 
   // Override the black material colors if needed
-  materials.body_black.color.set('#000000') // Pure black
-  materials.usb_port_inner.color.set('#1a1a1a') // Slightly off-black for contrast
+  materials.body_black.color.set("#000000"); // Pure black
+  materials.usb_port_inner.color.set("#1a1a1a"); // Slightly off-black for contrast
+
+  const handlePointerOver = () => {
+    setHovered(true);
+    if (groupRef.current) {
+      groupRef.current.position.y += 0.5;
+    }
+  };
+
+  const handlePointerOut = () => {
+    setHovered(false);
+    if (groupRef.current) {
+      groupRef.current.position.y -= 0.5;
+    }
+  };
 
   return (
-    <group {...props} dispose={null} scale={[2, 2, 2]} position={[-32,5,20]}>
+    <group
+      {...props}
+      ref={groupRef}
+      dispose={null}
+      scale={[2, 2, 2]}
+      position={[-28, 5, 20]}
+      rotation={[0, (Math.PI / 2) * 3, 0]}
+      onPointerOver={handlePointerOver}
+      onPointerOut={handlePointerOut}
+    >
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Cylinder001.geometry}
-        material={materials.stand}>
+        material={materials.stand}
+      >
         <group position={[0, 0.9, 0]}>
           <mesh
             castShadow
@@ -67,7 +95,6 @@ export function PS5(props) {
         geometry={nodes.Cube010.geometry}
         material={materials.usb_port_inner}
         position={[0.776, 0.742, 0]}
-
       />
       <mesh
         castShadow
@@ -78,9 +105,24 @@ export function PS5(props) {
         rotation={[Math.PI / 2, 0, 0]}
         scale={[1.201, 0.172, 1.201]}
       />
-      
+
+      {/* Circular Highlight Mesh */}
+      <mesh
+        ref={outlineRef}
+        geometry={new CircleGeometry(1, 64)} // Adjust radius and segments as needed
+        position={[0, -0.1, 0]} // Adjust position to highlight the desired area
+        rotation={[Math.PI / 2, 0, 0]}
+        material={
+          new MeshStandardMaterial({
+            color: hovered ? "blue" : "transparent",
+            transparent: true,
+            opacity: 0.5,
+            side: 2,
+          })
+        }
+      />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('./models/2console.glb')
+useGLTF.preload("./models/2console.glb");

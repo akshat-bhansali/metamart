@@ -20,9 +20,9 @@ import { Cash } from './furniture/Cash'
 import { Laptop1 } from './furniture/Laptop1'
 import { Laptop2 } from './furniture/Laptop2'
 import { Laptop4 } from './furniture/Laptop4'
+import { Laptop3 } from './furniture/Laptop3'
 import { Laptop5 } from './furniture/Laptop5'
 import { Laptop6 } from './furniture/Laptop6'
-import { Laptop23 } from './furniture/Laptop3'
 import { HelpDesk } from './furniture/HelpDesk'
 import { Mobile } from './furniture/Mobile'
 import { MobileStand } from './furniture/MobileStand'
@@ -58,6 +58,12 @@ import { Speaker3 } from './furniture/Speaker3'
 import { Speaker4 } from './furniture/Speaker4'
 import { Speaker5 } from './furniture/Speaker5'
 import { Speaker6 } from './furniture/Speaker6'
+import { Speaker7 } from './furniture/Speaker7'
+import { Speaker8 } from './furniture/Speaker8'
+import { Speaker9 } from './furniture/Speaker9'
+import { Speaker10 } from './furniture/Speaker10'
+import { BoyStatue } from './furniture/BoyStatue'
+import { Headphones7 } from './furniture/Headphones7'
 import {Sony} from './furniture/Sony'
 import {PS5} from './furniture/PS5'
 import {PS52} from './furniture/PS52'
@@ -94,7 +100,7 @@ const Furniture = () => {
       <Cash/> 
       <Laptop1/>
       <Laptop2/>
-      <Laptop23/>
+      <Laptop3/>
       <Laptop4/>
       <Laptop5/>
       <Laptop6/>
@@ -143,6 +149,12 @@ const Furniture = () => {
       <PSConsole3/>
       <PSConsole4/>
       <LegoDeadpool/>
+      <Speaker7/>
+      <Speaker8/>
+      <Speaker9/>
+      <Speaker10/>
+      <BoyStatue/>
+      <Headphones7/>
       <Sony/>
       <Shelf/>
       <Apple/>
