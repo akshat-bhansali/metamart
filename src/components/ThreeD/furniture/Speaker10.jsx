@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function Speaker10(props) {
   const { nodes, materials } = useGLTF('./models/speaker3.glb')
   return (
-    <group {...props} dispose={null} scale={[0.6,0.6,0.6]} rotation={[0,Math.PI*1.7,0]} position={[20,5,16]}>
+    <group {...props} dispose={null} scale={[0.6,0.6,0.6]} rotation={[0,Math.PI*2.7,0]} position={[21,5,18]}>
       <mesh
         castShadow
         receiveShadow
