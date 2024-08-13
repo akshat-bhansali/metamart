@@ -52,7 +52,16 @@ import { Lamp6 } from './furniture/Lamp6'
 import { Lamp7 } from './furniture/Lamp7'
 import { Lamp8 } from './furniture/Lamp8'
 import { Billboard } from './furniture/Billboard'
-
+import {PS5} from './furniture/PS5'
+import {PS52} from './furniture/PS52'
+import { Samsung } from './furniture/Samsung'
+import { PSLogo } from './furniture/PSLogo'
+import {PSLogo2} from './furniture/PSLogo2'
+import { PSConsole } from './furniture/PSConsole'
+import { PSConsole2 } from './furniture/PSConsole2'
+import { PSConsole3 } from './furniture/PSConsole3'
+import { PSConsole4 } from './furniture/PSConsole4'
+import { LegoDeadpool } from './furniture/LegoDeadpool'
 const Furniture = () => {
   return (
     <>
@@ -108,6 +117,16 @@ const Furniture = () => {
       <Lamp6/>
       <Lamp7/>
       <Lamp8/>
+      <PS5/>
+      <PS52/>
+      <PSLogo/>
+      <PSLogo2/>
+      <Samsung/>
+      <PSConsole/>
+      <PSConsole2/>
+      <PSConsole3/>
+      <PSConsole4/>
+      <LegoDeadpool/>
     </>
   )
 }
