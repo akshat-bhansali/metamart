@@ -9,7 +9,7 @@ import { useGLTF } from '@react-three/drei'
 export function Samsung(props) {
   const { nodes, materials } = useGLTF('./models/samsung2.glb')
   return (
-    <group {...props} dispose={null} scale={[5,5,1]} rotation={[0,-Math.PI/2,0]} position={[50,6,-22]}>
+    <group {...props} dispose={null} scale={[5,5,1]} rotation={[0,-Math.PI/2,0]} position={[50,7.5,-22]}>
       <mesh
         castShadow
         receiveShadow
