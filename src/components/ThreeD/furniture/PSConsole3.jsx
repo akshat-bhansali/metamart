@@ -14,7 +14,10 @@ export function PSConsole3(props) {
       groupRef.current.position.y += 0.5; // Lift the item on hover
     }
   };
-
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
   const handlePointerOut = () => {
     setHovered(false);
     if (groupRef.current) {
@@ -31,6 +34,7 @@ export function PSConsole3(props) {
       position={[-32, 5, 23.5]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
+      onClick={(handleClick)}
     >
       <mesh
         castShadow

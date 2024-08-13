@@ -21,7 +21,10 @@ export function Laptop3(props) {
       groupRef.current.position.y -= 0.5;
     }
   };
-
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
   return (
     <group
       {...props}
@@ -31,6 +34,7 @@ export function Laptop3(props) {
       position={[16, 5, -16]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
+      onClick={(handleClick)}
     >
       <directionalLight position={[10, 10, 5]} intensity={2} />
 

@@ -26,6 +26,11 @@ export function Laptop2(props) {
     }
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
+
   return (
     <group
       {...props}
@@ -35,6 +40,7 @@ export function Laptop2(props) {
       scale={[1.2, 1.2, 1.2]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
+      onClick={(handleClick)}
     >
       <group rotation={[Math.PI / 2, 0, 0]}>
         <mesh
