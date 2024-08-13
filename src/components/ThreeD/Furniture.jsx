@@ -47,6 +47,10 @@ import { Lamp } from './furniture/Lamp'
 import { Lamp2 } from './furniture/Lamp2'
 import { Lamp3 } from './furniture/Lamp3'
 import { Lamp4 } from './furniture/Lamp4'
+import { Lamp5 } from './furniture/Lamp5'
+import { Lamp6 } from './furniture/Lamp6'
+import { Lamp7 } from './furniture/Lamp7'
+import { Lamp8 } from './furniture/Lamp8'
 
 const Furniture = () => {
   return (
@@ -99,6 +103,10 @@ const Furniture = () => {
       <Lamp2/>
       <Lamp3/>
       <Lamp4/>
+      <Lamp5/>
+      <Lamp6/>
+      <Lamp7/>
+      <Lamp8/>
     </>
   )
 }
