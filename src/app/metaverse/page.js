@@ -9,7 +9,7 @@ import Furniture from "@/components/ThreeD/Furniture";
 import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
 import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
-import { Segmented, Avatar, Button } from "antd";
+import { Segmented, Avatar, Button, Modal } from "antd";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -20,6 +20,24 @@ import { useState } from "react";
 export default function Page() {
   const testing = true;
   const [segment, setSegment] = useState("user1");
+  const [isAiModalVisible, setIsAiModalVisible] = useState(false);
+  const [isCartModalVisible, setIsCartModalVisible] = useState(false);
+
+  const showAiModal = () => {
+    setIsAiModalVisible(true);
+  };
+
+  const handleAiModalCancel = () => {
+    setIsAiModalVisible(false);
+  };
+
+  const showCartModal = () => {
+    setIsCartModalVisible(true);
+  };
+
+  const handleCartModalCancel = () => {
+    setIsCartModalVisible(false);
+  };
 
   return (
     <>
@@ -74,6 +92,7 @@ export default function Page() {
             icon={<ShoppingCartOutlined />}
             size="large"
             style={{ backgroundColor: "#87d068", color: "white" }}
+            onClick={showCartModal} // Open cart modal on click
           />
         </div>
 
@@ -84,6 +103,7 @@ export default function Page() {
             icon={<RobotOutlined />}
             size="large"
             style={{ backgroundColor: "#1890ff", color: "white" }}
+            onClick={showAiModal} // Open AI modal on click
           />
         </div>
 
@@ -159,9 +179,45 @@ export default function Page() {
           <Furniture />
           <SittingChar />
           <SittingChar2 />
-          <Staff />
+          <Staff onClick={showAiModal} /> {/* Pass the function here */}
         </Canvas>
       </div>
+
+      {/* Modal for AI */}
+      <Modal
+        title="AI Assistant"
+        visible={isAiModalVisible}
+        onCancel={handleAiModalCancel}
+        footer={null}
+        style={{
+          position: "absolute",
+          top: 10,
+          left: 10,
+          height: "calc(100vh - 20px)", // Increase height
+        }}
+        bodyStyle={{ overflowY: "auto" }}
+      >
+        <p>Your AI assistant is here to help!</p>
+        {/* Add more content here as needed */}
+      </Modal>
+
+      {/* Modal for Cart */}
+      <Modal
+        title="Cart"
+        visible={isCartModalVisible}
+        onCancel={handleCartModalCancel}
+        footer={null}
+        style={{
+          position: "absolute",
+          top: 10,
+          right: 10,
+          height: "calc(100vh - 20px)", // Increase height
+        }}
+        bodyStyle={{ overflowY: "auto" }}
+      >
+        <p>Your cart is currently empty.</p>
+        {/* Add more content here as needed */}
+      </Modal>
     </>
   );
 }
