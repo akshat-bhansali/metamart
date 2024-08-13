@@ -8,15 +8,15 @@ import { useGLTF } from '@react-three/drei'
 export function MainTable2(props) {
   const { nodes, materials } = useGLTF('./models/mainTable.glb')
   return (
-    <group {...props} dispose={null} position={[-7,0,-20]}>
+    <group {...props} dispose={null} position={[-7,0,-22]} >
     <mesh
       castShadow
       receiveShadow
       geometry={nodes.table.geometry}
       material={materials.wire_088144225}
       rotation={[Math.PI / 2, 0, 0]}
-      scale={[0.12,0.2,0.1]}
-      position={[19,1.5,0]}
+      scale={[0.24,0.22,0.1]}
+      position={[13,1.5,2]}
       rotation-z={Math.PI /2}
     />
     <mesh
@@ -25,8 +25,8 @@ export function MainTable2(props) {
       geometry={nodes.table.geometry}
       material={materials.wire_088144225}
       rotation={[Math.PI / 2, 0, 0]}
-      scale={[0.12,0.2,0.1]}
-      position={[-19,1.5,0]}
+      scale={[0.24,0.2,0.1]}
+      position={[-20,1.5,2]}
       rotation-z={Math.PI /2}
     />
   </group>

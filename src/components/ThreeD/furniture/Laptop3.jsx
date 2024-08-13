@@ -7,7 +7,7 @@ export function Laptop23(props) {
 
   // Apply some basic light
   return (
-    <group {...props} dispose={null} scale={[10, 10, 10]} position={[15, 5, -20]}>
+    <group {...props} dispose={null} scale={[10, 10, 10]} position={[16, 5, -16]}>
       <directionalLight position={[10, 10, 5]} intensity={2} />
 
       <group rotation={[Math.PI / 2, 0, 0]}>

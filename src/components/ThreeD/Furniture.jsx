@@ -19,7 +19,40 @@ import { MainTable2 } from './furniture/MainTable2'
 import { Cash } from './furniture/Cash'
 import { Laptop1 } from './furniture/Laptop1'
 import { Laptop2 } from './furniture/Laptop2'
+import { Laptop4 } from './furniture/Laptop4'
+import { Laptop5 } from './furniture/Laptop5'
+import { Laptop6 } from './furniture/Laptop6'
 import { Laptop23 } from './furniture/Laptop3'
+import { HelpDesk } from './furniture/HelpDesk'
+import { Mobile } from './furniture/Mobile'
+import { MobileStand } from './furniture/MobileStand'
+import { Mobile2 } from './furniture/Mobile2'
+import { MobileStand2 } from './furniture/MobileStand2'
+import { MobileStand3 } from './furniture/MobileStand3'
+import { MobileStand4 } from './furniture/MobileStand4'
+import { Mobile3 } from './furniture/Mobile3'
+import { Mobile4 } from './furniture/Mobile4'
+import { Headphones } from './furniture/Headphones'
+import { Headphones2 } from './furniture/Headphones2'
+import { Headphones3 } from './furniture/Headphones3'
+import { Headphones4 } from './furniture/Headphones4'
+import { Headphones5 } from './furniture/Headphones5'
+import { Headphones6 } from './furniture/Headphones6'
+import { Chair3 } from './furniture/Chair3'
+import { HeadphoneStand } from './furniture/HeadphoneStand'
+import { HeadphoneStand2 } from './furniture/HeadphoneStand2'
+import { HeadphoneStand3 } from './furniture/HeadphoneStand3'
+import { House } from './House1'
+import { Lamp } from './furniture/Lamp'
+import { Lamp2 } from './furniture/Lamp2'
+import { Lamp3 } from './furniture/Lamp3'
+import { Lamp4 } from './furniture/Lamp4'
+import { Lamp5 } from './furniture/Lamp5'
+import { Lamp6 } from './furniture/Lamp6'
+import { Lamp7 } from './furniture/Lamp7'
+import { Lamp8 } from './furniture/Lamp8'
+import { Billboard } from './furniture/Billboard'
+
 const Furniture = () => {
   return (
     <>
@@ -43,6 +76,38 @@ const Furniture = () => {
       <Laptop1/>
       <Laptop2/>
       <Laptop23/>
+      <Laptop4/>
+      <Laptop5/>
+      <Laptop6/>
+      <Billboard/>
+      <HelpDesk/>
+      <Mobile/>
+      <MobileStand/>
+      <Mobile2/>
+      <MobileStand2/>
+      <MobileStand3/>
+      <MobileStand4/>
+      <Mobile3/>
+      <Mobile4/>
+      <Headphones/>
+      <Headphones2/>
+      <Headphones3/>
+      <Headphones4/>
+      <Headphones5/>
+      <Headphones6/>
+      <HeadphoneStand/>
+      <Chair3/>
+      <HeadphoneStand2/>
+      <HeadphoneStand3/>
+      <House/>
+      <Lamp/>
+      <Lamp2/>
+      <Lamp3/>
+      <Lamp4/>
+      <Lamp5/>
+      <Lamp6/>
+      <Lamp7/>
+      <Lamp8/>
     </>
   )
 }

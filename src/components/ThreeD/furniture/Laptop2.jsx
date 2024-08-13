@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function Laptop2(props) {
   const { nodes, materials } = useGLTF('./models/laptop2.glb')
   return (
-    <group {...props} dispose={null} position={[20,5,-20]} scale={[1.1,1.1,1.1]}>
+    <group {...props} dispose={null} position={[9,5,-16]} scale={[1.2,1.2,1.2]}>
       <mesh
         castShadow
         receiveShadow
