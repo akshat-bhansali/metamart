@@ -43,6 +43,10 @@ import { HeadphoneStand } from './furniture/HeadphoneStand'
 import { HeadphoneStand2 } from './furniture/HeadphoneStand2'
 import { HeadphoneStand3 } from './furniture/HeadphoneStand3'
 import { House } from './House1'
+import { Lamp } from './furniture/Lamp'
+import { Lamp2 } from './furniture/Lamp2'
+import { Lamp3 } from './furniture/Lamp3'
+import { Lamp4 } from './furniture/Lamp4'
 
 const Furniture = () => {
   return (
@@ -91,7 +95,10 @@ const Furniture = () => {
       <HeadphoneStand2/>
       <HeadphoneStand3/>
       <House/>
-      
+      <Lamp/>
+      <Lamp2/>
+      <Lamp3/>
+      <Lamp4/>
     </>
   )
 }
