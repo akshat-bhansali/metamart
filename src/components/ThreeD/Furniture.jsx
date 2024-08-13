@@ -64,7 +64,7 @@ import { Speaker9 } from './furniture/Speaker9'
 import { Speaker10 } from './furniture/Speaker10'
 import { BoyStatue } from './furniture/BoyStatue'
 import { Headphones7 } from './furniture/Headphones7'
-
+import {Sony} from './furniture/Sony'
 import {PS5} from './furniture/PS5'
 import {PS52} from './furniture/PS52'
 import { Samsung } from './furniture/Samsung'
@@ -75,6 +75,10 @@ import { PSConsole2 } from './furniture/PSConsole2'
 import { PSConsole3 } from './furniture/PSConsole3'
 import { PSConsole4 } from './furniture/PSConsole4'
 import { LegoDeadpool } from './furniture/LegoDeadpool'
+
+import { Shelf } from './furniture/Shelf'
+import { Apple } from './furniture/Apple'
+import { Bit } from './furniture/Bit'
 const Furniture = ({onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -155,6 +159,9 @@ const Furniture = ({onLaptopClick }) => {
       <Speaker10/>
       <BoyStatue/>
       <Headphones7/>
+      <Sony/>
+      <Apple/>
+      <Bit/>
     </>
   )
 }
