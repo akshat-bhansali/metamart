@@ -156,7 +156,6 @@ const Furniture = () => {
       <BoyStatue/>
       <Headphones7/>
       <Sony/>
-      <Shelf/>
       <Apple/>
       <Bit/>
     </>
