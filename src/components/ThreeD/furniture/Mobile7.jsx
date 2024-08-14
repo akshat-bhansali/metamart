@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { MeshStandardMaterial, CircleGeometry } from "three";
+import { CircleGeometry, MeshStandardMaterial } from "three";
 
-export function Mobile4(props) {
+export function Mobile7(props) {
   const { nodes, materials } = useGLTF("./models/mobile4.glb");
   const [hovered, setHovered] = useState(false);
   const groupRef = useRef();
@@ -34,9 +34,8 @@ export function Mobile4(props) {
         ref={groupRef}
         dispose={null}
         scale={[35, 35, 35]}
-        position={[-33.45, 5.3, -15.8]}
-        rotation-y={Math.PI * 2.6}
-        rotation-z={Math.PI * -0.1}
+        position={[-23.6, 5.4, -24.2]}
+        rotation={[Math.PI * 0.015, Math.PI * -0.4, Math.PI * -0.065]}
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onClick={handleClick}
@@ -227,15 +226,15 @@ export function Mobile4(props) {
       {/* Outline Mesh */}
       <mesh
         ref={outlineRef}
-        geometry={new CircleGeometry(2, 32)} // Adjust size to match mobile width
-        position={[-31, 5.3, -16]} // Position below the mobile
+        geometry={new CircleGeometry(2, 32)} // Adjust size to fit the mobile model
+        position={[-26, 5.1, -24.2]} // Adjust position to fit around the mobile model
         rotation={[Math.PI / 2, 0, 0]} // Align horizontally
         material={
           new MeshStandardMaterial({
             color: hovered ? "blue" : "transparent",
             transparent: true,
             opacity: 0.5,
-            side: 2, // Double-side rendering to make sure it's visible from all angles
+            side: 2, // Double-side rendering
           })
         }
       />

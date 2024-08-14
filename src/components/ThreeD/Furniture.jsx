@@ -90,6 +90,14 @@ import { Cctv1 } from "./furniture/Cctv1";
 import { Cctv2 } from "./furniture/CCtv2";
 import { Cctv3 } from "./furniture/Cctv3";
 import { Cctv4 } from "./furniture/CCtv4";
+import { MobileStand5 } from "./furniture/MobileStand5";
+import { MobileStand6 } from "./furniture/MobileStand6";
+import { MobileStand7 } from "./furniture/MobileStand7";
+import { MobileStand8 } from "./furniture/MobileStand8";
+import { Mobile5 } from "./furniture/Mobile5";
+import { Mobile6 } from "./furniture/Mobile6";
+import { Mobile7 } from "./furniture/Mobile7";
+import { Mobile8 } from "./furniture/Mobile8";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -121,14 +129,22 @@ const Furniture = ({ onLaptopClick }) => {
       <Laptop6 onClick={() => handleLaptopClick("./models/laptop3.glb")} />
       <Billboard />
       <HelpDesk />
-      <Mobile />
       <MobileStand />
-      <Mobile2 />
       <MobileStand2 />
       <MobileStand3 />
       <MobileStand4 />
-      <Mobile3 />
-      <Mobile4 />
+      <Mobile onClick={() => handleLaptopClick("./models/mobile.glb")} />
+      <Mobile2 onClick={() => handleLaptopClick("./models/mobile2.glb")} />
+      <Mobile3 onClick={() => handleLaptopClick("./models/mobile3.glb")} />
+      <Mobile4 onClick={() => handleLaptopClick("./models/mobile4.glb")} />
+      <Mobile5 onClick={() => handleLaptopClick("./models/mobile2.glb")} />
+      <Mobile6 onClick={() => handleLaptopClick("./models/mobile.glb")} />
+      <Mobile7 onClick={() => handleLaptopClick("./models/mobile4.glb")} />
+      <Mobile8 onClick={() => handleLaptopClick("./models/mobile3.glb")} />
+      <MobileStand5 />
+      <MobileStand6 />
+      <MobileStand7 />
+      <MobileStand8 />
       <Headphones
         onClick={() => handleLaptopClick("./models/headphones.glb")}
       />
@@ -192,11 +208,11 @@ const Furniture = ({ onLaptopClick }) => {
       <Cart3 />
       <Mother />
       <Child />
-      <Road/>
-      <Cctv1/>
-      <Cctv2/>
-      <Cctv3/>
-      <Cctv4/>
+      <Road />
+      <Cctv1 />
+      <Cctv2 />
+      <Cctv3 />
+      <Cctv4 />
     </>
   );
 };

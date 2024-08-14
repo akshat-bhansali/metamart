@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
-import { MeshStandardMaterial, CircleGeometry, Mesh } from "three";
+import { CircleGeometry, MeshStandardMaterial } from "three";
 
-export function Mobile(props) {
+export function Mobile6(props) {
   const { nodes, materials } = useGLTF("./models/mobile.glb");
   const [hovered, setHovered] = useState(false);
   const groupRef = useRef();
@@ -34,10 +34,8 @@ export function Mobile(props) {
         ref={groupRef}
         dispose={null}
         scale={[10, 10, 10]}
-        position={[-16, 6.4, -16.3]}
-        rotation-z={Math.PI / 2}
-        rotation-x={Math.PI * -1.1}
-        rotation-y={Math.PI * 1.5}
+        position={[-21, 6.4, -23.75]}
+        rotation={[Math.PI * 1.1, Math.PI / 2, Math.PI / 2]}
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         onClick={handleClick}
@@ -72,15 +70,15 @@ export function Mobile(props) {
       {/* Outline Mesh */}
       <mesh
         ref={outlineRef}
-        geometry={new CircleGeometry(2, 32)} // Adjust size to match mobile width
-        position={[-16, 5.1, -16.3]} // Position below the mobile
+        geometry={new CircleGeometry(2, 32)} // Adjust size to fit the mobile model
+        position={[-21, 5.1, -23.75]} // Adjust position to fit around the mobile model
         rotation={[Math.PI / 2, 0, 0]} // Align horizontally
         material={
           new MeshStandardMaterial({
             color: hovered ? "blue" : "transparent",
             transparent: true,
             opacity: 0.5,
-            side: 2, // Double-side rendering to make sure it's visible from all angles
+            side: 2, // Double-side rendering
           })
         }
       />
