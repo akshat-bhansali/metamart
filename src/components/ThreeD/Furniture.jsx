@@ -76,7 +76,6 @@ import { PSConsole3 } from './furniture/PSConsole3'
 import { PSConsole4 } from './furniture/PSConsole4'
 import { LegoDeadpool } from './furniture/LegoDeadpool'
 
-import { Shelf } from './furniture/Shelf'
 import { Apple } from './furniture/Apple'
 import { Bit } from './furniture/Bit'
 const Furniture = ({onLaptopClick }) => {
