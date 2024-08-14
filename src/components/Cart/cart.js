@@ -1,8 +1,8 @@
 // Helper functions for local storage
-const getCartFromLocalStorage = () => {
+const getCartFromLocalStorage = (paid=false) => {
   const cart = localStorage.getItem("cart");
-  console.log("Get Cart", cart);
-  return cart ? JSON.parse(cart) : [];
+  console.log("Get Cart", JSON.parse(cart).filter((v)=>v.paid == paid));
+  return cart ? JSON.parse(cart).filter((v)=>v.paid == paid) : [];
 };
 
 const saveCartToLocalStorage = (cart) => {
@@ -10,7 +10,7 @@ const saveCartToLocalStorage = (cart) => {
 };
 
 // Function to add an item to the cart
-export const addItemToCart = (item, qty) => {
+export const addItemToCart = (item, qty,paid=false) => {
   try {
     const cart = getCartFromLocalStorage();
     const newOrder = {
@@ -18,7 +18,7 @@ export const addItemToCart = (item, qty) => {
       item: item,
       qty: qty,
       status: "Order Placed",
-      pay_status: "Not Paid",
+      paid: paid,
       pay_url: "",
     };
     cart.push(newOrder);
@@ -52,7 +52,8 @@ export const updateItem = (updatedOrder) => {
 // Function to get cart details
 export const getCartDetails = () => {
   try {
-    const cart = getCartFromLocalStorage();
+    const cart = getCartFromLocalStorage(false);
+    console.log("Cart ",cart);
     return cart;
   } catch (error) {
     console.error("Error retrieving cart details: ", error);

@@ -2,22 +2,35 @@
 import { deleteOrder, getCartDetails, updateItem } from '@/components/Cart/cart';
 import { loadStripe } from '@stripe/stripe-js';
 import { useState, useEffect } from 'react';
+import CheckoutButton from './CheckoutButton';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const CartComponent = () => {
     const [cart, setCart] = useState([]);
+    const [amount,setAmount] = useState(0); 
     
     useEffect(() => {
       // Load cart items from local storage when the component mounts
       const loadCart = getCartDetails();
-      setCart(loadCart);
+      console.log("Load Cart : ",loadCart)
+      let amount = 0;
+
+      loadCart?.forEach((i)=>amount+=(i.qty*i.item.price))
+      setAmount(amount);
+      setCart(loadCart ? loadCart : []);
     }, []);
   
     const handleIncrement = (id) => {
       const updatedCart = cart.map(item => 
         item.id === id ? { ...item, qty: item.qty + 1 } : item
       );
+      let amount = 0;
+
+      updatedCart.forEach((i)=>{
+        amount+=(i.qty*i.item.price);
+    })
+      setAmount(amount);
       setCart(updatedCart);
       updateItem({ id, qty: updatedCart.find(item => item.id === id).qty });
     };
@@ -26,6 +39,9 @@ const CartComponent = () => {
       const updatedCart = cart.map(item => 
         item.id === id ? { ...item, qty: Math.max(item.qty - 1, 1) } : item
       );
+      let amount = 0;
+      updatedCart.forEach((i)=>amount+=(i.qty*i.item.price))
+      setAmount(amount);
       setCart(updatedCart);
       updateItem({ id, qty: updatedCart.find(item => item.id === id).qty });
     };
@@ -61,7 +77,7 @@ const CartComponent = () => {
         const response = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items})
+          body: JSON.stringify({ items })
         });
     
         const { id } = await response.json();
@@ -73,10 +89,9 @@ const CartComponent = () => {
           console.error('Error redirecting to Checkout:', error);
         }
     };
-  
+    console.log("Item",cart);
     return (
       <div className="p-4 border border-gray-300 rounded-md shadow-md max-w-md mx-auto bg-white">
-        <h2 className="text-xl font-semibold mb-4">Shopping Cart</h2>
         {cart.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
@@ -84,9 +99,9 @@ const CartComponent = () => {
             {cart.map(item => (
               <li key={item.id} className="flex items-center justify-between border-b border-gray-200 py-2">
                 <div className="flex-1">
-                  <h3 className="text-lg font-medium">{item.name}</h3>
-                  <p className="text-gray-600">Model: {item.model}</p>
-                  <p className="text-gray-600">Price: ${item.price}</p>
+                  <h3 className="text-lg font-medium">{item.item.name}</h3>
+                  <p className="text-gray-600">Model: {item.item.model}</p>
+                  <p className="text-gray-600">Price: ${item.item.price}</p>
                   <p className="text-gray-600">Qty: {item.qty}</p>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -113,13 +128,20 @@ const CartComponent = () => {
             ))}
           </ul>
         )}
-        {cart.length > 0 && (
-          <button
-            onClick={()=>handleCheckout(10000)}
+        {cart?.length > 0 && (
+            <div>
+            <div className='flex justify-between'>
+            <h3 className="text-lg font-medium">Total :</h3>
+            <h3 className="text-lg font-medium">{amount}</h3>
+            </div>
+          {/* <button
+            onClick={()=>handleCheckout(amount)}
             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full"
           >
             Checkout
-          </button>
+          </button> */}
+          <CheckoutButton cost={amount}/>
+            </div>
         )}
       </div>
     );
