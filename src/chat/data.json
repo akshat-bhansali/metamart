@@ -1,0 +1,64 @@
+{
+    "storeName": "Metamart",
+    "inventory": [
+      {
+        "id": 101,
+        "name": "Smartphone",
+        "brand": "TechPhone",
+        "model": "X200",
+        "specs": {
+          "screenSize": "6.5 inches",
+          "storage": "128GB",
+          "RAM": "6GB",
+          "battery": "4500mAh",
+          "camera": "48MP"
+        },
+        "price": 699.99,
+        "stock": 50
+      },
+      {
+        "id": 102,
+        "name": "Laptop",
+        "brand": "CompTech",
+        "model": "ProBook 15",
+        "specs": {
+          "screenSize": "15.6 inches",
+          "processor": "Intel i7",
+          "storage": "512GB SSD",
+          "RAM": "16GB",
+          "battery": "6000mAh"
+        },
+        "price": 1199.99,
+        "stock": 30
+      },
+      {
+        "id": 103,
+        "name": "Smart TV",
+        "brand": "ViewMax",
+        "model": "UltraHD 55",
+        "specs": {
+          "screenSize": "55 inches",
+          "resolution": "4K UHD",
+          "smartFeatures": "Wi-Fi, Streaming Apps",
+          "HDMI_ports": 3
+        },
+        "price": 499.99,
+        "stock": 20
+      },
+      {
+        "id": 104,
+        "name": "Tablet",
+        "brand": "TabMaster",
+        "model": "T10",
+        "specs": {
+          "screenSize": "10 inches",
+          "storage": "64GB",
+          "RAM": "4GB",
+          "battery": "5000mAh"
+        },
+        "price": 299.99,
+        "stock": 75
+      }
+    ]
+  }
+  

@@ -15,14 +15,51 @@ import {
   ShoppingCartOutlined,
   RobotOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { resolveQuery } from "@/chat/chat";
+import CartComponent from "@/components/Cart/CartComponent";
 
 export default function Page() {
   const testing = true;
   const [segment, setSegment] = useState("user1");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
 
+  useEffect(() => {
+    // Load messages from local storage
+    const storedMessages = JSON.parse(localStorage.getItem("messages")) || [];
+    setMessages(storedMessages);
+  }, []);
+
+  useEffect(() => {
+    // Save messages to local storage
+    localStorage.setItem("messages", JSON.stringify(messages));
+  }, [messages]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (input.trim()) {
+      setMessages([...messages, { text: input, type: "user" }]);
+      const response = await resolveQuery(input);
+      console.log("Response", response);
+      setInput("");
+
+      setMessages([
+        ...messages,
+        { text: input, type: "user" },
+        { text: response.reply, type: "bot" },
+      ]);
+    }
+  };
+
+  const handleClearChat = () => {
+    // Clear messages from local storage
+    localStorage.removeItem("messages");
+    // Clear messages from the state
+    setMessages([]);
+  };
   const showAiModal = () => {
     setIsAiModalVisible(true);
   };
@@ -198,6 +235,52 @@ export default function Page() {
         bodyStyle={{ overflowY: "auto" }}
       >
         <p>Your AI assistant is here to help!</p>
+        <div>
+          <div className="bg-white w-full max-w-md p-4 rounded-lg shadow-lg">
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-bold">Chat</h2>
+              <button
+                onClick={handleClearChat}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+            >
+                Clear Chat
+            </button>
+            </div>
+            <div className="mt-4 h-60 overflow-y-auto border border-gray-300 p-2 rounded-lg">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`mb-2 ${msg.type === "user" ? "text-right" : ""}`}
+                >
+                  <div
+                    className={`p-2 rounded-lg ${
+                      msg.type === "user"
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-200"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <form onSubmit={handleSubmit} className="mt-4 flex">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="flex-1 border border-gray-300 p-2 rounded-lg"
+                placeholder="Type your message..."
+              />
+              <button
+                type="submit"
+                className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
         {/* Add more content here as needed */}
       </Modal>
 
@@ -215,8 +298,10 @@ export default function Page() {
         }}
         bodyStyle={{ overflowY: "auto" }}
       >
-        <p>Your cart is currently empty.</p>
-        {/* Add more content here as needed */}
+      <div>
+        <CartComponent/>
+
+      </div>
       </Modal>
     </>
   );
