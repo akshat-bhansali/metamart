@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stats } from "@react-three/drei";
 import MapFloor from "../../components/ThreeD/MapFloor";
@@ -37,7 +37,14 @@ export default function Page() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [orders, setOrders] = useState([]); // State for past orders
+  const chatEndRef = useRef(null);
 
+  useEffect(() => {
+    // Scroll to bottom when messages change
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
   useEffect(() => {
     const storedMessages = JSON.parse(localStorage.getItem("messages")) || [];
     setMessages(storedMessages);
@@ -64,9 +71,12 @@ export default function Page() {
       setMessages([
         ...messages,
         { text: input, type: "user" },
-        { text: response.reply, type: "bot" },
+        { text: response.reply, type: "bot" ,id:response?.id},
       ]);
     }
+  };
+  const findProduct = (id) => {
+    return productsData.items.find(item => item?.id === id);
   };
 
   const handleClearChat = () => {
@@ -313,66 +323,136 @@ export default function Page() {
 
       {/* Modal for AI */}
       <Modal
-        title="AI Assistant"
-        open={isAiModalVisible}
-        onCancel={handleAiModalCancel}
-        footer={null}
-        style={{
-          position: "absolute",
-          top: 10,
-          left: 10,
-          height: "calc(100vh - 20px)",
-        }}
-        bodyStyle={{ overflowY: "auto" }}
-      >
-        <p>Your AI assistant is here to help!</p>
-        <div>
-          <div className="bg-white w-full max-w-md p-4 rounded-lg shadow-lg">
-            <div className="flex justify-between items-center">
-              <h2 className="text-lg font-bold">Chat</h2>
-              <button
-                onClick={handleClearChat}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+      title="AI Assistant"
+      open={isAiModalVisible}
+      onCancel={handleAiModalCancel}
+      footer={null}
+      style={{
+        position: "absolute",
+        top: 10,
+        left: 10,
+        width: "100%",
+        padding: 0,
+      }}
+      bodyStyle={{ padding: 0 }}
+    >
+      <div className="flex flex-col bg-gray-200 rounded-lg h-[500px]">
+        <div className="flex flex-col p-4 rounded-lg h-full overflow-y-auto ">
+          {messages.map((msg, index) => {
+            const product = msg.id ? findProduct(msg.id) : null;
+
+            return (
+              <div
+                key={index}
+                className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"} mb-2`}
               >
-                Clear Chat
-              </button>
-            </div>
-            <div className="mt-4 h-60 overflow-y-auto border border-gray-300 p-2 rounded-lg">
-              {messages.map((msg, index) => (
                 <div
-                  key={index}
-                  className={`mb-2 ${msg.type === "user" ? "text-right" : ""}`}
+                  className={`p-2 rounded-lg ${msg.type === "user" ? "bg-blue-500 text-white" : "bg-gray-300"}`}
+                  style={{ maxWidth: "80%", position: "relative" }}
                 >
-                  <div
-                    className={`p-2 rounded-lg ${
-                      msg.type === "user"
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200"
-                    }`}
-                  >
-                    {msg.text}
-                  </div>
+                  {msg.text}
+                  {product && (
+                    <Card
+                      style={{ marginTop: '10px', width: 'auto', borderRadius: '6px', padding: '8px' }}
+                      cover={
+                        <img
+                          alt="Product"
+                          src={product.imageUrl || "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"}
+                          style={{ height: "100px", objectFit: "cover", borderRadius: '6px 6px 0 0' }}
+                        />
+                      }
+                      actions={[
+                        <Button
+                          type="primary"
+                          icon={<ShoppingCartOutlined />}
+                          key="add-to-cart"
+                          onClick={() => {
+                            addItemToCart(product, 1);
+                            alert("Added to Cart!");
+                          }}
+                          style={{ fontSize: '12px', padding: '4px 8px' }}
+                        >
+                          Add
+                        </Button>,
+                        <Button
+                          type="primary"
+                          danger
+                          icon={<ArrowsAltOutlined />}
+                          key="view-in-ar"
+                          style={{ fontSize: '12px', padding: '4px 8px' }}
+                        >
+                          View AR
+                        </Button>,
+                      ]}
+                    >
+                      <Meta
+                        title={
+                          <div className="flex items-center justify-between text-xs">
+                            <span>{product.name}</span>
+                            <Button
+                              icon={<ShareAltOutlined />}
+                              className="text-blue-500"
+                              type="text"
+                              onClick={() => alert("Share functionality here")}
+                              style={{ fontSize: '12px', padding: '2px' }}
+                            />
+                          </div>
+                        }
+                        description={
+                          <>
+                            <div className="mb-2">
+                              <p className="text-xs font-semibold text-gray-700">
+                                Price:{" "}
+                                <span className="text-sm font-bold text-green-600">
+                                  ₹{product.price}
+                                </span>
+                              </p>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-2 bg-gray-50 p-2 rounded-lg shadow-sm text-xs">
+                              {product.specs?.map((spec, index) => (
+                                <div
+                                  key={index}
+                                  className="flex items-center text-gray-600"
+                                >
+                                  <strong className="mr-1 text-xs font-medium text-gray-800">
+                                    {spec.key}:
+                                  </strong>
+                                  <span className="text-xs">{spec.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </>
+                        }
+                      />
+                    </Card>
+                  )}
                 </div>
-              ))}
-            </div>
-            <form onSubmit={handleSubmit} className="mt-4 flex">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="flex-1 border border-gray-300 p-2 rounded-lg"
-                placeholder="Type your message..."
-              />
-              <button
-                type="submit"
-                className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-              >
-                Send
-              </button>
-            </form>
-          </div>
+              </div>
+            );
+          })}
+          {/* Empty div for scrolling */}
+          <div ref={chatEndRef} />
         </div>
-      </Modal>
+        <form onSubmit={handleSubmit} className="flex p-4 bg-gray-200 border-t border-gray-300 rounded-b-lg">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex-1 border border-gray-300 p-2 rounded-lg"
+            placeholder="Type your message..."
+          />
+          <button
+            type="submit"
+            className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          >
+            Send
+          </button>
+        </form>
+      </div>
+    </Modal>
+
+
 
       {/* Modal for Cart */}
       <Modal
@@ -400,8 +480,8 @@ export default function Page() {
         footer={null}
         style={{
           position: "absolute",
-          top: 30,
-          left: 0,
+          top: 10,
+          left: 10,
           right: 0,
           bottom: 0,
           padding: 0,
@@ -487,8 +567,8 @@ export default function Page() {
         footer={null}
         style={{
           position: "absolute",
-          top: 10,
-          right: 10,
+          top: 30,
+          left: 30,
           height: "calc(100vh - 20px)",
         }}
         bodyStyle={{ overflowY: "auto" }}
