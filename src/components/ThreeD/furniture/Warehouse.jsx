@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function Warehouse(props) {
   const { nodes, materials } = useGLTF('./models/warehouse.glb')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} position={[96,4,-9]} scale={[680,400,400]} rotation={[0,-Math.PI/2,0]}>
       <group position={[-0.001, 0.012, 0.01]} rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
