@@ -59,7 +59,7 @@ export function Mobile8(props) {
       <mesh
         ref={outlineRef}
         geometry={new CircleGeometry(2,32)} // Adjust size to fit the mobile model
-        position={[-31, 6.5, -23.7]} // Adjust position to fit around the mobile model
+        position={[-31, 5.1, -23.7]} // Adjust position to fit around the mobile model
         rotation={[Math.PI / 2, 0, 0]} // Align horizontally
         material={
           new MeshStandardMaterial({
