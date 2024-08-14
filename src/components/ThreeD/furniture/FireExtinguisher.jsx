@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
 
 export function FireExtinguisher(props) {
-  const { nodes, materials } = useGLTF('./models/FireExtinguisher.glb')
+  const { nodes, materials } = useGLTF("./models/FireExtinguisher.glb");
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} position={[-48, 0, -48]} scale={12}>
       <mesh
         castShadow
         receiveShadow
@@ -19,7 +19,7 @@ export function FireExtinguisher(props) {
         position={[0, 0.356, 0]}
       />
     </group>
-  )
+  );
 }
 
-useGLTF.preload('./models/FireExtinguisher.glb')
+useGLTF.preload("./models/FireExtinguisher.glb");
