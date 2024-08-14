@@ -9,19 +9,23 @@ import Furniture from "@/components/ThreeD/Furniture";
 import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
 import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
-import { Segmented, Avatar, Button, Modal } from "antd";
+import { Segmented, Avatar, Button, Modal,Card  } from "antd";
+const { Meta } = Card;
 import {
   UserOutlined,
   ShoppingCartOutlined,
   RobotOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 export default function Page() {
   const testing = true;
   const [segment, setSegment] = useState("user1");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
+  const [isModelModalVisible, setIsModelModalVisible] = useState(false); // New state for laptop modal
+  const [modelPath, setModelPath] = useState(""); // New state to store modelPath
 
   const showAiModal = () => {
     setIsAiModalVisible(true);
@@ -38,6 +42,19 @@ export default function Page() {
   const handleCartModalCancel = () => {
     setIsCartModalVisible(false);
   };
+  const showModelModal = (path) => {
+    setModelPath(path);
+    setIsModelModalVisible(true);
+  };
+
+  const handleModelModalCancel = () => {
+    setIsModelModalVisible(false);
+  };
+
+  const handleLaptopClick = (modelPath) => {
+    showModelModal(modelPath);
+  };
+
 
   return (
     <>
@@ -176,7 +193,7 @@ export default function Page() {
           <MapFloor />
           <Character />
           <StoreFrame />
-          <Furniture />
+          <Furniture onLaptopClick={handleLaptopClick}/>
           <SittingChar />
           <SittingChar2 />
           <Staff onClick={showAiModal} /> {/* Pass the function here */}
@@ -217,6 +234,42 @@ export default function Page() {
       >
         <p>Your cart is currently empty.</p>
         {/* Add more content here as needed */}
+      </Modal>
+      {/* modal for model */}
+      <Modal
+        visible={isModelModalVisible}
+        onCancel={handleModelModalCancel}
+        footer={null}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          padding: 0, // Remove padding
+        }}
+        bodyStyle={{ padding: 0, margin: 0, overflow: "hidden" }} // Remove body padding and margin
+      >
+        <Card
+          style={{ height: "100%" }} // Make card take full height
+          cover={
+            <img
+              alt="Laptop Model"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              style={{ height: "50%", objectFit: "cover" }} // Adjust image to fit
+            />
+          }
+          bodyStyle={{ padding: 16 }} // Optional: Adjust padding inside the card
+          actions={[
+            <SettingOutlined key="setting" />,
+            <EditOutlined key="edit" />,
+          ]}
+        >
+          <Meta
+            title={`Model Path: ${modelPath}`}
+            description="This is the description of the laptop model."
+          />
+        </Card>
       </Modal>
     </>
   );

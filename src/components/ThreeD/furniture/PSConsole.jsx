@@ -21,7 +21,10 @@ export function PSConsole(props) {
       groupRef.current.position.y -= 0.5;
     }
   };
-
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
   return (
     <group
       {...props}
@@ -31,6 +34,7 @@ export function PSConsole(props) {
       position={[-16, 5, 24]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
+      onClick={(handleClick)}
     >
       <mesh
         name="PS4_Base"

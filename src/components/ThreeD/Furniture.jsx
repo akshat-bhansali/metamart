@@ -64,7 +64,7 @@ import { Speaker9 } from './furniture/Speaker9'
 import { Speaker10 } from './furniture/Speaker10'
 import { BoyStatue } from './furniture/BoyStatue'
 import { Headphones7 } from './furniture/Headphones7'
-
+import {Sony} from './furniture/Sony'
 import {PS5} from './furniture/PS5'
 import {PS52} from './furniture/PS52'
 import { Samsung } from './furniture/Samsung'
@@ -75,7 +75,13 @@ import { PSConsole2 } from './furniture/PSConsole2'
 import { PSConsole3 } from './furniture/PSConsole3'
 import { PSConsole4 } from './furniture/PSConsole4'
 import { LegoDeadpool } from './furniture/LegoDeadpool'
-const Furniture = () => {
+
+import { Apple } from './furniture/Apple'
+import { Bit } from './furniture/Bit'
+const Furniture = ({onLaptopClick }) => {
+  const handleLaptopClick = (modelPath) => {
+    onLaptopClick(modelPath);
+  };
   return (
     <>
       <Sofa/>
@@ -95,12 +101,12 @@ const Furniture = () => {
       <MainTable/>
       <MainTable2/>
       <Cash/> 
-      <Laptop1/>
-      <Laptop2/>
-      <Laptop3/>
-      <Laptop4/>
-      <Laptop5/>
-      <Laptop6/>
+      <Laptop1 onClick={() => handleLaptopClick('./models/laptop1.glb')} />
+      <Laptop2 onClick={() => handleLaptopClick('./models/laptop2.glb')} />
+      <Laptop3 onClick={() => handleLaptopClick('./models/laptop3.glb')} />
+      <Laptop4 onClick={() => handleLaptopClick('./models/laptop2.glb')} />
+      <Laptop5 onClick={() => handleLaptopClick('./models/laptop1.glb')} />
+      <Laptop6 onClick={() => handleLaptopClick('./models/laptop3.glb')} />
       <Billboard/>
       <HelpDesk/>
       <Mobile/>
@@ -136,15 +142,15 @@ const Furniture = () => {
       <Speaker4/>
       <Speaker5/>
       <Speaker6/>
-      <PS5/>
-      <PS52/>
+      <PS5 onClick={() => handleLaptopClick('./models/2console.glb')}/>
+      <PS52 onClick={() => handleLaptopClick('./models/2console.glb')}/>
       <PSLogo/>
       <PSLogo2/>
       <Samsung/>
-      <PSConsole/>
-      <PSConsole2/>
-      <PSConsole3/>
-      <PSConsole4/>
+      <PSConsole onClick={() => handleLaptopClick('./models/PSConsole.glb')}/>
+      <PSConsole2 onClick={() => handleLaptopClick('./models/PSConsole.glb')}/>
+      <PSConsole3 onClick={() => handleLaptopClick('./models/PSConsole.glb')}/>
+      <PSConsole4 onClick={() => handleLaptopClick('./models/PSConsole.glb')}/>
       <LegoDeadpool/>
       <Speaker7/>
       <Speaker8/>
@@ -152,6 +158,9 @@ const Furniture = () => {
       <Speaker10/>
       <BoyStatue/>
       <Headphones7/>
+      <Sony/>
+      <Apple/>
+      <Bit/>
     </>
   )
 }
