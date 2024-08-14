@@ -80,6 +80,9 @@ import { Apple } from "./furniture/Apple";
 import { Bit } from "./furniture/Bit";
 import { Metal } from "./furniture/Metal1";
 import { Metal2 } from "./furniture/Metal2";
+import { Cart1 } from "./furniture/Cart1";
+import { Cart2 } from "./furniture/Cart2";
+import { Cart3 } from "./furniture/Cart3";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -176,7 +179,10 @@ const Furniture = ({ onLaptopClick }) => {
       <Apple />
       <Bit />
       <Metal />
-      <Metal2/>
+      <Metal2 />
+      <Cart1 />
+      <Cart2 />
+      <Cart3 />
     </>
   );
 };
