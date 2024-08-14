@@ -25,7 +25,7 @@ import {
 } from "@ant-design/icons";
 
 export default function Page() {
-  const testing = false;
+  const testing = true;
   const [segment, setSegment] = useState("user1");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
