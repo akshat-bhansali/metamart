@@ -2,10 +2,10 @@
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export function Fence(props) {
+export function Fence3(props) {
   const { nodes, materials } = useGLTF('./models/fence1.glb')
   return (
-    <group {...props} dispose={null} position={[65,2.3,80]} scale={[2,2.2,0]}>
+    <group {...props} dispose={null} position={[110,2.3,80]} scale={[2,2.2,0]}>
       <mesh
         castShadow
         receiveShadow
