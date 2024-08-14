@@ -99,7 +99,6 @@ import { Mobile6 } from "./furniture/Mobile6";
 import { Mobile7 } from "./furniture/Mobile7";
 import { Mobile8 } from "./furniture/Mobile8";
 import { Warehouse } from "./furniture/Warehouse";
-import { Fence } from "./furniture/Fence";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -216,7 +215,6 @@ const Furniture = ({ onLaptopClick }) => {
       <Cctv3 />
       <Cctv4 />
       <Warehouse/>
-      <Fence/>
     </>
   );
 };
