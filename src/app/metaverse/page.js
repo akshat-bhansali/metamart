@@ -27,7 +27,7 @@ import { resolveQuery } from "@/chat/chat";
 const { Meta } = Card;
 
 export default function Page() {
-  const testing = true;
+  const testing = false;
   const [segment, setSegment] = useState("user1");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
