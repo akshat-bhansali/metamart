@@ -1,10 +1,13 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useGLTF } from "@react-three/drei";
+import { CircleGeometry, MeshStandardMaterial } from "three";
 import * as THREE from "three";
 
 export function Tv3(props) {
   const { nodes, materials } = useGLTF("./models/tv2.glb");
   const videoRef = useRef();
+  const outlineRef = useRef();
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const video = document.createElement("video");
@@ -22,6 +25,14 @@ export function Tv3(props) {
       map: videoTexture,
     });
   }, []);
+
+  const handlePointerOver = () => {
+    setHovered(true);
+  };
+
+  const handlePointerOut = () => {
+    setHovered(false);
+  };
 
   return (
     <group
@@ -206,7 +217,25 @@ export function Tv3(props) {
           geometry={new THREE.PlaneGeometry(1.2, 0.75)} // Adjust the size to fit the TV screen
           position={[0, 0.75, -0.3]} // Adjust position to place the plane on top of the TV
           rotation={[-Math.PI / 2, 0, 0]} // Adjust the rotation to align with the TV screen
+          onPointerOver={handlePointerOver}
+          onPointerOut={handlePointerOut}
         />
+        {hovered && (
+          <mesh
+            ref={outlineRef}
+            geometry={new CircleGeometry(1.2, 64)} // Adjust radius and segments as needed
+            position={[0, 0.8, 0]} // Adjust position to highlight the desired area
+            rotation={[0, 0, 0]}
+            material={
+              new MeshStandardMaterial({
+                color: hovered ? "blue" : "transparent",
+                transparent: true,
+                opacity: 0.5,
+                side: 2,
+              })
+            }
+          />
+        )}
       </group>
     </group>
   );
