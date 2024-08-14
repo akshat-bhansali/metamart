@@ -11,7 +11,7 @@ export function Tv3(props) {
 
   useEffect(() => {
     const video = document.createElement("video");
-    video.src = "./videos/dhoni.mp4"; // Replace with your video file path
+    video.src = "./videos/i am ironman.mp4"; // Replace with your video file path
     video.loop = true;
     video.muted = true;
     video.play();
