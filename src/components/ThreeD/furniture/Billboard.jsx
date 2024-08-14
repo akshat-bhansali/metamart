@@ -11,7 +11,7 @@ export function Billboard(props) {
     <group
       {...props}
       dispose={null}
-      position={[49, 0, 0]}
+      position={[48.9, 0, 0]}
       rotation={[0, Math.PI / -2, 0]}
       scale={[2, 2, 2]}
     >

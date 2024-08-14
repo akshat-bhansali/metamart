@@ -86,6 +86,10 @@ import { Cart3 } from "./furniture/Cart3";
 import { Mother } from "./characters/Mother";
 import { Child } from "./characters/Child";
 import { Road } from "./furniture/Road";
+import { Cctv1 } from "./furniture/Cctv1";
+import { Cctv2 } from "./furniture/CCtv2";
+import { Cctv3 } from "./furniture/Cctv3";
+import { Cctv4 } from "./furniture/CCtv4";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -189,6 +193,10 @@ const Furniture = ({ onLaptopClick }) => {
       <Mother />
       <Child />
       <Road/>
+      <Cctv1/>
+      <Cctv2/>
+      <Cctv3/>
+      <Cctv4/>
     </>
   );
 };
