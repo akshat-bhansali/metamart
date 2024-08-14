@@ -10,12 +10,16 @@ import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
 import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
 import { Segmented, Avatar, Button, Modal, Card } from "antd";
+
+import productsData from "../productData";
+
 const { Meta } = Card;
 import {
   UserOutlined,
   ShoppingCartOutlined,
   RobotOutlined,
-  ArrowsAltOutlined
+  ArrowsAltOutlined,
+  ShareAltOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
 import {
@@ -30,7 +34,7 @@ export default function Page() {
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
   const [isModelModalVisible, setIsModelModalVisible] = useState(false); // New state for laptop modal
-  const [modelPath, setModelPath] = useState(""); // New state to store modelPath
+  const [models, setModels] = useState(""); // New state to store modelPath
 
   const showAiModal = () => {
     setIsAiModalVisible(true);
@@ -48,7 +52,10 @@ export default function Page() {
     setIsCartModalVisible(false);
   };
   const showModelModal = (path) => {
-    setModelPath(path);
+    const product = productsData.items.find(
+      (item) => `./models/${item?.id}.glb` === path
+    );
+    setModels(product);
     setIsModelModalVisible(true);
   };
 
@@ -288,51 +295,78 @@ export default function Page() {
         footer={null}
         style={{
           position: "absolute",
-          top: 0,
+          top: 30,
           left: 0,
           right: 0,
           bottom: 0,
-          padding: 0, // Remove padding
+          padding: 0,
         }}
-        bodyStyle={{ padding: 0, margin: 0, overflow: "hidden" }} // Remove body padding and margin
       >
         <Card
-  style={{ height: "100%" }} // Make card take full height
-  cover={
-    <img
-      alt="Laptop Model"
-      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      style={{ height: "50%", objectFit: "cover" }} // Adjust image to fit
-    />
-  }
-  bodyStyle={{ padding: 16 }} // Optional: Adjust padding inside the card
-  actions={[
-    <Button 
-      type="primary" 
-      icon={<ShoppingCartOutlined />} 
-      key="add-to-cart"
-    >
-      Add to Cart
-    </Button>,
-    <Button 
-      type="primary" 
-      danger 
-      icon={<ArrowsAltOutlined />} 
-      key="view-in-ar"
-    >
-      View in AR
-    </Button>,
-  ]}
->
-  <Meta
-    title={`Model Path: ${modelPath}`}
-    avatar={
-      <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
-    }
-    description="This is the description of the laptop model."
-  />
-</Card>
+          style={{ height: "100%" }}
+          cover={
+            <img
+              alt="Laptop Model"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              style={{ height: "50%", objectFit: "cover" }} // Adjust image to fit
+            />
+          }
+          actions={[
+            <Button
+              type="primary"
+              icon={<ShoppingCartOutlined />}
+              key="add-to-cart"
+            >
+              Add to Cart
+            </Button>,
+            <Button
+              type="primary"
+              danger
+              icon={<ArrowsAltOutlined />}
+              key="view-in-ar"
+            >
+              View in AR
+            </Button>,
+          ]}
+        >
+          <Meta
+            title={
+              <div className="flex items-center justify-between">
+                <span>{models.name}</span>
+                <Button
+                  icon={<ShareAltOutlined />}
+                  className="text-blue-500"
+                  type="text"
+                  onClick={() => alert("Share functionality here")}
+                />
+              </div>
+            }
+            description={
+              <>
+  <div className="mb-4">
+    <p className="text-lg font-semibold text-gray-700">
+      Price:{" "}
+      <span className="text-xl font-bold text-green-600">
+        ₹{models.price}
+      </span>
+    </p>
+  </div>
 
+  <div className="grid grid-cols-2 gap-6 bg-gray-50 p-4 rounded-lg shadow-sm">
+    {models.specs?.map((spec, index) => (
+      <div key={index} className="flex items-center text-gray-600">
+        <strong className="mr-2 text-sm font-medium text-gray-800">
+          {spec.key}:
+        </strong>
+        <span className="text-sm">{spec.value}</span>
+      </div>
+    ))}
+  </div>
+</>
+
+            }
+          />
+        </Card>
       </Modal>
     </>
   );
