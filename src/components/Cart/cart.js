@@ -1,8 +1,7 @@
 // Helper functions for local storage
-const getCartFromLocalStorage = (paid=false) => {
+const getCartFromLocalStorage = () => {
   const cart = localStorage.getItem("cart");
-  console.log("Get Cart", JSON.parse(cart).filter((v)=>v.paid == paid));
-  return cart ? JSON.parse(cart).filter((v)=>v.paid == paid) : [];
+  return cart ? JSON.parse(cart) : [];
 };
 
 const saveCartToLocalStorage = (cart) => {
@@ -10,15 +9,19 @@ const saveCartToLocalStorage = (cart) => {
 };
 
 // Function to add an item to the cart
-export const addItemToCart = (item, qty,paid=false) => {
+export const addItemToCart = (item, qty) => {
+  console.log("Entered the function !")
   try {
     const cart = getCartFromLocalStorage();
     const newOrder = {
       id: Date.now().toString(), // Generate a unique ID for the order
       item: item,
       qty: qty,
-      status: "Order Placed",
-      paid: paid,
+      status: 0,
+      // 0 -> Order Placed
+      // 1 -> Completed
+      // 2 -> Canceled
+      paid: false,
       pay_url: "",
     };
     cart.push(newOrder);
@@ -49,11 +52,41 @@ export const updateItem = (updatedOrder) => {
   }
 };
 
-// Function to get cart details
-export const getCartDetails = () => {
+export const checkoutAll = () => {
   try {
-    const cart = getCartFromLocalStorage(false);
+    const cart = getCartFromLocalStorage();
+    saveCartToLocalStorage(
+      cart.map((order)=>
+      {
+        if(order.status)return order;
+        order.status = 1;
+        order.paid = 1;
+        return order;
+      }
+    
+    )
+  
+  )
+    // const orderIndex = cart.findIndex((order) => order.id === updatedOrder.id);
+    // if (orderIndex !== -1) {
+    //   cart[orderIndex] = { ...cart[orderIndex], ...updatedOrder };
+    //   saveCartToLocalStorage(cart);
+    //   console.log("Order updated with ID: ", updatedOrder.id);
+    //   return updatedOrder.id;
+    // } else {
+    //   console.error("Order not found");
+    // }
+  } catch (error) {
+    console.error("Error updating order: ", error);
+  }
+};
+
+// Function to get cart details
+export const getCartDetails = (status=null) => {
+  try {
+    const cart = getCartFromLocalStorage();
     console.log("Cart ",cart);
+    if(status!=null)return cart.filter((v)=>v.status == status)
     return cart;
   } catch (error) {
     console.error("Error retrieving cart details: ", error);

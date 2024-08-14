@@ -1,4 +1,5 @@
-"use client";
+'use client'
+import React, { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stats } from "@react-three/drei";
 import MapFloor from "../../components/ThreeD/MapFloor";
@@ -10,53 +11,54 @@ import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
 import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
 import { Segmented, Avatar, Button, Modal, Card } from "antd";
-
 import productsData from "../productData";
-
-const { Meta } = Card;
 import {
   UserOutlined,
   ShoppingCartOutlined,
   RobotOutlined,
   ArrowsAltOutlined,
   ShareAltOutlined,
+  HistoryOutlined
 } from "@ant-design/icons";
-import { useEffect, useState } from "react";
-import { resolveQuery } from "@/chat/chat";
 import CartComponent from "@/components/Cart/CartComponent";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { addItemToCart, getCartDetails } from "@/components/Cart/cart";
+import { resolveQuery } from "@/chat/chat";
+
+const { Meta } = Card;
 
 export default function Page() {
   const testing = true;
   const [segment, setSegment] = useState("user1");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
-  const [isModelModalVisible, setIsModelModalVisible] = useState(false); // New state for laptop modal
-  const [models, setModels] = useState(""); // New state to store modelPath
+  const [isModelModalVisible, setIsModelModalVisible] = useState(false);
+  const [isOrdersModalVisible, setIsOrdersModalVisible] = useState(false); // State for orders modal
+  const [models, setModels] = useState("");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [orders, setOrders] = useState([]); // State for past orders
 
   useEffect(() => {
-    // Load messages from local storage
     const storedMessages = JSON.parse(localStorage.getItem("messages")) || [];
     setMessages(storedMessages);
+
+    const storedOrders = getCartDetails(1) || [];
+    setOrders(storedOrders);
   }, []);
 
   useEffect(() => {
-    // Save messages to local storage
     localStorage.setItem("messages", JSON.stringify(messages));
   }, [messages]);
+
+  useEffect(() => {
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }, [orders]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (input.trim()) {
       setMessages([...messages, { text: input, type: "user" }]);
       const response = await resolveQuery(input);
-      console.log("Response", response);
       setInput("");
 
       setMessages([
@@ -68,11 +70,10 @@ export default function Page() {
   };
 
   const handleClearChat = () => {
-    // Clear messages from local storage
     localStorage.removeItem("messages");
-    // Clear messages from the state
     setMessages([]);
   };
+
   const showAiModal = () => {
     setIsAiModalVisible(true);
   };
@@ -88,6 +89,7 @@ export default function Page() {
   const handleCartModalCancel = () => {
     setIsCartModalVisible(false);
   };
+
   const showModelModal = (path) => {
     const product = productsData.items.find(
       (item) => `./models/${item?.id}.glb` === path
@@ -98,6 +100,14 @@ export default function Page() {
 
   const handleModelModalCancel = () => {
     setIsModelModalVisible(false);
+  };
+
+  const handleOrdersModal = () => {
+    setIsOrdersModalVisible(true);
+  };
+
+  const handleOrdersModalCancel = () => {
+    setIsOrdersModalVisible(false);
   };
 
   const handleLaptopClick = (modelPath) => {
@@ -157,7 +167,7 @@ export default function Page() {
             icon={<ShoppingCartOutlined />}
             size="large"
             style={{ backgroundColor: "#87d068", color: "white" }}
-            onClick={showCartModal} // Open cart modal on click
+            onClick={showCartModal}
           />
         </div>
 
@@ -168,7 +178,18 @@ export default function Page() {
             icon={<RobotOutlined />}
             size="large"
             style={{ backgroundColor: "#1890ff", color: "white" }}
-            onClick={showAiModal} // Open AI modal on click
+            onClick={showAiModal}
+          />
+        </div>
+
+        {/* Floating Button for Orders */}
+        <div className="fixed bottom-28 right-4 z-20">
+          <Button
+            shape="circle"
+            icon={<HistoryOutlined />}
+            size="large"
+            style={{ backgroundColor: "#ff4d4f", color: "white" }}
+            onClick={handleOrdersModal}
           />
         </div>
 
@@ -286,7 +307,7 @@ export default function Page() {
           <Furniture onLaptopClick={handleLaptopClick} />
           <SittingChar />
           <SittingChar2 />
-          <Staff onClick={showAiModal} /> {/* Pass the function here */}
+          <Staff onClick={showAiModal} />
         </Canvas>
       </div>
 
@@ -300,7 +321,7 @@ export default function Page() {
           position: "absolute",
           top: 10,
           left: 10,
-          height: "calc(100vh - 20px)", // Increase height
+          height: "calc(100vh - 20px)",
         }}
         bodyStyle={{ overflowY: "auto" }}
       >
@@ -351,7 +372,6 @@ export default function Page() {
             </form>
           </div>
         </div>
-        {/* Add more content here as needed */}
       </Modal>
 
       {/* Modal for Cart */}
@@ -364,15 +384,16 @@ export default function Page() {
           position: "absolute",
           top: 10,
           right: 10,
-          height: "calc(100vh - 20px)", // Increase height
+          height: "calc(100vh - 20px)",
         }}
         bodyStyle={{ overflowY: "auto" }}
       >
         <div>
-          <CartComponent />
+          <CartComponent isVisible={isCartModalVisible} />
         </div>
       </Modal>
-      {/* modal for model */}
+
+      {/* Modal for Model */}
       <Modal
         open={isModelModalVisible}
         onCancel={handleModelModalCancel}
@@ -392,7 +413,7 @@ export default function Page() {
             <img
               alt="Laptop Model"
               src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              style={{ height: "50%", objectFit: "cover" }} // Adjust image to fit
+              style={{ height: "50%", objectFit: "cover" }}
             />
           }
           actions={[
@@ -400,6 +421,10 @@ export default function Page() {
               type="primary"
               icon={<ShoppingCartOutlined />}
               key="add-to-cart"
+              onClick={() => {
+                addItemToCart(models, 1);
+                alert("Added to Cart!");
+              }}
             >
               Add to Cart
             </Button>,
@@ -453,6 +478,38 @@ export default function Page() {
             }
           />
         </Card>
+      </Modal>
+
+      {/* Modal for Orders */}
+      <Modal
+        open={isOrdersModalVisible}
+        onCancel={handleOrdersModalCancel}
+        footer={null}
+        style={{
+          position: "absolute",
+          top: 10,
+          right: 10,
+          height: "calc(100vh - 20px)",
+        }}
+        bodyStyle={{ overflowY: "auto" }}
+      >
+        <div>
+          <h2 className="text-lg font-bold mb-4">Your Past Orders</h2>
+          {orders.length > 0 ? (
+            <ul className="list-disc pl-5">
+              {orders.map((order, index) => (
+                <li key={index} className="mb-2">
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold">{order.item.name}</span>
+                    <span className="text-gray-600">{`₹${order.item.price} X ${order.qty}`}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No past orders found.</p>
+          )}
+        </div>
       </Modal>
     </>
   );

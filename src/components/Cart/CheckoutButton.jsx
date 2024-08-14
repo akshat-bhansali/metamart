@@ -1,7 +1,8 @@
 // components/CheckoutButton.js
 import { useState } from 'react';
+import { checkoutAll } from './cart';
 
-const CheckoutButton = (cost) => {
+const CheckoutButton = ({cost,success}) => {
   const [loading, setLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -12,7 +13,7 @@ const CheckoutButton = (cost) => {
       const response = await fetch('/api/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount:100, currency: 'INR' }), // Example amount in INR
+        body: JSON.stringify({ amount:Number(cost), currency: 'INR' }), // Example amount in INR
       });
 
       const { id, currency, amount } = await response.json();
@@ -25,9 +26,10 @@ const CheckoutButton = (cost) => {
         name: 'Your Company',
         description: 'Test Transaction',
         order_id: id,
-        handler: function (response) {
+        handler: () => {
           alert('Payment successful');
-          // Handle successful payment here
+          checkoutAll()
+          success();
         },
         prefill: {
           name: 'John Doe',

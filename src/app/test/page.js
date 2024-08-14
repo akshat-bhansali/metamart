@@ -8,7 +8,7 @@ export default function Test() {
     <div className="flex flex-col">
     <button onClick={()=>{
         // resolveQuery("I want to buy a phone can you tell me the available options in your store ?")
-        addItemToCart({name:'iPhone',model:'15 Pro',price:10000000},2)
+        addItemToCart({name:'iPhone',model:'15 Pro',price:1000},2)
     }}>Add Element</button>
     <button onClick={async ()=>{
         console.log("Here are details ",await getCartDetails());

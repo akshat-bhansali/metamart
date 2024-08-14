@@ -4,22 +4,20 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useState, useEffect } from 'react';
 import CheckoutButton from './CheckoutButton';
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
-
-const CartComponent = () => {
+const CartComponent = ({isVisible}) => {
     const [cart, setCart] = useState([]);
     const [amount,setAmount] = useState(0); 
-    
+    const loadData = ()=>{
+        const loadCart = getCartDetails(0);
+        let amount = 0;
+        loadCart?.forEach((i)=>amount+=(i.qty*i.item.price))
+        setAmount(amount);
+        setCart(loadCart ? loadCart : []);
+    }
     useEffect(() => {
       // Load cart items from local storage when the component mounts
-      const loadCart = getCartDetails();
-      console.log("Load Cart : ",loadCart)
-      let amount = 0;
-
-      loadCart?.forEach((i)=>amount+=(i.qty*i.item.price))
-      setAmount(amount);
-      setCart(loadCart ? loadCart : []);
-    }, []);
+      loadData();
+    }, [isVisible]);
   
     const handleIncrement = (id) => {
       const updatedCart = cart.map(item => 
@@ -52,44 +50,6 @@ const CartComponent = () => {
       deleteOrder(id);
     };
   
-    const handleCheckout = async (amount) => {
-
-        const stripe = await stripePromise;
-        const items = [
-            {
-              "name": "Product 1",
-              "qty": 2,
-              "price": 1500
-            },
-            {
-              "name": "Product 2",
-              "qty": 1,
-              "price": 2000
-            },
-            {
-              "name": "Product 3",
-              "qty": 5,
-              "price": 1000
-            }
-          ]
-        
-        // Call the API to create a Checkout Session
-        const response = await fetch('/api/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items })
-        });
-    
-        const { id } = await response.json();
-    
-        // Redirect to Checkout
-        const { error } = await stripe.redirectToCheckout({ sessionId: id });
-    
-        if (error) {
-          console.error('Error redirecting to Checkout:', error);
-        }
-    };
-    console.log("Item",cart);
     return (
       <div className="p-4 border border-gray-300 rounded-md shadow-md max-w-md mx-auto bg-white">
         {cart.length === 0 ? (
@@ -134,13 +94,7 @@ const CartComponent = () => {
             <h3 className="text-lg font-medium">Total :</h3>
             <h3 className="text-lg font-medium">{amount}</h3>
             </div>
-          {/* <button
-            onClick={()=>handleCheckout(amount)}
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full"
-          >
-            Checkout
-          </button> */}
-          <CheckoutButton cost={amount}/>
+          {amount && <CheckoutButton cost={amount} success={loadData}/>}
             </div>
         )}
       </div>
