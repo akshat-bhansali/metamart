@@ -10,13 +10,11 @@ const razorpay = new Razorpay({
 export async function POST(request) {
   try {
     const { amount, currency } = await request.json(); // Amount in smallest unit (e.g., paise)
-    console.log("Amount : ",amount)
     // Create an order
     const order = await razorpay.orders.create({
-      amount: 10000000, // Convert amount to paise
+      amount: Number(amount)*100, // Convert amount to paise
       currency,
       receipt: uuidv4(),
-      
     });
 
     return new Response(JSON.stringify({ id: order.id, currency: order.currency, amount: order.amount }), {
