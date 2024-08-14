@@ -9,15 +9,20 @@ import Furniture from "@/components/ThreeD/Furniture";
 import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
 import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
-import { Segmented, Avatar, Button, Modal,Card  } from "antd";
+import { Segmented, Avatar, Button, Modal, Card } from "antd";
 const { Meta } = Card;
 import {
   UserOutlined,
   ShoppingCartOutlined,
   RobotOutlined,
+  ArrowsAltOutlined
 } from "@ant-design/icons";
 import { useState } from "react";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 
 export default function Page() {
   const testing = false;
@@ -54,7 +59,6 @@ export default function Page() {
   const handleLaptopClick = (modelPath) => {
     showModelModal(modelPath);
   };
-
 
   return (
     <>
@@ -130,26 +134,50 @@ export default function Page() {
             <div className="flex flex-col items-center ml-4">
               <Button
                 shape="default"
-                style={{ width: 40, height: 40, margin: 1, borderRadius: 5, opacity: 0.7 }}
+                style={{
+                  width: 40,
+                  height: 40,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.7,
+                }}
               >
                 W
               </Button>
               <div className="flex flex-row">
                 <Button
                   shape="default"
-                  style={{ width: 40, height: 40, margin: 1, borderRadius: 5, opacity: 0.7 }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.7,
+                  }}
                 >
                   A
                 </Button>
                 <Button
                   shape="default"
-                  style={{ width: 40, height: 40, margin: 1, borderRadius: 5, opacity: 0.7 }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.7,
+                  }}
                 >
                   S
                 </Button>
                 <Button
                   shape="default"
-                  style={{ width: 40, height: 40, margin: 1, borderRadius: 5, opacity: 0.7 }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.7,
+                  }}
                 >
                   D
                 </Button>
@@ -159,20 +187,38 @@ export default function Page() {
               <div className="flex flex-row">
                 <Button
                   shape="default"
-                  style={{ width: 40, height: 40, margin: 1, borderRadius: 5, opacity: 0.7 }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.7,
+                  }}
                 >
                   1
                 </Button>
                 <Button
                   shape="default"
-                  style={{ width: 40, height: 40, margin: 1, borderRadius: 5, opacity: 0.7 }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.7,
+                  }}
                 >
                   2
                 </Button>
               </div>
               <Button
                 shape="default"
-                style={{ width: 50, height: 40, margin: 1, borderRadius: 5, opacity: 0.7 }}
+                style={{
+                  width: 50,
+                  height: 40,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.7,
+                }}
               >
                 Shift
               </Button>
@@ -193,7 +239,7 @@ export default function Page() {
           <MapFloor />
           <Character />
           <StoreFrame />
-          <Furniture onLaptopClick={handleLaptopClick}/>
+          <Furniture onLaptopClick={handleLaptopClick} />
           <SittingChar />
           <SittingChar2 />
           <Staff onClick={showAiModal} /> {/* Pass the function here */}
@@ -251,25 +297,42 @@ export default function Page() {
         bodyStyle={{ padding: 0, margin: 0, overflow: "hidden" }} // Remove body padding and margin
       >
         <Card
-          style={{ height: "100%" }} // Make card take full height
-          cover={
-            <img
-              alt="Laptop Model"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-              style={{ height: "50%", objectFit: "cover" }} // Adjust image to fit
-            />
-          }
-          bodyStyle={{ padding: 16 }} // Optional: Adjust padding inside the card
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EditOutlined key="edit" />,
-          ]}
-        >
-          <Meta
-            title={`Model Path: ${modelPath}`}
-            description="This is the description of the laptop model."
-          />
-        </Card>
+  style={{ height: "100%" }} // Make card take full height
+  cover={
+    <img
+      alt="Laptop Model"
+      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+      style={{ height: "50%", objectFit: "cover" }} // Adjust image to fit
+    />
+  }
+  bodyStyle={{ padding: 16 }} // Optional: Adjust padding inside the card
+  actions={[
+    <Button 
+      type="primary" 
+      icon={<ShoppingCartOutlined />} 
+      key="add-to-cart"
+    >
+      Add to Cart
+    </Button>,
+    <Button 
+      type="primary" 
+      danger 
+      icon={<ArrowsAltOutlined />} 
+      key="view-in-ar"
+    >
+      View in AR
+    </Button>,
+  ]}
+>
+  <Meta
+    title={`Model Path: ${modelPath}`}
+    avatar={
+      <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
+    }
+    description="This is the description of the laptop model."
+  />
+</Card>
+
       </Modal>
     </>
   );

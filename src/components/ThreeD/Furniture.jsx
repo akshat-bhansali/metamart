@@ -154,8 +154,8 @@ const Furniture = ({ onLaptopClick }) => {
       <Speaker4 />
       <Speaker5 />
       <Speaker6 />
-      <PS5 onClick={() => handleLaptopClick("./models/2console.glb")} />
-      <PS52 onClick={() => handleLaptopClick("./models/2console.glb")} />
+      <PS5 onClick={() => handleLaptopClick("./models/console2.glb")} />
+      <PS52 onClick={() => handleLaptopClick("./models/console2.glb")} />
       <PSLogo />
       <PSLogo2 />
       <Samsung />
