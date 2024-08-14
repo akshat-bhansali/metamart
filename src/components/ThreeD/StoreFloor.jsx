@@ -21,7 +21,7 @@ const StoreFloor = () => {
   roughMap.wrapS = roughMap.wrapT = THREE.RepeatWrapping;
 
   return (
-    <mesh rotation-x={Math.PI * -0.5} receiveShadow>
+    <mesh rotation-x={Math.PI * -0.5} receiveShadow >
       <planeGeometry args={[100, 100]}/> 
       <meshStandardMaterial
         map={map}
