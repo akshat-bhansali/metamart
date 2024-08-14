@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { CircleGeometry, MeshStandardMaterial } from "three";
 
 export function PS5(props) {
-  const { nodes, materials } = useGLTF("./models/2console.glb");
+  const { nodes, materials } = useGLTF("./models/console2.glb");
   const [hovered, setHovered] = useState(false);
   const groupRef = useRef();
   const outlineRef = useRef();
@@ -130,4 +130,4 @@ export function PS5(props) {
   );
 }
 
-useGLTF.preload("./models/2console.glb");
+useGLTF.preload("./models/console2.glb");
