@@ -78,6 +78,18 @@ import { LegoDeadpool } from "./furniture/LegoDeadpool";
 
 import { Apple } from "./furniture/Apple";
 import { Bit } from "./furniture/Bit";
+import { Metal } from "./furniture/Metal1";
+import { Metal2 } from "./furniture/Metal2";
+import { Cart1 } from "./furniture/Cart1";
+import { Cart2 } from "./furniture/Cart2";
+import { Cart3 } from "./furniture/Cart3";
+import { Mother } from "./characters/Mother";
+import { Child } from "./characters/Child";
+import { Road } from "./furniture/Road";
+import { Cctv1 } from "./furniture/Cctv1";
+import { Cctv2 } from "./furniture/CCtv2";
+import { Cctv3 } from "./furniture/Cctv3";
+import { Cctv4 } from "./furniture/CCtv4";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -95,9 +107,9 @@ const Furniture = ({ onLaptopClick }) => {
       <Pc />
       <Tele />
       <TvStand />
-      <Tv1 onClick={() => handleLaptopClick("./models/tv1.glb")}/>
-      <Tv2 onClick={() => handleLaptopClick("./models/tv2.glb")}/>
-      <Tv3 onClick={() => handleLaptopClick("./models/tv3.glb")}/>
+      <Tv1 onClick={() => handleLaptopClick("./models/tv1.glb")} />
+      <Tv2 onClick={() => handleLaptopClick("./models/tv2.glb")} />
+      <Tv3 onClick={() => handleLaptopClick("./models/tv3.glb")} />
       <MainTable />
       <MainTable2 />
       <Cash />
@@ -164,15 +176,27 @@ const Furniture = ({ onLaptopClick }) => {
       <PSConsole3 onClick={() => handleLaptopClick("./models/PSConsole.glb")} />
       <PSConsole4 onClick={() => handleLaptopClick("./models/PSConsole.glb")} />
       <LegoDeadpool />
-      <Speaker7 onClick={() => handleLaptopClick('./models/speaker2.glb')}/>
-      <Speaker8 onClick={() => handleLaptopClick('./models/speaker2.glb')}/>
-      <Speaker9 onClick={() => handleLaptopClick('./models/speaker3.glb')}/>
-      <Speaker10 onClick={() => handleLaptopClick('./models/speaker3.glb')}/>
+      <Speaker7 onClick={() => handleLaptopClick("./models/speaker2.glb")} />
+      <Speaker8 onClick={() => handleLaptopClick("./models/speaker2.glb")} />
+      <Speaker9 onClick={() => handleLaptopClick("./models/speaker3.glb")} />
+      <Speaker10 onClick={() => handleLaptopClick("./models/speaker3.glb")} />
       <BoyStatue />
       <Headphones7 />
       <Sony />
       <Apple />
       <Bit />
+      <Metal />
+      <Metal2 />
+      <Cart1 />
+      <Cart2 />
+      <Cart3 />
+      <Mother />
+      <Child />
+      <Road/>
+      <Cctv1/>
+      <Cctv2/>
+      <Cctv3/>
+      <Cctv4/>
     </>
   );
 };

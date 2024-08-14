@@ -11,7 +11,7 @@ export function Tv1(props) {
 
   useEffect(() => {
     const video = document.createElement("video");
-    video.src = "./videos/dhoni.mp4"; // Replace with your video file path
+    video.src = "./videos/i am ironman.mp4"; // Replace with your video file path
     video.loop = true;
     video.muted = true;
     video.play();
@@ -121,7 +121,7 @@ export function Tv1(props) {
         <mesh
           ref={outlineRef}
           geometry={new CircleGeometry(5, 64)} // Adjust radius and segments as needed
-          position={[0, 3, -3.3]} // Adjust position to highlight the desired area
+          position={[0, 2, -3.3]} // Adjust position to highlight the desired area
           rotation={[0, 0, 0]}
           material={
             new MeshStandardMaterial({
