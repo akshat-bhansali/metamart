@@ -22,6 +22,11 @@ export function Speaker7(props) {
     }
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
+
   return (
     <group
       {...props}
@@ -32,6 +37,7 @@ export function Speaker7(props) {
       position={[6.5, 5.9, 20]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
+      onClick={(handleClick)}
     >
       <group position={[0.589, 1.282, 0.017]} scale={[0.757, 0.786, 0.786]}>
         <mesh

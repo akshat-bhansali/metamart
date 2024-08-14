@@ -21,7 +21,10 @@ export function Headphones6(props) {
       groupRef.current.position.y -= 0.5; // Lower the item when pointer leaves
     }
   };
-
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
   return (
     <group
       {...props}
@@ -32,6 +35,7 @@ export function Headphones6(props) {
       position={[21.5, 5.9, 22]}
       scale={[10, 10, 10]}
       rotation={[Math.PI / 2, Math.PI / 2, Math.PI * 1.5]}
+      onClick={(handleClick)}
     >
       <group position={[0.039, 0, -0.023]} rotation={[0, 0, -1.92]}>
         <mesh
