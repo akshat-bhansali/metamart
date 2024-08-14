@@ -22,24 +22,6 @@ export function Warehouse(props) {
           geometry={nodes.Mesh_1.geometry}
           material={materials.lambert5}
         />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh_2.geometry}
-          material={materials.lambert4}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh_3.geometry}
-          material={materials.lambert4}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Mesh_4.geometry}
-          material={materials.lambert4}
-        />
       </group>
       <mesh
         castShadow
