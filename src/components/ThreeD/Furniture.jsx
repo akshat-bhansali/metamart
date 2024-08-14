@@ -83,6 +83,8 @@ import { Metal2 } from "./furniture/Metal2";
 import { Cart1 } from "./furniture/Cart1";
 import { Cart2 } from "./furniture/Cart2";
 import { Cart3 } from "./furniture/Cart3";
+import { Mother } from "./characters/Mother";
+import { Child } from "./characters/Child";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -183,6 +185,8 @@ const Furniture = ({ onLaptopClick }) => {
       <Cart1 />
       <Cart2 />
       <Cart3 />
+      <Mother />
+      <Child />
     </>
   );
 };
