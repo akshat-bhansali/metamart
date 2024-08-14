@@ -14,40 +14,10 @@ export function Mother(props) {
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <skinnedMesh
-            name="Ch02_Body"
-            geometry={nodes.Ch02_Body.geometry}
-            material={materials.Ch02_body}
-            skeleton={nodes.Ch02_Body.skeleton}
-          />
-          <skinnedMesh
-            name="Ch02_Cloth"
-            geometry={nodes.Ch02_Cloth.geometry}
-            material={materials.Ch02_body}
-            skeleton={nodes.Ch02_Cloth.skeleton}
-          />
-          <skinnedMesh
-            name="Ch02_Eyelashes"
-            geometry={nodes.Ch02_Eyelashes.geometry}
-            material={materials.Ch02_hair}
-            skeleton={nodes.Ch02_Eyelashes.skeleton}
-          />
-          <skinnedMesh
-            name="Ch02_Hair"
-            geometry={nodes.Ch02_Hair.geometry}
-            material={materials.Ch02_hair}
-            skeleton={nodes.Ch02_Hair.skeleton}
-          />
-          <skinnedMesh
-            name="Ch02_Sneakers"
-            geometry={nodes.Ch02_Sneakers.geometry}
-            material={materials.Ch02_body}
-            skeleton={nodes.Ch02_Sneakers.skeleton}
-          />
-          <skinnedMesh
-            name="Ch02_Socks"
-            geometry={nodes.Ch02_Socks.geometry}
-            material={materials.Ch02_body}
-            skeleton={nodes.Ch02_Socks.skeleton}
+            name="Peasant_girl"
+            geometry={nodes.Peasant_girl.geometry}
+            material={materials.Peasant_Girl}
+            skeleton={nodes.Peasant_girl.skeleton}
           />
           <primitive object={nodes.mixamorigHips} />
         </group>
