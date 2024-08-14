@@ -22,6 +22,11 @@ export function Speaker9(props) {
     }
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
+
   return (
     <group
       {...props}
@@ -32,6 +37,7 @@ export function Speaker9(props) {
       position={[2, 5, 16]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
+      onClick={(handleClick)}
     >
       <mesh
         castShadow

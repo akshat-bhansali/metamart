@@ -22,6 +22,11 @@ export function Headphones(props) {
     }
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick(); 
+  };
+
   return (
     <group
       {...props}
@@ -32,6 +37,7 @@ export function Headphones(props) {
       rotation={[Math.PI / 2, 0, Math.PI / 2]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
+      onClick={(handleClick)}
     >
       <group
         position={[-0.225, 0.042, 0.01]}

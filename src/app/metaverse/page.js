@@ -20,7 +20,7 @@ import { useState } from "react";
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 export default function Page() {
-  const testing = true;
+  const testing = false;
   const [segment, setSegment] = useState("user1");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
@@ -203,7 +203,7 @@ export default function Page() {
       {/* Modal for AI */}
       <Modal
         title="AI Assistant"
-        visible={isAiModalVisible}
+        open={isAiModalVisible}
         onCancel={handleAiModalCancel}
         footer={null}
         style={{
@@ -221,7 +221,7 @@ export default function Page() {
       {/* Modal for Cart */}
       <Modal
         title="Cart"
-        visible={isCartModalVisible}
+        open={isCartModalVisible}
         onCancel={handleCartModalCancel}
         footer={null}
         style={{
@@ -237,7 +237,7 @@ export default function Page() {
       </Modal>
       {/* modal for model */}
       <Modal
-        visible={isModelModalVisible}
+        open={isModelModalVisible}
         onCancel={handleModelModalCancel}
         footer={null}
         style={{
