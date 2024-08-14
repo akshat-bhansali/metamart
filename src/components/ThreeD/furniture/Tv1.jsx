@@ -26,6 +26,10 @@ export function Tv1(props) {
     });
   }, []);
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick();
+  };
   const handlePointerOver = () => {
     setHovered(true);
   };
@@ -41,6 +45,7 @@ export function Tv1(props) {
       rotation-y={Math.PI}
       scale={[1.5, 1.5, 1.5]}
       position={[-4, 4.5, 45]}
+      onClick={handleClick}
     >
       <group name="Plane002" position={[0.009, 0.005, 0.161]}>
         <mesh
@@ -116,7 +121,7 @@ export function Tv1(props) {
         <mesh
           ref={outlineRef}
           geometry={new CircleGeometry(5, 64)} // Adjust radius and segments as needed
-          position={[0, 3, 0]} // Adjust position to highlight the desired area
+          position={[0, 3, -3.3]} // Adjust position to highlight the desired area
           rotation={[0, 0, 0]}
           material={
             new MeshStandardMaterial({

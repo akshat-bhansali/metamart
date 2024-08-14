@@ -34,6 +34,10 @@ export function Tv3(props) {
     setHovered(false);
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    props.onClick();
+  };
   return (
     <group
       {...props}
@@ -41,6 +45,7 @@ export function Tv3(props) {
       rotation-y={Math.PI}
       scale={[4, 4, 4]}
       position={[-21.5, 8, 47.5]}
+      onClick={handleClick}
     >
       <group name="Scene">
         <group
@@ -224,7 +229,7 @@ export function Tv3(props) {
           <mesh
             ref={outlineRef}
             geometry={new CircleGeometry(1.2, 64)} // Adjust radius and segments as needed
-            position={[0, 0.8, 0]} // Adjust position to highlight the desired area
+            position={[0, 0.8, -0.6]} // Adjust position to highlight the desired area
             rotation={[0, 0, 0]}
             material={
               new MeshStandardMaterial({

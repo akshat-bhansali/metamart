@@ -95,9 +95,9 @@ const Furniture = ({ onLaptopClick }) => {
       <Pc />
       <Tele />
       <TvStand />
-      <Tv1 />
-      <Tv2 />
-      <Tv3 />
+      <Tv1 onClick={() => handleLaptopClick("./models/tv1.glb")}/>
+      <Tv2 onClick={() => handleLaptopClick("./models/tv2.glb")}/>
+      <Tv3 onClick={() => handleLaptopClick("./models/tv3.glb")}/>
       <MainTable />
       <MainTable2 />
       <Cash />
