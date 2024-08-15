@@ -124,7 +124,7 @@ import { Ps5Box1 } from "./furniture/Ps5Box1";
 import { Ps5Box2 } from "./furniture/Ps5Box2";
 import { Ps5Box3 } from "./furniture/Ps5Box3";
 import { Ps5Box4 } from "./furniture/Ps5Box4";
-import { Plant3, PlantPot1 } from "./furniture/PlantPot1";
+import { PlantPot1 } from "./furniture/PlantPot1";
 import { PlantPot2 } from "./furniture/PlantPot2";
 import { Frames } from "./furniture/Frames";
 import { Frames2 } from "./furniture/Frames2";
@@ -134,13 +134,15 @@ import { BushRow2 } from "./furniture/BushRow2";
 import { BushRow4 } from "./furniture/BushRow4";
 import { BushRow5 } from "./furniture/BushRow5";
 import { Dumpster } from "./furniture/Dumpster";
-import { Sign } from "./furniture/Sign";
 import { Cases } from "./furniture/Cases";
 import { Truck } from "./furniture/Truck";
 import { PhoneBox } from "./furniture/PhoneBox";
 import { PhoneBox2 } from "./furniture/PhoneBox2";
 import { PhoneBox3 } from "./furniture/PhoneBox3";
 import { MainSign } from "./furniture/MainSign";
+import { NoParking1 } from "./furniture/NoParking1";
+import { NoParking2 } from "./furniture/NoParking2";
+import { TrafficLight } from "./furniture/TrafficLight";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -315,31 +317,34 @@ const Furniture = ({ onLaptopClick }) => {
       <Barrier2 />
       <Forklift />
       <TollGate />
-      <Ps5Box1/>
-      <Ps5Box2/>
-      <Ps5Box3/>
-      <Ps5Box4/>
-      <Plant/>
-      <Plant2/>
-      <PlantPot1/>
-      <PlantPot2/>
-      <Crate/>
-      <Crates2/>
-      <Frames/>
-      <Frames2/>
-      <Open24/>
-      <BushRow1/>
-      <BushRow2/>
-      <BushRow4/>
-      <BushRow5/>
-      <Dumpster/>
-      <Truck/>
+      <Ps5Box1 />
+      <Ps5Box2 />
+      <Ps5Box3 />
+      <Ps5Box4 />
+      <Plant />
+      <Plant2 />
+      <PlantPot1 />
+      <PlantPot2 />
+      <Crate />
+      <Crates2 />
+      <Frames />
+      <Frames2 />
+      <Open24 />
+      <BushRow1 />
+      <BushRow2 />
+      <BushRow4 />
+      <BushRow5 />
+      <Dumpster />
+      <Truck />
       {/* <Sign/> */}
-      <Cases/>
-      <PhoneBox/>
-      <PhoneBox2/>
-      <PhoneBox3/>
-      <MainSign/>
+      <Cases />
+      <PhoneBox />
+      <PhoneBox2 />
+      <PhoneBox3 />
+      <MainSign />
+      <NoParking1 />
+      <NoParking2 />
+      <TrafficLight/>
     </>
   );
 };
