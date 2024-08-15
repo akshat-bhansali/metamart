@@ -111,6 +111,12 @@ import { Fence9 } from "./furniture/Fence9";
 import { Fence10 } from "./furniture/Fence10";
 import { Fence11 } from "./furniture/Fence11";
 import { Fence12 } from "./furniture/Fence12";
+import { FireExtinguisher } from "./furniture/FireExtinguisher";
+import { Benches } from "./furniture/Benches";
+import { Barrier1 } from "./furniture/Barrier1";
+import { Barrier2 } from "./furniture/Barrier2";
+import { Forklift } from "./furniture/Forklift";
+import { TollGate } from "./furniture/TollGate";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -239,6 +245,12 @@ const Furniture = ({ onLaptopClick }) => {
       <Fence11/>
       <Fence12/>
       <Warehouse/>
+      <FireExtinguisher/>
+      <Benches/>
+      <Barrier1/>
+      <Barrier2/>
+      <Forklift/>
+      <TollGate/>
     </>
   );
 };

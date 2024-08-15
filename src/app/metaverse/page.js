@@ -12,6 +12,7 @@ import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
 import { Segmented, Avatar, Button, Modal, Card } from "antd";
 import productsData from "../productData";
+import { Sky } from "@react-three/drei";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -155,7 +156,7 @@ export default function Page() {
   return (
     <>
       <ToastContainer />
-      <div className="bg-gray-500 h-[100vh] relative">
+      <div className=" h-[100vh] relative">
         {/* Segmented Control in the top center with only icons */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
           <Segmented
@@ -416,6 +417,7 @@ export default function Page() {
           <OrbitControls />
           {testing ? <Stats /> : null}
           <Lights />
+          <Sky/>
           <MapFloor />
           <Character />
           <StoreFrame />
