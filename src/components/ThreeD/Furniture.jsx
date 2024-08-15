@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Plant } from "./furniture/Plant";
 import { Plant2 } from "./furniture/Plant2";
 import { Sofa } from "./furniture/Sofa";
@@ -117,9 +117,31 @@ import { Barrier1 } from "./furniture/Barrier1";
 import { Barrier2 } from "./furniture/Barrier2";
 import { Forklift } from "./furniture/Forklift";
 import { TollGate } from "./furniture/TollGate";
+import { CircleGeometry, MeshStandardMaterial } from "three";
+import { ModPs5Boxel, Ps5Box1 } from "./furniture/Ps5Box1";
+import { Ps5Box2 } from "./furniture/Ps5Box2";
+import { Ps5Box3 } from "./furniture/Ps5Box3";
+import { Ps5Box4 } from "./furniture/Ps5Box4";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
+  };
+  const [hovered, setHovered] = useState(false);
+  const groupRef = useRef();
+  const outlineRef = useRef();
+
+  const handlePointerOver = () => {
+    setHovered(true);
+    if (groupRef.current) {
+      groupRef.current.position.y += 0.5;
+    }
+  };
+
+  const handlePointerOut = () => {
+    setHovered(false);
+    if (groupRef.current) {
+      groupRef.current.position.y -= 0.5;
+    }
   };
   return (
     <>
@@ -222,9 +244,32 @@ const Furniture = ({ onLaptopClick }) => {
       <Bit />
       <Metal />
       <Metal2 />
-      <Cart1 />
-      <Cart2 />
-      <Cart3 />
+      <group
+        ref={groupRef}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+      >
+        <group>
+          <Cart1 />
+          <Cart2 />
+          <Cart3 />
+        </group>
+        {/* Circular Highlight Mesh */}
+        <mesh
+          ref={outlineRef}
+          geometry={new CircleGeometry(8, 64)} // Adjust radius and segments as needed
+          position={[41.5, 0, -27]} // Adjust position to highlight the desired area
+          rotation={[Math.PI / 2, 0, 0]}
+          material={
+            new MeshStandardMaterial({
+              color: hovered ? "blue" : "transparent",
+              transparent: true,
+              opacity: 0.5,
+              side: 2,
+            })
+          }
+        />
+      </group>
       <Mother />
       <Child />
       <Road />
@@ -232,25 +277,29 @@ const Furniture = ({ onLaptopClick }) => {
       <Cctv2 />
       <Cctv3 />
       <Cctv4 />
-      <Fence/>
-      <Fence3/>
-      <Fence2/>
-      <Fence4/>
-      <Fence5/>
-      <Fence6/>
-      <Fence7/>
-      <Fence8/>
-      <Fence9/>
-      <Fence10/>
-      <Fence11/>
-      <Fence12/>
-      <Warehouse/>
-      <FireExtinguisher/>
-      <Benches/>
-      <Barrier1/>
-      <Barrier2/>
-      <Forklift/>
-      <TollGate/>
+      <Fence />
+      <Fence3 />
+      <Fence2 />
+      <Fence4 />
+      <Fence5 />
+      <Fence6 />
+      <Fence7 />
+      <Fence8 />
+      <Fence9 />
+      <Fence10 />
+      <Fence11 />
+      <Fence12 />
+      <Warehouse />
+      <FireExtinguisher />
+      <Benches />
+      <Barrier1 />
+      <Barrier2 />
+      <Forklift />
+      <TollGate />
+      <Ps5Box1/>
+      <Ps5Box2/>
+      <Ps5Box3/>
+      <Ps5Box4/>
     </>
   );
 };
