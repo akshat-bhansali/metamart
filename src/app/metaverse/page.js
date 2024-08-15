@@ -474,7 +474,7 @@ export default function Page() {
                             }}
                             style={{ fontSize: "12px", padding: "4px 8px" }}
                           >
-                            Add
+                            Add to Cart
                           </Button>,
                           <Button
                             type="primary"
