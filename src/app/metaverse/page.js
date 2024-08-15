@@ -495,6 +495,7 @@ export default function Page() {
                           >
                             Add to Cart
                           </Button>,
+                          <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
                           <Button
                             type="primary"
                             danger
@@ -502,8 +503,9 @@ export default function Page() {
                             key="view-in-ar"
                             style={{ fontSize: "12px", padding: "4px 8px" }}
                           >
-                            View AR
-                          </Button>,
+                            View in AR
+                          </Button>
+                        </a>
                         ]}
                       >
                         <Meta
@@ -637,14 +639,17 @@ export default function Page() {
             >
               Add to Cart
             </Button>,
+            <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
             <Button
               type="primary"
               danger
               icon={<ArrowsAltOutlined />}
               key="view-in-ar"
+              style={{ fontSize: "12px", padding: "4px 8px" }}
             >
               View in AR
-            </Button>,
+            </Button>
+          </a>
           ]}
         >
           <Meta
@@ -765,14 +770,17 @@ export default function Page() {
               >
                 Add to Cart
               </Button>,
+              <a href="https://metamart-ar.vercel.app" target="_blank" rel="noopener noreferrer">
               <Button
                 type="primary"
                 danger
                 icon={<ArrowsAltOutlined />}
                 key="view-in-ar"
+                style={{ fontSize: "12px", padding: "4px 8px" }}
               >
                 View in AR
-              </Button>,
+              </Button>
+            </a>
             ]}
           >
             <Meta
