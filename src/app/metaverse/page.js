@@ -1,5 +1,5 @@
-'use client'
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stats } from "@react-three/drei";
 import MapFloor from "../../components/ThreeD/MapFloor";
@@ -12,32 +12,44 @@ import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
 import { Segmented, Avatar, Button, Modal, Card } from "antd";
 import productsData from "../productData";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   UserOutlined,
   ShoppingCartOutlined,
   RobotOutlined,
   ArrowsAltOutlined,
   ShareAltOutlined,
-  HistoryOutlined
+  HistoryOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import CartComponent from "@/components/Cart/CartComponent";
 import { addItemToCart, getCartDetails } from "@/components/Cart/cart";
 import { resolveQuery } from "@/chat/chat";
+import { Staff2 } from "@/components/ThreeD/characters/Staff2";
 
 const { Meta } = Card;
 
 export default function Page() {
   const testing = false;
-  const [segment, setSegment] = useState("user1");
+  const [segment, setSegment] = useState("user4");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
   const [isModelModalVisible, setIsModelModalVisible] = useState(false);
-  const [isOrdersModalVisible, setIsOrdersModalVisible] = useState(false); // State for orders modal
+  const [isOrdersModalVisible, setIsOrdersModalVisible] = useState(false);
+  const [isCustomModalVisible, setIsCustomModalVisible] = useState(false);
   const [models, setModels] = useState("");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [orders, setOrders] = useState([]); // State for past orders
+  const chatEndRef = useRef(null);
 
+  useEffect(() => {
+    // Scroll to bottom when messages change
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   useEffect(() => {
     const storedMessages = JSON.parse(localStorage.getItem("messages")) || [];
     setMessages(storedMessages);
@@ -64,9 +76,12 @@ export default function Page() {
       setMessages([
         ...messages,
         { text: input, type: "user" },
-        { text: response.reply, type: "bot" },
+        { text: response.reply, type: "bot", id: response?.id },
       ]);
     }
+  };
+  const findProduct = (id) => {
+    return productsData.items.find((item) => item?.id === id);
   };
 
   const handleClearChat = () => {
@@ -113,18 +128,27 @@ export default function Page() {
   const handleLaptopClick = (modelPath) => {
     showModelModal(modelPath);
   };
+  const handleCustomModalCancel = () => {
+    setIsCustomModalVisible(false);
+  };
+  const showCustomModal = () => {
+    setIsCustomModalVisible(true);
+  };
 
   return (
     <>
+      <ToastContainer />
       <div className="bg-gray-500 h-[100vh] relative">
         {/* Segmented Control in the top center with only icons */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
           <Segmented
+            className="bg-blue-500 p-1 opacity-[0.8]"
             options={[
               {
                 label: (
                   <Avatar
-                    src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"
+                    style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod1.png"
                     shape="square"
                     size="large"
                   />
@@ -134,25 +158,68 @@ export default function Page() {
               {
                 label: (
                   <Avatar
-                    style={{ backgroundColor: "#f56a00" }}
+                    style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod2.png"
                     shape="square"
                     size="large"
-                  >
-                    K
-                  </Avatar>
+                  />
                 ),
                 value: "user2",
               },
               {
                 label: (
                   <Avatar
-                    style={{ backgroundColor: "#87d068" }}
-                    icon={<UserOutlined />}
+                    style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod3.png"
                     shape="square"
                     size="large"
                   />
                 ),
                 value: "user3",
+              },
+              {
+                label: (
+                  <Avatar
+                    style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod4.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user4",
+              },
+              {
+                label: (
+                  <Avatar
+                    style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod5.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user5",
+              },
+              {
+                label: (
+                  <Avatar
+                    style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod6.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user6",
+              },
+              {
+                label: (
+                  <Avatar
+                    style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod7.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user7",
               },
             ]}
             value={segment}
@@ -160,13 +227,23 @@ export default function Page() {
           />
         </div>
 
+        {/* Floating Button for Edit */}
+        <div className="fixed bottom-40 right-4 z-20">
+          <Button
+            shape="circle"
+            icon={<EditOutlined />}
+            size="large"
+            style={{ backgroundColor: "#0000FF", color: "white" }}
+            onClick={showCustomModal}
+          />
+        </div>
         {/* Floating Button for Cart */}
         <div className="fixed bottom-4 right-4 z-20">
           <Button
             shape="circle"
             icon={<ShoppingCartOutlined />}
             size="large"
-            style={{ backgroundColor: "#87d068", color: "white" }}
+            style={{ backgroundColor: "#008000", color: "white" }}
             onClick={showCartModal}
           />
         </div>
@@ -200,51 +277,63 @@ export default function Page() {
               <Button
                 shape="default"
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: 60,
+                  height: 60,
                   margin: 1,
                   borderRadius: 5,
                   opacity: 0.7,
                 }}
               >
-                W
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">W</div>
+                  <div className="text-xs font-thin">Forward</div>
+                </div>
               </Button>
               <div className="flex flex-row">
                 <Button
                   shape="default"
                   style={{
-                    width: 40,
-                    height: 40,
+                    width: 60,
+                    height: 60,
                     margin: 1,
                     borderRadius: 5,
                     opacity: 0.7,
                   }}
                 >
-                  A
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">A</div>
+                    <div className="text-xs font-thin">Left</div>
+                  </div>
                 </Button>
                 <Button
                   shape="default"
                   style={{
-                    width: 40,
-                    height: 40,
+                    width: 60,
+                    height: 60,
                     margin: 1,
                     borderRadius: 5,
                     opacity: 0.7,
                   }}
                 >
-                  S
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">S</div>
+                    <div className="text-xs font-thin">Backward</div>
+                  </div>
                 </Button>
                 <Button
                   shape="default"
                   style={{
-                    width: 40,
-                    height: 40,
+                    width: 60,
+                    height: 60,
                     margin: 1,
                     borderRadius: 5,
                     opacity: 0.7,
                   }}
                 >
-                  D
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">D</div>
+                    <div className="text-xs font-thin">Right</div>
+                  </div>
                 </Button>
               </div>
             </div>
@@ -253,39 +342,48 @@ export default function Page() {
                 <Button
                   shape="default"
                   style={{
-                    width: 40,
-                    height: 40,
+                    width: 60,
+                    height: 60,
                     margin: 1,
                     borderRadius: 5,
                     opacity: 0.7,
                   }}
                 >
-                  1
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">1</div>
+                    <div className="text-xs font-thin">Emote</div>
+                  </div>
                 </Button>
                 <Button
                   shape="default"
                   style={{
-                    width: 40,
-                    height: 40,
+                    width: 60,
+                    height: 60,
                     margin: 1,
                     borderRadius: 5,
                     opacity: 0.7,
                   }}
                 >
-                  2
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">2</div>
+                    <div className="text-xs font-thin">Emote</div>
+                  </div>
                 </Button>
               </div>
               <Button
                 shape="default"
                 style={{
-                  width: 50,
-                  height: 40,
+                  width: 70,
+                  height: 60,
                   margin: 1,
                   borderRadius: 5,
                   opacity: 0.7,
                 }}
               >
-                Shift
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">SHIFT</div>
+                  <div className="text-xs font-thin">Sprint</div>
+                </div>
               </Button>
             </div>
           </div>
@@ -307,7 +405,8 @@ export default function Page() {
           <Furniture onLaptopClick={handleLaptopClick} />
           <SittingChar />
           <SittingChar2 />
-          <Staff onClick={showAiModal} />
+          <Staff onClick={showCustomModal} />
+          <Staff2 onClick={showAiModal} />
         </Canvas>
       </div>
 
@@ -321,56 +420,144 @@ export default function Page() {
           position: "absolute",
           top: 10,
           left: 10,
-          height: "calc(100vh - 20px)",
+          width: "100%",
+          padding: 0,
         }}
-        bodyStyle={{ overflowY: "auto" }}
+        bodyStyle={{ padding: 0 }}
       >
-        <p>Your AI assistant is here to help!</p>
-        <div>
-          <div className="bg-white w-full max-w-md p-4 rounded-lg shadow-lg">
-            <div className="flex justify-between items-center">
-              <h2 className="text-lg font-bold">Chat</h2>
-              <button
-                onClick={handleClearChat}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
-              >
-                Clear Chat
-              </button>
-            </div>
-            <div className="mt-4 h-60 overflow-y-auto border border-gray-300 p-2 rounded-lg">
-              {messages.map((msg, index) => (
+        <div className="flex flex-col bg-gray-200 rounded-lg h-[500px]">
+          <div className="flex flex-col p-4 rounded-lg h-full overflow-y-auto ">
+            {messages.map((msg, index) => {
+              const product = msg.id ? findProduct(msg.id) : null;
+
+              return (
                 <div
                   key={index}
-                  className={`mb-2 ${msg.type === "user" ? "text-right" : ""}`}
+                  className={`flex ${
+                    msg.type === "user" ? "justify-end" : "justify-start"
+                  } mb-2`}
                 >
                   <div
                     className={`p-2 rounded-lg ${
                       msg.type === "user"
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-200"
+                        : "bg-gray-300"
                     }`}
+                    style={{ maxWidth: "80%", position: "relative" }}
                   >
                     {msg.text}
+                    {product && (
+                      <Card
+                        style={{
+                          marginTop: "10px",
+                          width: "auto",
+                          borderRadius: "6px",
+                          padding: "8px",
+                        }}
+                        cover={
+                          <video
+                          src={`./videos/${models.id}.MOV`}
+                          style={{ height: "50%", objectFit: "cover" }}
+                          autoPlay
+                          loop
+                          muted
+                        />
+                        }
+                        actions={[
+                          <Button
+                            type="primary"
+                            icon={<ShoppingCartOutlined />}
+                            key="add-to-cart"
+                            onClick={() => {
+                              addItemToCart(product, 1);
+                              toast.success("Added to cart !")
+                            }}
+                            style={{ fontSize: "12px", padding: "4px 8px" }}
+                          >
+                            Add to Cart
+                          </Button>,
+                          <Button
+                            type="primary"
+                            danger
+                            icon={<ArrowsAltOutlined />}
+                            key="view-in-ar"
+                            style={{ fontSize: "12px", padding: "4px 8px" }}
+                          >
+                            View AR
+                          </Button>,
+                        ]}
+                      >
+                        <Meta
+                          title={
+                            <div className="flex items-center justify-between text-xs">
+                              <span>{product.name}</span>
+                              <Button
+                                icon={<ShareAltOutlined />}
+                                className="text-blue-500"
+                                type="text"
+                                onClick={() =>
+                                  toast("Share functionality here")
+                                }
+                                style={{ fontSize: "12px", padding: "2px" }}
+                              />
+                            </div>
+                          }
+                          description={
+                            <>
+                              <div className="mb-2">
+                                <p className="text-xs font-semibold text-gray-700">
+                                  Price:{" "}
+                                  <span className="text-sm font-bold text-green-600">
+                                    ₹{product.price}
+                                  </span>
+                                </p>
+                              </div>
+
+                              <div className="grid grid-cols-2 gap-2 bg-gray-50 p-2 rounded-lg shadow-sm text-xs">
+                                {product.specs?.map((spec, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex items-center text-gray-600"
+                                  >
+                                    <strong className="mr-1 text-xs font-medium text-gray-800">
+                                      {spec.key}:
+                                    </strong>
+                                    <span className="text-xs">
+                                      {spec.value}
+                                    </span>
+                                  </div>
+                                ))}
+                              </div>
+                            </>
+                          }
+                        />
+                      </Card>
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
-            <form onSubmit={handleSubmit} className="mt-4 flex">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="flex-1 border border-gray-300 p-2 rounded-lg"
-                placeholder="Type your message..."
-              />
-              <button
-                type="submit"
-                className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-              >
-                Send
-              </button>
-            </form>
+              );
+            })}
+            {/* Empty div for scrolling */}
+            <div ref={chatEndRef} />
           </div>
+          <form
+            onSubmit={handleSubmit}
+            className="flex p-4 bg-gray-200 border-t border-gray-300 rounded-b-lg"
+          >
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="flex-1 border border-gray-300 p-2 rounded-lg"
+              placeholder="Type your message..."
+            />
+            <button
+              type="submit"
+              className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            >
+              Send
+            </button>
+          </form>
         </div>
       </Modal>
 
@@ -400,8 +587,8 @@ export default function Page() {
         footer={null}
         style={{
           position: "absolute",
-          top: 30,
-          left: 0,
+          top: 10,
+          left: 10,
           right: 0,
           bottom: 0,
           padding: 0,
@@ -410,10 +597,12 @@ export default function Page() {
         <Card
           style={{ height: "100%" }}
           cover={
-            <img
-              alt="Laptop Model"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            <video
+              src={`./videos/${models.id}.MOV`}
               style={{ height: "50%", objectFit: "cover" }}
+              autoPlay
+              loop
+              muted
             />
           }
           actions={[
@@ -423,7 +612,7 @@ export default function Page() {
               key="add-to-cart"
               onClick={() => {
                 addItemToCart(models, 1);
-                alert("Added to Cart!");
+                toast.success("Added to Cart!");
               }}
             >
               Add to Cart
@@ -446,7 +635,7 @@ export default function Page() {
                   icon={<ShareAltOutlined />}
                   className="text-blue-500"
                   type="text"
-                  onClick={() => alert("Share functionality here")}
+                  onClick={() => toast("Share functionality here")}
                 />
               </div>
             }
@@ -487,14 +676,14 @@ export default function Page() {
         footer={null}
         style={{
           position: "absolute",
-          top: 10,
-          right: 10,
+          top: 30,
+          left: 30,
           height: "calc(100vh - 20px)",
         }}
         bodyStyle={{ overflowY: "auto" }}
       >
         <div>
-          <h2 className="text-lg font-bold mb-4">Your Past Orders</h2>
+          <h2 className="text-lg font-bold mb-4">Your Orders</h2>
           {orders.length > 0 ? (
             <ul className="list-disc pl-5">
               {orders.map((order, index) => (
@@ -511,6 +700,181 @@ export default function Page() {
           )}
         </div>
       </Modal>
+      {/* modal for customisation */}
+      {isCustomModalVisible && (
+        <Modal
+          open={isCustomModalVisible}
+          onCancel={handleCustomModalCancel}
+          footer={null}
+          style={{
+            position: "absolute",
+            top: 10,
+            left: 10,
+            right: 0,
+            bottom: 0,
+            padding: 0,
+          }}
+        >
+          <Card
+            style={{ height: "100%" }}
+            cover={
+              <div
+                style={{
+                  height: "50%",
+                  backgroundColor: "#f0f0f0", // Placeholder color
+                  display: "flex",
+                }}
+              >
+                {/* Replace this div with your canvas */}
+                <div className="flex h-full">
+                  {/* Canvas Section */}
+                  <div
+                    id="canvas-placeholder"
+                    className="w-1/2 h-full bg-gray-200"
+                  >
+                    Your canvas goes here
+                  </div>
+
+                  {/* Options Section */}
+                  <div className="w-1/2 flex flex-col justify-between p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex space-x-2">
+                        {/* Options for Back and Body with color pickers */}
+                        <div className="flex flex-col">
+                          <span className="text-xs">Back</span>
+                          <div className="flex space-x-1">
+                            <Button
+                              style={{
+                                backgroundColor: "#0000FF",
+                                color: "white",
+                              }}
+                              size="small"
+                            />
+                            <Button
+                              style={{
+                                backgroundColor: "#FFFFFF",
+                                color: "black",
+                              }}
+                              size="small"
+                            />
+                            <Button
+                              style={{
+                                backgroundColor: "#000000",
+                                color: "white",
+                              }}
+                              size="small"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-xs">Body</span>
+                          <div className="flex space-x-1">
+                            <Button
+                              style={{
+                                backgroundColor: "#0000FF",
+                                color: "white",
+                              }}
+                              size="small"
+                            />
+                            <Button
+                              style={{
+                                backgroundColor: "#FFFFFF",
+                                color: "black",
+                              }}
+                              size="small"
+                            />
+                            <Button
+                              style={{
+                                backgroundColor: "#000000",
+                                color: "white",
+                              }}
+                              size="small"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+            actions={[
+              <Button
+                type="primary"
+                icon={<ShoppingCartOutlined />}
+                key="add-to-cart"
+                onClick={() => {
+                  // addItemToCart(models, 1);
+                  toast.success("Added to Cart!");
+                }}
+              >
+                Add to Cart
+              </Button>,
+              <Button
+                type="primary"
+                danger
+                icon={<ArrowsAltOutlined />}
+                key="view-in-ar"
+              >
+                View in AR
+              </Button>,
+            ]}
+          >
+            <Meta
+              title={
+                <div className="flex items-center justify-between">
+                  <span>Samsung S23</span>
+                  <Button
+                    icon={<ShareAltOutlined />}
+                    className="text-blue-500"
+                    type="text"
+                    onClick={() => toast("Share functionality here")}
+                    style={{ fontSize: "12px", padding: "2px" }}
+                  />
+                </div>
+              }
+              description={
+                <>
+                  <div className="mb-4">
+                    <p className="text-lg font-semibold text-gray-700">
+                      Price:{" "}
+                      <span className="text-xl font-bold text-green-600">
+                        ₹49000
+                      </span>
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-6 bg-gray-50 p-4 rounded-lg shadow-sm">
+                    <div className="flex items-center text-gray-600">
+                      <strong className="mr-2 text-sm font-medium text-gray-800">
+                        Processor:
+                      </strong>
+                      <span className="text-sm">Snapdragon 8 Gen 1</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <strong className="mr-2 text-sm font-medium text-gray-800">
+                        RAM:
+                      </strong>
+                      <span className="text-sm">8GB</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <strong className="mr-2 text-sm font-medium text-gray-800">
+                        Storage:
+                      </strong>
+                      <span className="text-sm">128GB/256GB</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <strong className="mr-2 text-sm font-medium text-gray-800">
+                        Water Resistant:
+                      </strong>
+                      <span className="text-sm">Yes</span>
+                    </div>
+                  </div>
+                </>
+              }
+            />
+          </Card>
+        </Modal>
+      )}
     </>
   );
 }

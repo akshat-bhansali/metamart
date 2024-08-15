@@ -110,7 +110,7 @@
     },
     {
       "id": "headphones",
-      "name": "Sony WH-1000XM5",
+      "name": "Apple Air Pods Max",
       "price": 34990,
       "specs": {
         "type": "Over-Ear",
@@ -157,7 +157,7 @@
       "category": "Headphones"
     },
     {
-      "id": "tv3",
+      "id": "tv2",
       "name": "Samsung QN90B Neo QLED",
       "price": 159999,
       "specs": {
