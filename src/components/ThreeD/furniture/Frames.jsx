@@ -11,7 +11,7 @@ export function Frames(props) {
     <group
       {...props}
       dispose={null}
-      position={[0, 13, -49.8]}
+      position={[0, 13, -49.5]}
       scale={4}
       rotation={[0, Math.PI / 2*-1, 0]}
     >
