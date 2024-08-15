@@ -140,6 +140,7 @@ import { Truck } from "./furniture/Truck";
 import { PhoneBox } from "./furniture/PhoneBox";
 import { PhoneBox2 } from "./furniture/PhoneBox2";
 import { PhoneBox3 } from "./furniture/PhoneBox3";
+import { MainSign } from "./furniture/MainSign";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -338,6 +339,7 @@ const Furniture = ({ onLaptopClick }) => {
       <PhoneBox/>
       <PhoneBox2/>
       <PhoneBox3/>
+      <MainSign/>
     </>
   );
 };
