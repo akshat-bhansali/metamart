@@ -76,25 +76,16 @@ export const checkoutAll = () => {
     const cart = getCartFromLocalStorage();
     saveCartToLocalStorage(
       cart.map((order)=>
-      {
-        if(order.status)return order;
-        order.status = 1;
-        order.paid = 1;
-        return order;
-      }
+        {
+          if(order.status)return order;
+          order.status = 1;
+          order.paid = 1;
+          return order;
+        }
+      
+      )
     
     )
-  
-  )
-    // const orderIndex = cart.findIndex((order) => order.id === updatedOrder.id);
-    // if (orderIndex !== -1) {
-    //   cart[orderIndex] = { ...cart[orderIndex], ...updatedOrder };
-    //   saveCartToLocalStorage(cart);
-    //   console.log("Order updated with ID: ", updatedOrder.id);
-    //   return updatedOrder.id;
-    // } else {
-    //   console.error("Order not found");
-    // }
   } catch (error) {
     console.error("Error updating order: ", error);
   }

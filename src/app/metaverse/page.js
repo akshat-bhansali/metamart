@@ -99,12 +99,7 @@ export default function Page() {
     else if (color_b === 2) colorNameB = 'White';
     else if (color_b === 3) colorNameB = 'Black';
 
-    return `${colorNameA}_${colorNameB}.MOV`;
-  };
-
-  const handleClearChat = () => {
-    localStorage.removeItem("messages");
-    setMessages([]);
+    return `${colorNameA}_${colorNameB}`;
   };
 
   const showAiModal = () => {
@@ -475,7 +470,7 @@ export default function Page() {
                         }}
                         cover={
                           <video
-                            src={`./videos/${models.id}.MOV`}
+                            src={`./videos/${msg.id}.MOV`}
                             style={{
                               height: "50%",
                               objectFit: "cover",
@@ -500,6 +495,7 @@ export default function Page() {
                           >
                             Add to Cart
                           </Button>,
+                          <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
                           <Button
                             type="primary"
                             danger
@@ -507,8 +503,9 @@ export default function Page() {
                             key="view-in-ar"
                             style={{ fontSize: "12px", padding: "4px 8px" }}
                           >
-                            View AR
-                          </Button>,
+                            View in AR
+                          </Button>
+                        </a>
                         ]}
                       >
                         <Meta
@@ -642,14 +639,17 @@ export default function Page() {
             >
               Add to Cart
             </Button>,
+            <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
             <Button
               type="primary"
               danger
               icon={<ArrowsAltOutlined />}
               key="view-in-ar"
+              style={{ fontSize: "12px", padding: "4px 8px" }}
             >
               View in AR
-            </Button>,
+            </Button>
+          </a>
           ]}
         >
           <Meta
@@ -744,7 +744,7 @@ export default function Page() {
             style={{ height: "100%" }}
             cover={
               <video
-                src={`./videos/${getVideoFileName()}`}
+                src={`./videos/${getVideoFileName()}.MOV`}
                 style={{ height: "50%", objectFit: "cover", padding: 1 }}
                 autoPlay
                 loop
@@ -759,19 +759,28 @@ export default function Page() {
                 key="add-to-cart"
                 onClick={() => {
                   // addItemToCart(models, 1);
+                  const model = {
+                    id:getVideoFileName(),
+                    name:"Samsung S23",
+                    price:49000
+                  }
+                  addItemToCart(model,1)
                   toast.success("Added to Cart!");
                 }}
               >
                 Add to Cart
               </Button>,
+              <a href="https://metamart-ar.vercel.app" target="_blank" rel="noopener noreferrer">
               <Button
                 type="primary"
                 danger
                 icon={<ArrowsAltOutlined />}
                 key="view-in-ar"
+                style={{ fontSize: "12px", padding: "4px 8px" }}
               >
                 View in AR
-              </Button>,
+              </Button>
+            </a>
             ]}
           >
             <Meta
