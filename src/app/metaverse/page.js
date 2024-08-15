@@ -98,12 +98,7 @@ export default function Page() {
     else if (color_b === 2) colorNameB = 'White';
     else if (color_b === 3) colorNameB = 'Black';
 
-    return `${colorNameA}_${colorNameB}.MOV`;
-  };
-
-  const handleClearChat = () => {
-    localStorage.removeItem("messages");
-    setMessages([]);
+    return `${colorNameA}_${colorNameB}`;
   };
 
   const showAiModal = () => {
@@ -742,7 +737,7 @@ export default function Page() {
             style={{ height: "100%" }}
             cover={
               <video
-                src={`./videos/${getVideoFileName()}`}
+                src={`./videos/${getVideoFileName()}.MOV`}
                 style={{ height: "50%", objectFit: "cover", padding: 1 }}
                 autoPlay
                 loop
@@ -757,6 +752,12 @@ export default function Page() {
                 key="add-to-cart"
                 onClick={() => {
                   // addItemToCart(models, 1);
+                  const model = {
+                    id:getVideoFileName(),
+                    name:"Samsung S23",
+                    price:49000
+                  }
+                  addItemToCart(model,1)
                   toast.success("Added to Cart!");
                 }}
               >
