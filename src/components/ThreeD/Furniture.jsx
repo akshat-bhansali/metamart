@@ -270,7 +270,7 @@ const Furniture = ({ onLaptopClick }) => {
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
       >
-        <group>
+        <group onClick={() => handleLaptopClick("cart")}>
           <Cart1 />
           <Cart2 />
           <Cart3 />

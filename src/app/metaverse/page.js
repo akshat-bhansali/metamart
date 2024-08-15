@@ -139,7 +139,11 @@ export default function Page() {
   };
 
   const handleLaptopClick = (modelPath) => {
-    showModelModal(modelPath);
+    if(modelPath=="cart"){
+      setIsCartModalVisible(true);
+    }else {
+      showModelModal(modelPath);
+    }
   };
   const handleCustomModalCancel = () => {
     setIsCustomModalVisible(false);
