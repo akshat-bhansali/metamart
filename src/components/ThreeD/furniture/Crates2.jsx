@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function Crates2(props) {
   const { nodes, materials } = useGLTF('./models/crate2.glb')
   return (
-    <group><group {...props} dispose={null} scale={10} position={[95,1,-51]} rotation={[0,Math.PI/2,0]}>
+    <group><group {...props} dispose={null} scale={10} position={[103,1,-51]} rotation={[0,Math.PI/2,0]}>
     <group position={[0, 0.15, 0.311]}>
       <mesh
         castShadow
