@@ -28,7 +28,7 @@ const { Meta } = Card;
 
 export default function Page() {
   const testing = false;
-  const [segment, setSegment] = useState("user1");
+  const [segment, setSegment] = useState("user4");
   const [isAiModalVisible, setIsAiModalVisible] = useState(false);
   const [isCartModalVisible, setIsCartModalVisible] = useState(false);
   const [isModelModalVisible, setIsModelModalVisible] = useState(false);
@@ -130,7 +130,7 @@ export default function Page() {
         {/* Segmented Control in the top center with only icons */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
           <Segmented
-          className="bg-blue-500 p-1"
+          className="bg-blue-500 p-1 opacity-[0.8]"
             options={[
               {
                 label: (
@@ -217,7 +217,7 @@ export default function Page() {
             shape="circle"
             icon={<ShoppingCartOutlined />}
             size="large"
-            style={{ backgroundColor: "#FFFF00", color: "white" }}
+            style={{ backgroundColor: "#008000", color: "white" }}
             onClick={showCartModal}
           />
         </div>
@@ -251,92 +251,113 @@ export default function Page() {
               <Button
                 shape="default"
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: 60,
+                  height: 60,
                   margin: 1,
                   borderRadius: 5,
                   opacity: 0.7,
                 }}
               >
-                W
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">W</div>
+                  <div className="text-xs font-thin">Forward</div>
+                </div>
               </Button>
               <div className="flex flex-row">
-                <Button
-                  shape="default"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  A
-                </Button>
-                <Button
-                  shape="default"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  S
-                </Button>
-                <Button
-                  shape="default"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  D
-                </Button>
+              <Button
+                shape="default"
+                style={{
+                  width: 60,
+                  height: 60,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.7,
+                }}
+              >
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">A</div>
+                  <div className="text-xs font-thin">Left</div>
+                </div>
+              </Button>
+              <Button
+                shape="default"
+                style={{
+                  width: 60,
+                  height: 60,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.7,
+                }}
+              >
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">S</div>
+                  <div className="text-xs font-thin">Backward</div>
+                </div>
+              </Button>
+              <Button
+                shape="default"
+                style={{
+                  width: 60,
+                  height: 60,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.7,
+                }}
+              >
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">D</div>
+                  <div className="text-xs font-thin">Right</div>
+                </div>
+              </Button>
               </div>
             </div>
             <div className="flex flex-col items-center ml-4">
               <div className="flex flex-row">
-                <Button
-                  shape="default"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  1
-                </Button>
-                <Button
-                  shape="default"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  2
-                </Button>
-              </div>
               <Button
                 shape="default"
                 style={{
-                  width: 50,
-                  height: 40,
+                  width: 60,
+                  height: 60,
                   margin: 1,
                   borderRadius: 5,
                   opacity: 0.7,
                 }}
               >
-                Shift
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">1</div>
+                  <div className="text-xs font-thin">Emote</div>
+                </div>
+              </Button>
+              <Button
+                shape="default"
+                style={{
+                  width: 60,
+                  height: 60,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.7,
+                }}
+              >
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">2</div>
+                  <div className="text-xs font-thin">Emote</div>
+                </div>
+              </Button>
+              </div>
+              <Button
+                shape="default"
+                style={{
+                  width: 70,
+                  height: 60,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.7,
+                }}
+              >
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">SHIFT</div>
+                  <div className="text-xs font-thin">Sprint</div>
+                </div>
               </Button>
             </div>
           </div>
@@ -615,7 +636,7 @@ export default function Page() {
         bodyStyle={{ overflowY: "auto" }}
       >
         <div>
-          <h2 className="text-lg font-bold mb-4">Your Past Orders</h2>
+          <h2 className="text-lg font-bold mb-4">Your Orders</h2>
           {orders.length > 0 ? (
             <ul className="list-disc pl-5">
               {orders.map((order, index) => (
