@@ -129,6 +129,10 @@ import { PlantPot2 } from "./furniture/PlantPot2";
 import { Frames } from "./furniture/Frames";
 import { Frames2 } from "./furniture/Frames2";
 import { Open24 } from "./furniture/Open24";
+import { BushRow1 } from "./furniture/BushRow1";
+import { BushRow2 } from "./furniture/BushRow2";
+import { BushRow4 } from "./furniture/BushRow4";
+import { BushRow5 } from "./furniture/BushRow5";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -316,6 +320,10 @@ const Furniture = ({ onLaptopClick }) => {
       <Frames/>
       <Frames2/>
       <Open24/>
+      <BushRow1/>
+      <BushRow2/>
+      <BushRow4/>
+      <BushRow5/>
     </>
   );
 };
