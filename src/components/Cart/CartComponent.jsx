@@ -46,6 +46,9 @@ const CartComponent = ({ isVisible }) => {
 
   const handleDelete = (id) => {
     const updatedCart = cart.filter((item) => item.id !== id);
+    let totalAmount = 0;
+    updatedCart.forEach((i) => (totalAmount += i.qty * i.item.price));
+    setAmount(totalAmount);
     setCart(updatedCart);
     deleteOrder(id);
   };

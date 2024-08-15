@@ -99,6 +99,18 @@ import { Mobile6 } from "./furniture/Mobile6";
 import { Mobile7 } from "./furniture/Mobile7";
 import { Mobile8 } from "./furniture/Mobile8";
 import { Warehouse } from "./furniture/Warehouse";
+import { Fence } from "./furniture/Fence";
+import { Fence3 } from "./furniture/Fence3";
+import { Fence2 } from "./furniture/Fence2";
+import { Fence4 } from "./furniture/Fence4";
+import { Fence5 } from "./furniture/Fence5";
+import { Fence6 } from "./furniture/Fence6";
+import { Fence7 } from "./furniture/Fence7";
+import { Fence8 } from "./furniture/Fence8";
+import { Fence9 } from "./furniture/Fence9";
+import { Fence10 } from "./furniture/Fence10";
+import { Fence11 } from "./furniture/Fence11";
+import { Fence12 } from "./furniture/Fence12";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
