@@ -130,11 +130,13 @@ export default function Page() {
         {/* Segmented Control in the top center with only icons */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
           <Segmented
+          className="bg-blue-500 p-1"
             options={[
               {
                 label: (
                   <Avatar
-                    src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"
+                  style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod1.png"
                     shape="square"
                     size="large"
                   />
@@ -144,25 +146,64 @@ export default function Page() {
               {
                 label: (
                   <Avatar
-                    style={{ backgroundColor: "#f56a00" }}
+                  style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod2.png"
                     shape="square"
                     size="large"
-                  >
-                    K
-                  </Avatar>
+                  />
                 ),
                 value: "user2",
               },
               {
                 label: (
                   <Avatar
-                    style={{ backgroundColor: "#87d068" }}
-                    icon={<UserOutlined />}
+                  style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod3.png"
                     shape="square"
                     size="large"
                   />
                 ),
                 value: "user3",
+              },{
+                label: (
+                  <Avatar
+                  style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod4.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user4",
+              },{
+                label: (
+                  <Avatar
+                  style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod5.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user5",
+              },{
+                label: (
+                  <Avatar
+                  style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod6.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user6",
+              },{
+                label: (
+                  <Avatar
+                  style={{ backgroundColor: "#FFFF00" }}
+                    src="./images/mod7.png"
+                    shape="square"
+                    size="large"
+                  />
+                ),
+                value: "user7",
               },
             ]}
             value={segment}
@@ -176,7 +217,7 @@ export default function Page() {
             shape="circle"
             icon={<ShoppingCartOutlined />}
             size="large"
-            style={{ backgroundColor: "#87d068", color: "white" }}
+            style={{ backgroundColor: "#FFFF00", color: "white" }}
             onClick={showCartModal}
           />
         </div>
