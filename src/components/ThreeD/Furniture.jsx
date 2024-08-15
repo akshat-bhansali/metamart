@@ -137,6 +137,9 @@ import { Dumpster } from "./furniture/Dumpster";
 import { Sign } from "./furniture/Sign";
 import { Cases } from "./furniture/Cases";
 import { Truck } from "./furniture/Truck";
+import { PhoneBox } from "./furniture/PhoneBox";
+import { PhoneBox2 } from "./furniture/PhoneBox2";
+import { PhoneBox3 } from "./furniture/PhoneBox3";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -330,8 +333,11 @@ const Furniture = ({ onLaptopClick }) => {
       <BushRow5/>
       <Dumpster/>
       <Truck/>
-      <Sign/>
+      {/* <Sign/> */}
       <Cases/>
+      <PhoneBox/>
+      <PhoneBox2/>
+      <PhoneBox3/>
     </>
   );
 };
