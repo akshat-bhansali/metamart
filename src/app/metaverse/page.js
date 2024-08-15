@@ -28,6 +28,7 @@ import CartComponent from "@/components/Cart/CartComponent";
 import { addItemToCart, getCartDetails } from "@/components/Cart/cart";
 import { resolveQuery } from "@/chat/chat";
 import { Staff2 } from "@/components/ThreeD/characters/Staff2";
+import { useInput } from "@/hooks/useInput";
 
 const { Meta } = Card;
 
@@ -39,10 +40,11 @@ export default function Page() {
   const [isModelModalVisible, setIsModelModalVisible] = useState(false);
   const [isOrdersModalVisible, setIsOrdersModalVisible] = useState(false);
   const [isCustomModalVisible, setIsCustomModalVisible] = useState(false);
+  const inputs = useInput();
   const [models, setModels] = useState("");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [orders, setOrders] = useState([]); // State for past orders
+  const [orders, setOrders] = useState([]);
   const chatEndRef = useRef(null);
   const [color_a,setColor_a] = useState(2);
   const [color_b,setColor_b] = useState(2);
@@ -289,122 +291,129 @@ export default function Page() {
 
         {/* Controls for Movement */}
         <div className="absolute bottom-4 left-4 z-20">
-          <div className="flex">
-            <div className="flex flex-col items-center ml-4">
-              <Button
-                shape="default"
-                style={{
-                  width: 60,
-                  height: 60,
-                  margin: 1,
-                  borderRadius: 5,
-                  opacity: 0.7,
-                }}
-              >
-                <div className="text-center flex flex-col">
-                  <div className="text-lg font-bold">W</div>
-                  <div className="text-xs font-thin">Forward</div>
-                </div>
-              </Button>
-              <div className="flex flex-row">
-                <Button
-                  shape="default"
-                  style={{
-                    width: 60,
-                    height: 60,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  <div className="text-center flex flex-col">
-                    <div className="text-lg font-bold">A</div>
-                    <div className="text-xs font-thin">Left</div>
-                  </div>
-                </Button>
-                <Button
-                  shape="default"
-                  style={{
-                    width: 60,
-                    height: 60,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  <div className="text-center flex flex-col">
-                    <div className="text-lg font-bold">S</div>
-                    <div className="text-xs font-thin">Backward</div>
-                  </div>
-                </Button>
-                <Button
-                  shape="default"
-                  style={{
-                    width: 60,
-                    height: 60,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  <div className="text-center flex flex-col">
-                    <div className="text-lg font-bold">D</div>
-                    <div className="text-xs font-thin">Right</div>
-                  </div>
-                </Button>
-              </div>
+      <div className="flex">
+        <div className="flex flex-col items-center ml-4">
+          <Button
+            shape="default"
+            style={{
+              width: 60,
+              height: 60,
+              margin: 1,
+              borderRadius: 5,
+              opacity: 0.9,
+              backgroundColor: inputs.forward ? 'yellow' : '', // Change to yellow when 'W' is pressed
+            }}
+          >
+            <div className="text-center flex flex-col">
+              <div className="text-lg font-bold">W</div>
+              <div className="text-xs font-thin">Forward</div>
             </div>
-            <div className="flex flex-col items-center ml-4">
-              <div className="flex flex-row">
-                <Button
-                  shape="default"
-                  style={{
-                    width: 60,
-                    height: 60,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  <div className="text-center flex flex-col">
-                    <div className="text-lg font-bold">1</div>
-                    <div className="text-xs font-thin">Emote</div>
-                  </div>
-                </Button>
-                <Button
-                  shape="default"
-                  style={{
-                    width: 60,
-                    height: 60,
-                    margin: 1,
-                    borderRadius: 5,
-                    opacity: 0.7,
-                  }}
-                >
-                  <div className="text-center flex flex-col">
-                    <div className="text-lg font-bold">2</div>
-                    <div className="text-xs font-thin">Emote</div>
-                  </div>
-                </Button>
+          </Button>
+          <div className="flex flex-row">
+            <Button
+              shape="default"
+              style={{
+                width: 60,
+                height: 60,
+                margin: 1,
+                borderRadius: 5,
+                opacity: 0.9,
+                backgroundColor: inputs.left ? 'yellow' : '', // Change to yellow when 'A' is pressed
+              }}
+            >
+              <div className="text-center flex flex-col">
+                <div className="text-lg font-bold">A</div>
+                <div className="text-xs font-thin">Left</div>
               </div>
-              <Button
-                shape="default"
-                style={{
-                  width: 70,
-                  height: 60,
-                  margin: 1,
-                  borderRadius: 5,
-                  opacity: 0.7,
-                }}
-              >
-                <div className="text-center flex flex-col">
-                  <div className="text-lg font-bold">SHIFT</div>
-                  <div className="text-xs font-thin">Sprint</div>
-                </div>
-              </Button>
-            </div>
+            </Button>
+            <Button
+              shape="default"
+              style={{
+                width: 60,
+                height: 60,
+                margin: 1,
+                borderRadius: 5,
+                opacity: 0.9,
+                backgroundColor: inputs.backward ? 'yellow' : '', // Change to yellow when 'S' is pressed
+              }}
+            >
+              <div className="text-center flex flex-col">
+                <div className="text-lg font-bold">S</div>
+                <div className="text-xs font-thin">Backward</div>
+              </div>
+            </Button>
+            <Button
+              shape="default"
+              style={{
+                width: 60,
+                height: 60,
+                margin: 1,
+                borderRadius: 5,
+                opacity: 0.9,
+                backgroundColor: inputs.right ? 'yellow' : '', // Change to yellow when 'D' is pressed
+              }}
+            >
+              <div className="text-center flex flex-col">
+                <div className="text-lg font-bold">D</div>
+                <div className="text-xs font-thin">Right</div>
+              </div>
+            </Button>
           </div>
         </div>
+        <div className="flex flex-col items-center ml-4">
+          <div className="flex flex-row">
+            <Button
+              shape="default"
+              style={{
+                width: 60,
+                height: 60,
+                margin: 1,
+                borderRadius: 5,
+                opacity: 0.9,
+                backgroundColor: inputs.break_dance ? 'yellow' : '', // Change to yellow when '1' is pressed
+              }}
+            >
+              <div className="text-center flex flex-col">
+                <div className="text-lg font-bold">1</div>
+                <div className="text-xs font-thin">Emote</div>
+              </div>
+            </Button>
+            <Button
+              shape="default"
+              style={{
+                width: 60,
+                height: 60,
+                margin: 1,
+                borderRadius: 5,
+                opacity: 0.9,
+                backgroundColor: inputs.backflip ? 'yellow' : '', // Change to yellow when '2' is pressed
+              }}
+            >
+              <div className="text-center flex flex-col">
+                <div className="text-lg font-bold">2</div>
+                <div className="text-xs font-thin">Emote</div>
+              </div>
+            </Button>
+          </div>
+          <Button
+            shape="default"
+            style={{
+              width: 70,
+              height: 60,
+              margin: 1,
+              borderRadius: 5,
+              opacity: 0.9,
+              backgroundColor: inputs.shift ? 'yellow' : '', // Change to yellow when 'SHIFT' is pressed
+            }}
+          >
+            <div className="text-center flex flex-col">
+              <div className="text-lg font-bold">SHIFT</div>
+              <div className="text-xs font-thin">Sprint</div>
+            </div>
+          </Button>
+        </div>
+      </div>
+    </div>
 
         <Canvas
           shadows
