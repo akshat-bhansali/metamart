@@ -418,7 +418,7 @@ export default function Page() {
         <Canvas
           shadows
           camera={{ position: [0, 30, 55], fov: 50 }}
-          style={{ zIndex: 0 }} // Ensure Canvas has a lower z-index
+          style={{ zIndex: 0 }}
         >
           {testing ? <axesHelper visible={testing} args={[200]} /> : null}
           {testing ? <gridHelper args={[200, 200]} /> : null}
@@ -464,6 +464,11 @@ export default function Page() {
                     msg.type === "user" ? "justify-end" : "justify-start"
                   } mb-2`}
                 >
+                  {msg.type != "user" ?<Avatar
+                    src="./images/staff.png"
+                    shape="circle"
+                    size="large"
+                  />:<></>}
                   <div
                     className={`p-2 rounded-lg ${
                       msg.type === "user"
@@ -568,6 +573,11 @@ export default function Page() {
                       </Card>
                     )}
                   </div>
+                  {msg.type == "user" ?<Avatar
+                    src="./images/mod4.png"
+                    shape="circle"
+                    size="large"
+                  />:<></>}
                 </div>
               );
             })}
