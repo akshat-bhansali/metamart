@@ -470,7 +470,7 @@ export default function Page() {
                         }}
                         cover={
                           <video
-                            src={`./videos/${models.id}.MOV`}
+                            src={`./videos/${msg.id}.MOV`}
                             style={{
                               height: "50%",
                               objectFit: "cover",
