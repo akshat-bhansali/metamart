@@ -118,10 +118,12 @@ import { Barrier2 } from "./furniture/Barrier2";
 import { Forklift } from "./furniture/Forklift";
 import { TollGate } from "./furniture/TollGate";
 import { CircleGeometry, MeshStandardMaterial } from "three";
-import { ModPs5Boxel, Ps5Box1 } from "./furniture/Ps5Box1";
+import { Ps5Box1 } from "./furniture/Ps5Box1";
 import { Ps5Box2 } from "./furniture/Ps5Box2";
 import { Ps5Box3 } from "./furniture/Ps5Box3";
 import { Ps5Box4 } from "./furniture/Ps5Box4";
+import { Plant3, PlantPot1 } from "./furniture/PlantPot1";
+import { PlantPot2 } from "./furniture/PlantPot2";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -300,6 +302,10 @@ const Furniture = ({ onLaptopClick }) => {
       <Ps5Box2/>
       <Ps5Box3/>
       <Ps5Box4/>
+      <Plant/>
+      <Plant2/>
+      <PlantPot1/>
+      <PlantPot2/>
     </>
   );
 };
