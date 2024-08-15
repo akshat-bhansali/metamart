@@ -134,6 +134,8 @@ import { BushRow2 } from "./furniture/BushRow2";
 import { BushRow4 } from "./furniture/BushRow4";
 import { BushRow5 } from "./furniture/BushRow5";
 import { Dumpster } from "./furniture/Dumpster";
+import { Sign } from "./furniture/Sign";
+import { Cases } from "./furniture/Cases";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -326,6 +328,8 @@ const Furniture = ({ onLaptopClick }) => {
       <BushRow4/>
       <BushRow5/>
       <Dumpster/>
+      <Sign/>
+      <Cases/>
     </>
   );
 };
