@@ -128,6 +128,7 @@ import { Plant3, PlantPot1 } from "./furniture/PlantPot1";
 import { PlantPot2 } from "./furniture/PlantPot2";
 import { Frames } from "./furniture/Frames";
 import { Frames2 } from "./furniture/Frames2";
+import { Open24 } from "./furniture/Open24";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -314,6 +315,7 @@ const Furniture = ({ onLaptopClick }) => {
       <Crates2/>
       <Frames/>
       <Frames2/>
+      <Open24/>
     </>
   );
 };
