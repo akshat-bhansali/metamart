@@ -117,6 +117,8 @@ import { Barrier1 } from "./furniture/Barrier1";
 import { Barrier2 } from "./furniture/Barrier2";
 import { Forklift } from "./furniture/Forklift";
 import { TollGate } from "./furniture/TollGate";
+import { Crate } from "./furniture/Crate";
+import { Crates2 } from "./furniture/Crates2";
 import { CircleGeometry, MeshStandardMaterial } from "three";
 import { ModPs5Boxel, Ps5Box1 } from "./furniture/Ps5Box1";
 import { Ps5Box2 } from "./furniture/Ps5Box2";
@@ -300,6 +302,8 @@ const Furniture = ({ onLaptopClick }) => {
       <Ps5Box2/>
       <Ps5Box3/>
       <Ps5Box4/>
+      <Crate/>
+      <Crates2/>
     </>
   );
 };
