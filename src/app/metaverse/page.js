@@ -29,6 +29,7 @@ import { addItemToCart, getCartDetails } from "@/components/Cart/cart";
 import { resolveQuery } from "@/chat/chat";
 import { Staff2 } from "@/components/ThreeD/characters/Staff2";
 import { useInput } from "@/hooks/useInput";
+import { CustomPhone } from "@/components/ThreeD/furniture/CustomPhone";
 
 const { Meta } = Card;
 
@@ -426,6 +427,8 @@ export default function Page() {
           {testing ? <Stats /> : null}
           <Lights />
           <Sky/>
+
+      <CustomPhone onClick={showCustomModal}/>
           <MapFloor />
           <Character />
           <StoreFrame />
@@ -818,20 +821,19 @@ export default function Page() {
                       <span className="text-xs text-gray-600">Back</span>
                       <div className="flex space-x-1">
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
+                          className={`w-6 h-6 rounded-full cursor-pointer ${color_a==1?"border-4 border-yellow-400":" border-2 border-black"}`}
                           onClick={()=>setColor_a(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
+                          className={`w-6 h-6 rounded-full cursor-pointer ${color_a==2?"border-4 border-yellow-400":" border-2 border-black"}`}
                           onClick={()=>setColor_a(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
-                            border: "1px solid #000000",
                           }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
+                          className={`w-6 h-6 rounded-full cursor-pointer ${color_a==3?"border-4 border-yellow-400":" border-2 border-black"}`}
                           onClick={()=>setColor_a(3)}
                           style={{ backgroundColor: "#000000" }}
                         />
@@ -842,20 +844,19 @@ export default function Page() {
                       <span className="text-xs text-gray-600">Body</span>
                       <div className="flex space-x-1">
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
+                          className={`w-6 h-6 rounded-full cursor-pointer ${color_b==1?"border-4 border-yellow-400":" border-2 border-black"}`}
                           onClick={()=>setColor_b(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
+                          className={`w-6 h-6 rounded-full cursor-pointer ${color_b==2?"border-4  border-yellow-400":" border-2 border-black"}`}
                           onClick={()=>setColor_b(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
-                            border: "1px solid #000000",
                           }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
+                          className={`w-6 h-6 rounded-full cursor-pointer ${color_b==3?"border-4 border-yellow-400":" border-2 border-black"}`}
                           onClick={()=>setColor_b(3)}
                           style={{ backgroundColor: "#000000" }}
                         />

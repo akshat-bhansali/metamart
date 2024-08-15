@@ -347,7 +347,6 @@ const Furniture = ({ onLaptopClick }) => {
       <NoParking1 />
       <NoParking2 />
       <TrafficLight />
-      <CustomPhone />
     </>
   );
 };

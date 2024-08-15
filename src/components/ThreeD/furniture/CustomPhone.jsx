@@ -3,7 +3,7 @@ import { useGLTF} from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { CircleGeometry, MeshStandardMaterial } from "three";
 
-export function CustomPhone(props) {
+export function CustomPhone({ onClick }) {
   const { nodes, materials } = useGLTF("./models/white_white.glb");
   const groupRef = useRef();
   const [hovered, setHovered] = useState(false);
@@ -31,9 +31,8 @@ export function CustomPhone(props) {
   });
 
   return (
-    <group>
+    <group onClick={onClick}>
       <group
-        {...props}
         dispose={null}
         position={[29.5, 4, 35]}
         scale={0.125}
