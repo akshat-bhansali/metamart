@@ -43,6 +43,9 @@ export default function Page() {
   const [messages, setMessages] = useState([]);
   const [orders, setOrders] = useState([]); // State for past orders
   const chatEndRef = useRef(null);
+  const [color_a,setColor_a] = useState(2);
+  const [color_b,setColor_b] = useState(2);
+
   useEffect(() => {
     // Scroll to bottom when messages change
     if (chatEndRef.current) {
@@ -81,6 +84,21 @@ export default function Page() {
   };
   const findProduct = (id) => {
     return productsData.items.find((item) => item?.id === id);
+  };
+
+  const getVideoFileName = () => {
+    let colorNameA = '';
+    let colorNameB = '';
+
+    if (color_a === 1) colorNameA = 'Blue';
+    else if (color_a === 2) colorNameA = 'White';
+    else if (color_a === 3) colorNameA = 'Black';
+
+    if (color_b === 1) colorNameB = 'Blue';
+    else if (color_b === 2) colorNameB = 'White';
+    else if (color_b === 3) colorNameB = 'Black';
+
+    return `${colorNameA}_${colorNameB}.MOV`;
   };
 
   const handleClearChat = () => {
@@ -724,7 +742,7 @@ export default function Page() {
             style={{ height: "100%" }}
             cover={
               <video
-                src={`./videos/mobile2.MOV`}
+                src={`./videos/${getVideoFileName()}`}
                 style={{ height: "50%", objectFit: "cover", padding: 1 }}
                 autoPlay
                 loop
@@ -767,10 +785,12 @@ export default function Page() {
                       <div className="flex space-x-1">
                         <div
                           className="w-6 h-6 rounded-full cursor-pointer"
+                          onClick={()=>setColor_a(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
                           className="w-6 h-6 rounded-full cursor-pointer"
+                          onClick={()=>setColor_a(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
                             border: "1px solid #000000",
@@ -778,6 +798,7 @@ export default function Page() {
                         />
                         <div
                           className="w-6 h-6 rounded-full cursor-pointer"
+                          onClick={()=>setColor_a(3)}
                           style={{ backgroundColor: "#000000" }}
                         />
                       </div>
@@ -788,10 +809,12 @@ export default function Page() {
                       <div className="flex space-x-1">
                         <div
                           className="w-6 h-6 rounded-full cursor-pointer"
+                          onClick={()=>setColor_b(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
                           className="w-6 h-6 rounded-full cursor-pointer"
+                          onClick={()=>setColor_b(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
                             border: "1px solid #000000",
@@ -799,6 +822,7 @@ export default function Page() {
                         />
                         <div
                           className="w-6 h-6 rounded-full cursor-pointer"
+                          onClick={()=>setColor_b(3)}
                           style={{ backgroundColor: "#000000" }}
                         />
                       </div>
