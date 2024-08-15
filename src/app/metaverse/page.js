@@ -12,6 +12,8 @@ import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
 import { Segmented, Avatar, Button, Modal, Card } from "antd";
 import productsData from "../productData";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -135,6 +137,7 @@ export default function Page() {
 
   return (
     <>
+      <ToastContainer />
       <div className="bg-gray-500 h-[100vh] relative">
         {/* Segmented Control in the top center with only icons */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
@@ -467,7 +470,7 @@ export default function Page() {
                             key="add-to-cart"
                             onClick={() => {
                               addItemToCart(product, 1);
-                              alert("Added to Cart!");
+                              toast.success("Added to cart !")
                             }}
                             style={{ fontSize: "12px", padding: "4px 8px" }}
                           >
@@ -493,7 +496,7 @@ export default function Page() {
                                 className="text-blue-500"
                                 type="text"
                                 onClick={() =>
-                                  alert("Share functionality here")
+                                  toast("Share functionality here")
                                 }
                                 style={{ fontSize: "12px", padding: "2px" }}
                               />
@@ -609,7 +612,7 @@ export default function Page() {
               key="add-to-cart"
               onClick={() => {
                 addItemToCart(models, 1);
-                alert("Added to Cart!");
+                toast.success("Added to Cart!");
               }}
             >
               Add to Cart
@@ -632,7 +635,7 @@ export default function Page() {
                   icon={<ShareAltOutlined />}
                   className="text-blue-500"
                   type="text"
-                  onClick={() => alert("Share functionality here")}
+                  onClick={() => toast("Share functionality here")}
                 />
               </div>
             }
@@ -802,7 +805,7 @@ export default function Page() {
                 key="add-to-cart"
                 onClick={() => {
                   // addItemToCart(models, 1);
-                  alert("Added to Cart!");
+                  toast.success("Added to Cart!");
                 }}
               >
                 Add to Cart
@@ -825,7 +828,7 @@ export default function Page() {
                     icon={<ShareAltOutlined />}
                     className="text-blue-500"
                     type="text"
-                    onClick={() => alert("Share functionality here")}
+                    onClick={() => toast("Share functionality here")}
                     style={{ fontSize: "12px", padding: "2px" }}
                   />
                 </div>
