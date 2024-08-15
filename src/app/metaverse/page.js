@@ -12,8 +12,8 @@ import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
 import { Segmented, Avatar, Button, Modal, Card } from "antd";
 import productsData from "../productData";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -43,7 +43,6 @@ export default function Page() {
   const [messages, setMessages] = useState([]);
   const [orders, setOrders] = useState([]); // State for past orders
   const chatEndRef = useRef(null);
-
   useEffect(() => {
     // Scroll to bottom when messages change
     if (chatEndRef.current) {
@@ -456,12 +455,17 @@ export default function Page() {
                         }}
                         cover={
                           <video
-                          src={`./videos/${models.id}.MOV`}
-                          style={{ height: "50%", objectFit: "cover" }}
-                          autoPlay
-                          loop
-                          muted
-                        />
+                            src={`./videos/${models.id}.MOV`}
+                            style={{
+                              height: "50%",
+                              objectFit: "cover",
+                              padding: 1,
+                            }}
+                            autoPlay
+                            loop
+                            muted
+                            className="border-b"
+                          />
                         }
                         actions={[
                           <Button
@@ -470,7 +474,7 @@ export default function Page() {
                             key="add-to-cart"
                             onClick={() => {
                               addItemToCart(product, 1);
-                              toast.success("Added to cart !")
+                              toast.success("Added to cart !");
                             }}
                             style={{ fontSize: "12px", padding: "4px 8px" }}
                           >
@@ -562,7 +566,7 @@ export default function Page() {
       </Modal>
 
       {/* Modal for Cart */}
-      <Modal
+      {isCartModalVisible && <Modal
         title="Cart"
         open={isCartModalVisible}
         onCancel={handleCartModalCancel}
@@ -576,9 +580,9 @@ export default function Page() {
         bodyStyle={{ overflowY: "auto" }}
       >
         <div>
-          <CartComponent isVisible={isCartModalVisible} />
+          {isCartModalVisible && <CartComponent isVisible={isCartModalVisible} />}
         </div>
-      </Modal>
+      </Modal>}
 
       {/* Modal for Model */}
       <Modal
@@ -599,10 +603,11 @@ export default function Page() {
           cover={
             <video
               src={`./videos/${models.id}.MOV`}
-              style={{ height: "50%", objectFit: "cover" }}
+              style={{ height: "50%", objectFit: "cover", padding: 1 }}
               autoPlay
               loop
               muted
+              className="border-b"
             />
           }
           actions={[
@@ -718,85 +723,14 @@ export default function Page() {
           <Card
             style={{ height: "100%" }}
             cover={
-              <div
-                style={{
-                  height: "50%",
-                  backgroundColor: "#f0f0f0", // Placeholder color
-                  display: "flex",
-                }}
-              >
-                {/* Replace this div with your canvas */}
-                <div className="flex h-full">
-                  {/* Canvas Section */}
-                  <div
-                    id="canvas-placeholder"
-                    className="w-1/2 h-full bg-gray-200"
-                  >
-                    Your canvas goes here
-                  </div>
-
-                  {/* Options Section */}
-                  <div className="w-1/2 flex flex-col justify-between p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex space-x-2">
-                        {/* Options for Back and Body with color pickers */}
-                        <div className="flex flex-col">
-                          <span className="text-xs">Back</span>
-                          <div className="flex space-x-1">
-                            <Button
-                              style={{
-                                backgroundColor: "#0000FF",
-                                color: "white",
-                              }}
-                              size="small"
-                            />
-                            <Button
-                              style={{
-                                backgroundColor: "#FFFFFF",
-                                color: "black",
-                              }}
-                              size="small"
-                            />
-                            <Button
-                              style={{
-                                backgroundColor: "#000000",
-                                color: "white",
-                              }}
-                              size="small"
-                            />
-                          </div>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-xs">Body</span>
-                          <div className="flex space-x-1">
-                            <Button
-                              style={{
-                                backgroundColor: "#0000FF",
-                                color: "white",
-                              }}
-                              size="small"
-                            />
-                            <Button
-                              style={{
-                                backgroundColor: "#FFFFFF",
-                                color: "black",
-                              }}
-                              size="small"
-                            />
-                            <Button
-                              style={{
-                                backgroundColor: "#000000",
-                                color: "white",
-                              }}
-                              size="small"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <video
+                src={`./videos/mobile2.MOV`}
+                style={{ height: "50%", objectFit: "cover", padding: 1 }}
+                autoPlay
+                loop
+                muted
+                className="border-b w-1/2"
+              />
             }
             actions={[
               <Button
@@ -823,14 +757,53 @@ export default function Page() {
             <Meta
               title={
                 <div className="flex items-center justify-between">
-                  <span>Samsung S23</span>
-                  <Button
-                    icon={<ShareAltOutlined />}
-                    className="text-blue-500"
-                    type="text"
-                    onClick={() => toast("Share functionality here")}
-                    style={{ fontSize: "12px", padding: "2px" }}
-                  />
+                  <span className="text-lg font-medium text-gray-800">
+                    Samsung S23
+                  </span>
+                  <div className="flex space-x-4">
+                    {/* Options for Back with color pickers */}
+                    <div className="flex flex-col items-center">
+                      <span className="text-xs text-gray-600">Back</span>
+                      <div className="flex space-x-1">
+                        <div
+                          className="w-6 h-6 rounded-full cursor-pointer"
+                          style={{ backgroundColor: "#0000FF" }}
+                        />
+                        <div
+                          className="w-6 h-6 rounded-full cursor-pointer"
+                          style={{
+                            backgroundColor: "#FFFFFF",
+                            border: "1px solid #000000",
+                          }}
+                        />
+                        <div
+                          className="w-6 h-6 rounded-full cursor-pointer"
+                          style={{ backgroundColor: "#000000" }}
+                        />
+                      </div>
+                    </div>
+                    {/* Options for Body with color pickers */}
+                    <div className="flex flex-col items-center">
+                      <span className="text-xs text-gray-600">Body</span>
+                      <div className="flex space-x-1">
+                        <div
+                          className="w-6 h-6 rounded-full cursor-pointer"
+                          style={{ backgroundColor: "#0000FF" }}
+                        />
+                        <div
+                          className="w-6 h-6 rounded-full cursor-pointer"
+                          style={{
+                            backgroundColor: "#FFFFFF",
+                            border: "1px solid #000000",
+                          }}
+                        />
+                        <div
+                          className="w-6 h-6 rounded-full cursor-pointer"
+                          style={{ backgroundColor: "#000000" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               }
               description={

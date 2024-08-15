@@ -13,6 +13,25 @@ export const addItemToCart = (item, qty) => {
   console.log("Entered the function !")
   try {
     const cart = getCartFromLocalStorage();
+    let flag = false;
+    let obj;
+    cart.filter((value)=>value.status==0).forEach((order)=>
+    {
+      if(order.item.id == item.id)
+      {
+        flag = true;
+        obj = order;
+      
+      }
+    })
+    if(flag)
+    {
+      let temp = Number(obj.qty);
+      obj.qty=temp+1;
+      console.log("Order already existed !", obj)
+      updateItem(obj);
+      return;
+    }
     const newOrder = {
       id: Date.now().toString(), // Generate a unique ID for the order
       item: item,
