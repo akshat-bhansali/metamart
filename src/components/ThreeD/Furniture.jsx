@@ -134,6 +134,7 @@ import { BushRow2 } from "./furniture/BushRow2";
 import { BushRow4 } from "./furniture/BushRow4";
 import { BushRow5 } from "./furniture/BushRow5";
 import { Dumpster } from "./furniture/Dumpster";
+import { Truck } from "./furniture/Truck";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -180,7 +181,7 @@ const Furniture = ({ onLaptopClick }) => {
       <Laptop4 onClick={() => handleLaptopClick("./models/laptop2.glb")} />
       <Laptop5 onClick={() => handleLaptopClick("./models/laptop1.glb")} />
       <Laptop6 onClick={() => handleLaptopClick("./models/laptop3.glb")} />
-      {/* <Billboard /> */}
+      <Billboard />
       <HelpDesk />
       <MobileStand />
       <MobileStand2 />
@@ -326,6 +327,7 @@ const Furniture = ({ onLaptopClick }) => {
       <BushRow4/>
       <BushRow5/>
       <Dumpster/>
+      <Truck/>
     </>
   );
 };
