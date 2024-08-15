@@ -11,7 +11,7 @@ export function Open24(props) {
     <group
       {...props}
       dispose={null}
-      position={[-50, 8, 17.5]}
+      position={[-50.1, 8, 17.4]}
       rotation={[0, Math.PI, 0]}
       scale={1}
     >

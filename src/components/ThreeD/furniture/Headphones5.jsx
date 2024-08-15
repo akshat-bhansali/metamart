@@ -32,7 +32,7 @@ export function Headphones5(props) {
       dispose={null}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <group
         position={[19, 6, 21.7]}
@@ -100,6 +100,7 @@ export function Headphones5(props) {
             new MeshStandardMaterial({
               color: "blue",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })

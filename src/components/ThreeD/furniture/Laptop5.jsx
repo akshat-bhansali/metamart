@@ -38,7 +38,7 @@ export function Laptop5(props) {
       position={[9, 5, -25]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <group rotation={[Math.PI / 2, 0, (Math.PI / 2) * 2]}>
         <mesh
@@ -106,6 +106,7 @@ export function Laptop5(props) {
             new MeshStandardMaterial({
               color: hovered ? "blue" : "transparent",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2, // Double-side rendering to make sure it's visible from all angles
             })

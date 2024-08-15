@@ -35,7 +35,7 @@ export function Headphones6(props) {
       position={[21.5, 5.9, 22]}
       scale={[10, 10, 10]}
       rotation={[Math.PI / 2, Math.PI / 2, Math.PI * 1.5]}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <group position={[0.039, 0, -0.023]} rotation={[0, 0, -1.92]}>
         <mesh
@@ -93,12 +93,13 @@ export function Headphones6(props) {
         <mesh
           ref={outlineRef}
           geometry={new CircleGeometry(0.15, 64)} // Adjust radius and segments as needed
-          position={[0,-0.13,0]} // Adjust position to highlight the desired area
+          position={[0, -0.13, 0]} // Adjust position to highlight the desired area
           rotation={[Math.PI / 2, 0, 0]}
           material={
             new MeshStandardMaterial({
               color: "blue",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })

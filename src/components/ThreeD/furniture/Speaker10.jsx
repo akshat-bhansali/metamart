@@ -37,7 +37,7 @@ export function Speaker10(props) {
       position={[21, 5, 18]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <mesh
         castShadow
@@ -239,6 +239,7 @@ export function Speaker10(props) {
             new MeshStandardMaterial({
               color: hovered ? "blue" : "transparent",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })

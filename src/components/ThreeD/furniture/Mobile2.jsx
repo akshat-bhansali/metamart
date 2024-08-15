@@ -128,6 +128,7 @@ export function Mobile2(props) {
           new MeshStandardMaterial({
             color: hovered ? "blue" : "transparent",
             transparent: true,
+            visible: hovered ? true : false,
             opacity: 0.5,
             side: 2, // Double-side rendering to make sure it's visible from all angles
           })

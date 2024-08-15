@@ -34,7 +34,7 @@ export function Laptop3(props) {
       position={[16, 5, -16]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <directionalLight position={[10, 10, 5]} intensity={2} />
 
@@ -91,6 +91,7 @@ export function Laptop3(props) {
           new MeshStandardMaterial({
             color: hovered ? "blue" : "transparent",
             transparent: true,
+            visible: hovered ? true : false,
             opacity: 0.5,
             side: 2, // Double-side rendering to make sure it's visible from all angles
           })

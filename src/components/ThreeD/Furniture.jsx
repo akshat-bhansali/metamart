@@ -143,6 +143,7 @@ import { MainSign } from "./furniture/MainSign";
 import { NoParking1 } from "./furniture/NoParking1";
 import { NoParking2 } from "./furniture/NoParking2";
 import { TrafficLight } from "./furniture/TrafficLight";
+import { CustomPhone } from "./furniture/CustomPhone";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -284,6 +285,7 @@ const Furniture = ({ onLaptopClick }) => {
           material={
             new MeshStandardMaterial({
               color: hovered ? "blue" : "transparent",
+              visible: hovered ? true : false,
               transparent: true,
               opacity: 0.5,
               side: 2,
@@ -344,7 +346,8 @@ const Furniture = ({ onLaptopClick }) => {
       <MainSign />
       <NoParking1 />
       <NoParking2 />
-      <TrafficLight/>
+      <TrafficLight />
+      <CustomPhone />
     </>
   );
 };

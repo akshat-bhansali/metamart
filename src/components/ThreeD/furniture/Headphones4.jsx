@@ -32,7 +32,7 @@ export function Headphones4(props) {
       dispose={null}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <group
         position={[3.3, 6, 21.7]}
@@ -101,6 +101,7 @@ export function Headphones4(props) {
               color: "blue",
               transparent: true,
               opacity: 0.5,
+              visible: hovered ? true : false,
               side: 2,
             })
           }

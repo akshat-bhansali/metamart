@@ -127,6 +127,7 @@ export function Tv1(props) {
             new MeshStandardMaterial({
               color: hovered ? "blue" : "transparent",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })

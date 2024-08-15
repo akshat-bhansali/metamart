@@ -35,7 +35,7 @@ export function Headphones2(props) {
       rotation={[Math.PI, Math.PI / 2, Math.PI]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <mesh
         castShadow
@@ -50,11 +50,12 @@ export function Headphones2(props) {
           ref={outlineRef}
           geometry={new CircleGeometry(4, 64)} // Adjust radius and segments as needed
           position={[-0.35, -2.4, 0.35]} // Adjust position to highlight the desired area
-          rotation={[Math.PI/2, 0, 0]}
+          rotation={[Math.PI / 2, 0, 0]}
           material={
             new MeshStandardMaterial({
               color: "blue",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })
