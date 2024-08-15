@@ -126,6 +126,8 @@ import { Ps5Box3 } from "./furniture/Ps5Box3";
 import { Ps5Box4 } from "./furniture/Ps5Box4";
 import { Plant3, PlantPot1 } from "./furniture/PlantPot1";
 import { PlantPot2 } from "./furniture/PlantPot2";
+import { Frames } from "./furniture/Frames";
+import { Frames2 } from "./furniture/Frames2";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -172,7 +174,7 @@ const Furniture = ({ onLaptopClick }) => {
       <Laptop4 onClick={() => handleLaptopClick("./models/laptop2.glb")} />
       <Laptop5 onClick={() => handleLaptopClick("./models/laptop1.glb")} />
       <Laptop6 onClick={() => handleLaptopClick("./models/laptop3.glb")} />
-      <Billboard />
+      {/* <Billboard /> */}
       <HelpDesk />
       <MobileStand />
       <MobileStand2 />
@@ -310,6 +312,8 @@ const Furniture = ({ onLaptopClick }) => {
       <PlantPot2/>
       <Crate/>
       <Crates2/>
+      <Frames/>
+      <Frames2/>
     </>
   );
 };
