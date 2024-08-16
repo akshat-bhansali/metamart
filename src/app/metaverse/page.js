@@ -177,6 +177,7 @@ export default function Page() {
             options={[
               {
                 label: (
+                  // 
                   <Avatar
                     style={{ backgroundColor: "#FFFF00" }}
                     src="./images/mod1.png"
