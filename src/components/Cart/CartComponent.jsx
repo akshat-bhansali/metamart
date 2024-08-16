@@ -6,7 +6,7 @@ import {
 import { useState, useEffect } from "react";
 import CheckoutButton from "./CheckoutButton";
 
-const CartComponent = ({ isVisible }) => {
+const CartComponent = ({ isVisible, onClose }) => {
   const [cart, setCart] = useState([]);
   const [amount, setAmount] = useState(0);
 
@@ -113,7 +113,7 @@ const CartComponent = ({ isVisible }) => {
             <h3 className="text-lg font-semibold text-gray-800">Total:</h3>
             <h3 className="text-lg font-semibold text-gray-800">₹{amount}</h3>
           </div>
-          {amount > 0 && <CheckoutButton cost={amount} success={loadData} />}
+          {amount > 0 && <CheckoutButton cost={amount} success={onClose} />}
         </div>
       )}
     </div>

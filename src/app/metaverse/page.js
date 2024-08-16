@@ -597,7 +597,7 @@ export default function Page() {
         bodyStyle={{ overflowY: "auto" }}
       >
         <div>
-          {isCartModalVisible && <CartComponent isVisible={isCartModalVisible} />}
+          {isCartModalVisible && <CartComponent isVisible={isCartModalVisible} onClose={handleCartModalCancel}/>}
         </div>
       </Modal>}
 

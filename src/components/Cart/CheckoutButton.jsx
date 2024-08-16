@@ -1,6 +1,7 @@
 // components/CheckoutButton.js
 import { useState } from 'react';
 import { checkoutAll } from './cart';
+import { toast } from 'react-toastify';
 
 const CheckoutButton = ({cost,success}) => {
   const [loading, setLoading] = useState(false);
@@ -23,13 +24,14 @@ const CheckoutButton = ({cost,success}) => {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Your Razorpay key ID
         amount: amount,
         currency: currency,
-        name: 'Your Company',
+        name: 'Metamart',
         description: 'Test Transaction',
+        image:'./images/logo2.png',
         order_id: id,
         handler: () => {
-          alert('Payment successful');
           checkoutAll()
           success();
+          toast.success("Payment Successful !")
         },
         prefill: {
           name: 'John Doe',
