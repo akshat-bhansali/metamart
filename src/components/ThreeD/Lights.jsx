@@ -4,7 +4,7 @@ import { DirectionalLightHelper } from "three";
 
 const Lights = () => {
   const lightRef = useRef(null);
-  useHelper(lightRef, DirectionalLightHelper, 5, "red"); // shows where light is
+  // useHelper(lightRef, DirectionalLightHelper, 5, "red"); // shows where light is
   return (
     <>
       <ambientLight intensity={2} /> {/* background lighting */}

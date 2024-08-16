@@ -823,7 +823,7 @@ export default function Page() {
                   const model = {
                     id: getVideoFileName(),
                     name: "Samsung S23",
-                    price: 49000,
+                    price: 9000,
                   };
                   addItemToCart(model, 1);
                   toast.success("Added to Cart!");
@@ -934,7 +934,7 @@ export default function Page() {
                     <p className="text-lg font-semibold text-gray-700">
                       Price:{" "}
                       <span className="text-xl font-bold text-green-600">
-                        ₹49000
+                        ₹9000
                       </span>
                     </p>
                   </div>
