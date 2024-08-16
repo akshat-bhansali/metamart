@@ -7,6 +7,7 @@ export function Speaker9(props) {
   const [hovered, setHovered] = useState(false);
   const groupRef = useRef();
   const outlineRef = useRef();
+  const whiteMaterial = new MeshStandardMaterial({ color: "white" });
 
   const handlePointerOver = () => {
     setHovered(true);
@@ -155,7 +156,7 @@ export function Speaker9(props) {
         castShadow
         receiveShadow
         geometry={nodes.L_Speaker1.geometry}
-        material={materials.logo}
+        material={whiteMaterial}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
@@ -218,7 +219,7 @@ export function Speaker9(props) {
         castShadow
         receiveShadow
         geometry={nodes.R_Speaker1.geometry}
-        material={materials.logo}
+        material={whiteMaterial}
         rotation={[Math.PI / 2, 0, 0]}
       />
       <mesh
