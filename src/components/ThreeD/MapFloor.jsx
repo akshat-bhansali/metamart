@@ -24,6 +24,7 @@ const MapFloor = () => {
     <mesh rotation-x={Math.PI * -0.5} receiveShadow position={[23,-1,0]}>
       <planeGeometry args={[250, 180]} /> 
       <meshStandardMaterial
+      side={2}
         map={map}
       />
     </mesh>
