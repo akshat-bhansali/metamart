@@ -12,7 +12,7 @@ export function Cart3(props) {
       <group
         rotation={[Math.PI / 2, 0, Math.PI / 2]}
         scale={[0.1, 0.1, 0.1]}
-        position={[45, 0, -29]}
+        position={[40, 0.7, -24]}
       >
         <mesh
           castShadow

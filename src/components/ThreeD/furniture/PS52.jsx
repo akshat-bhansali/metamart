@@ -39,7 +39,7 @@ export function PS52(props) {
       rotation={[0, (Math.PI / 2) * 3, 0]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <mesh
         castShadow
@@ -120,8 +120,9 @@ export function PS52(props) {
           new MeshStandardMaterial({
             color: hovered ? "blue" : "transparent",
             transparent: true,
+            visible: hovered ? true : false,
             opacity: 0.5,
-            side: 2
+            side: 2,
           })
         }
       />

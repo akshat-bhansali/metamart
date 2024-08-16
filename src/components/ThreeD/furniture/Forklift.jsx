@@ -8,7 +8,7 @@ import { useGLTF } from "@react-three/drei";
 export function Forklift(props) {
   const { nodes, materials } = useGLTF("./models/forklift.glb");
   return (
-    <group {...props} dispose={null} position={[55,0,40]} scale={5}>
+    <group {...props} dispose={null} position={[57,0,65]} scale={5} rotation={[0, -Math.PI,0]}>
       <group
         position={[-0.51, 0.273, -1.052]}
         rotation={[0, 0, -Math.PI]}

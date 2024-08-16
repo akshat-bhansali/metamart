@@ -34,7 +34,7 @@ export function PSConsole(props) {
       position={[-16, 5, 24]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <mesh
         name="PS4_Base"
@@ -79,6 +79,7 @@ export function PSConsole(props) {
           new MeshStandardMaterial({
             color: hovered ? "blue" : "transparent",
             transparent: true,
+            visible: hovered ? true : false,
             opacity: 0.5,
             side: 2,
           })

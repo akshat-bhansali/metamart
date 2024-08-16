@@ -35,7 +35,7 @@ export function Headphones3(props) {
       rotation={[Math.PI, Math.PI / 2, Math.PI]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <mesh
         castShadow
@@ -109,6 +109,7 @@ export function Headphones3(props) {
             new MeshStandardMaterial({
               color: "blue",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })

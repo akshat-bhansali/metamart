@@ -10,7 +10,7 @@ import Furniture from "@/components/ThreeD/Furniture";
 import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
 import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
-import { Segmented, Avatar, Button, Modal, Card } from "antd";
+import { Segmented, Avatar, Button, Modal, Card, Select } from "antd";
 import productsData from "../productData";
 import { Sky } from "@react-three/drei";
 import { ToastContainer, toast } from "react-toastify";
@@ -28,6 +28,8 @@ import CartComponent from "@/components/Cart/CartComponent";
 import { addItemToCart, getCartDetails } from "@/components/Cart/cart";
 import { resolveQuery } from "@/chat/chat";
 import { Staff2 } from "@/components/ThreeD/characters/Staff2";
+import { useInput } from "@/hooks/useInput";
+import { CustomPhone } from "@/components/ThreeD/furniture/CustomPhone";
 
 const { Meta } = Card;
 
@@ -39,13 +41,20 @@ export default function Page() {
   const [isModelModalVisible, setIsModelModalVisible] = useState(false);
   const [isOrdersModalVisible, setIsOrdersModalVisible] = useState(false);
   const [isCustomModalVisible, setIsCustomModalVisible] = useState(false);
+  const inputs = useInput();
   const [models, setModels] = useState("");
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [orders, setOrders] = useState([]); // State for past orders
+  const [orders, setOrders] = useState([]);
   const chatEndRef = useRef(null);
-  const [color_a,setColor_a] = useState(2);
-  const [color_b,setColor_b] = useState(2);
+  const [color_a, setColor_a] = useState(2);
+  const [color_b, setColor_b] = useState(2);
+  const [visionType, setvisionType] = useState("Normal");
+
+  const handleVisionType = (value) => {
+    setvisionType(value);
+    console.log(`Current selected option: ${value}`);
+  };
 
   useEffect(() => {
     // Scroll to bottom when messages change
@@ -88,16 +97,16 @@ export default function Page() {
   };
 
   const getVideoFileName = () => {
-    let colorNameA = '';
-    let colorNameB = '';
+    let colorNameA = "";
+    let colorNameB = "";
 
-    if (color_a === 1) colorNameA = 'Blue';
-    else if (color_a === 2) colorNameA = 'White';
-    else if (color_a === 3) colorNameA = 'Black';
+    if (color_a === 1) colorNameA = "Blue";
+    else if (color_a === 2) colorNameA = "White";
+    else if (color_a === 3) colorNameA = "Black";
 
-    if (color_b === 1) colorNameB = 'Blue';
-    else if (color_b === 2) colorNameB = 'White';
-    else if (color_b === 3) colorNameB = 'Black';
+    if (color_b === 1) colorNameB = "Blue";
+    else if (color_b === 2) colorNameB = "White";
+    else if (color_b === 3) colorNameB = "Black";
 
     return `${colorNameA}_${colorNameB}`;
   };
@@ -139,7 +148,11 @@ export default function Page() {
   };
 
   const handleLaptopClick = (modelPath) => {
-    showModelModal(modelPath);
+    if (modelPath == "cart") {
+      setIsCartModalVisible(true);
+    } else {
+      showModelModal(modelPath);
+    }
   };
   const handleCustomModalCancel = () => {
     setIsCustomModalVisible(false);
@@ -147,15 +160,20 @@ export default function Page() {
   const showCustomModal = () => {
     setIsCustomModalVisible(true);
   };
-
+  const filterClass = {
+    Normal: '',
+    Protanopia: 'filter sepia-[0.8] hue-rotate-[290deg] saturate-[2]',
+    Deuteranopia: 'filter sepia-[0.6] hue-rotate-[130deg] brightness-[1.2]',
+    Tritanopia: 'filter sepia-[0.8] hue-rotate-[90deg] saturate-[1.5]',
+  };
   return (
-    <>
+    <div className={filterClass[visionType]}>
       <ToastContainer />
       <div className=" h-[100vh] relative">
         {/* Segmented Control in the top center with only icons */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
           <Segmented
-            className="bg-blue-500 p-1 opacity-[0.8]"
+            className="bg-blue-500 p-1 opacity-[0.9] "
             options={[
               {
                 label: (
@@ -239,7 +257,14 @@ export default function Page() {
             onChange={(value) => setSegment(value)}
           />
         </div>
-
+        <div className="absolute top-[10vh] left-1/2 transform -translate-x-1/2 z-10">
+          <Segmented
+            options={["Normal", "Protanopia", "Deuteranopia", "Tritanopia"]}
+            value={visionType}
+            onChange={handleVisionType}
+            className="bg-blue-500 p-1 opacity-[0.9]"
+          />
+        </div>
         {/* Floating Button for Edit */}
         <div className="fixed bottom-40 right-4 z-20">
           <Button
@@ -294,7 +319,8 @@ export default function Page() {
                   height: 60,
                   margin: 1,
                   borderRadius: 5,
-                  opacity: 0.7,
+                  opacity: 0.9,
+                  backgroundColor: inputs.forward ? "yellow" : "", // Change to yellow when 'W' is pressed
                 }}
               >
                 <div className="text-center flex flex-col">
@@ -310,7 +336,8 @@ export default function Page() {
                     height: 60,
                     margin: 1,
                     borderRadius: 5,
-                    opacity: 0.7,
+                    opacity: 0.9,
+                    backgroundColor: inputs.left ? "yellow" : "", // Change to yellow when 'A' is pressed
                   }}
                 >
                   <div className="text-center flex flex-col">
@@ -325,7 +352,8 @@ export default function Page() {
                     height: 60,
                     margin: 1,
                     borderRadius: 5,
-                    opacity: 0.7,
+                    opacity: 0.9,
+                    backgroundColor: inputs.backward ? "yellow" : "", // Change to yellow when 'S' is pressed
                   }}
                 >
                   <div className="text-center flex flex-col">
@@ -340,7 +368,8 @@ export default function Page() {
                     height: 60,
                     margin: 1,
                     borderRadius: 5,
-                    opacity: 0.7,
+                    opacity: 0.9,
+                    backgroundColor: inputs.right ? "yellow" : "", // Change to yellow when 'D' is pressed
                   }}
                 >
                   <div className="text-center flex flex-col">
@@ -359,7 +388,8 @@ export default function Page() {
                     height: 60,
                     margin: 1,
                     borderRadius: 5,
-                    opacity: 0.7,
+                    opacity: 0.9,
+                    backgroundColor: inputs.break_dance ? "yellow" : "", // Change to yellow when '1' is pressed
                   }}
                 >
                   <div className="text-center flex flex-col">
@@ -374,7 +404,8 @@ export default function Page() {
                     height: 60,
                     margin: 1,
                     borderRadius: 5,
-                    opacity: 0.7,
+                    opacity: 0.9,
+                    backgroundColor: inputs.backflip ? "yellow" : "", // Change to yellow when '2' is pressed
                   }}
                 >
                   <div className="text-center flex flex-col">
@@ -390,7 +421,8 @@ export default function Page() {
                   height: 60,
                   margin: 1,
                   borderRadius: 5,
-                  opacity: 0.7,
+                  opacity: 0.9,
+                  backgroundColor: inputs.shift ? "yellow" : "", // Change to yellow when 'SHIFT' is pressed
                 }}
               >
                 <div className="text-center flex flex-col">
@@ -405,14 +437,16 @@ export default function Page() {
         <Canvas
           shadows
           camera={{ position: [0, 30, 55], fov: 50 }}
-          style={{ zIndex: 0 }} // Ensure Canvas has a lower z-index
+          style={{ zIndex: 0 }}
         >
           {testing ? <axesHelper visible={testing} args={[200]} /> : null}
           {testing ? <gridHelper args={[200, 200]} /> : null}
           <OrbitControls />
           {testing ? <Stats /> : null}
           <Lights />
-          <Sky/>
+          <Sky />
+
+          <CustomPhone onClick={showCustomModal} />
           <MapFloor />
           <Character />
           <StoreFrame />
@@ -451,6 +485,15 @@ export default function Page() {
                     msg.type === "user" ? "justify-end" : "justify-start"
                   } mb-2`}
                 >
+                  {msg.type != "user" ? (
+                    <Avatar
+                      src="./images/staff.png"
+                      shape="circle"
+                      size="large"
+                    />
+                  ) : (
+                    <></>
+                  )}
                   <div
                     className={`p-2 rounded-lg ${
                       msg.type === "user"
@@ -495,17 +538,21 @@ export default function Page() {
                           >
                             Add to Cart
                           </Button>,
-                          <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
-                          <Button
-                            type="primary"
-                            danger
-                            icon={<ArrowsAltOutlined />}
-                            key="view-in-ar"
-                            style={{ fontSize: "12px", padding: "4px 8px" }}
+                          <a
+                            href={`https://metamart-ar.vercel.app/view/${models.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            View in AR
-                          </Button>
-                        </a>
+                            <Button
+                              type="primary"
+                              danger
+                              icon={<ArrowsAltOutlined />}
+                              key="view-in-ar"
+                              style={{ fontSize: "12px", padding: "4px 8px" }}
+                            >
+                              View in AR
+                            </Button>
+                          </a>,
                         ]}
                       >
                         <Meta
@@ -555,6 +602,15 @@ export default function Page() {
                       </Card>
                     )}
                   </div>
+                  {msg.type == "user" ? (
+                    <Avatar
+                      src="./images/mod4.png"
+                      shape="circle"
+                      size="large"
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </div>
               );
             })}
@@ -639,17 +695,21 @@ export default function Page() {
             >
               Add to Cart
             </Button>,
-            <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
-            <Button
-              type="primary"
-              danger
-              icon={<ArrowsAltOutlined />}
-              key="view-in-ar"
-              style={{ fontSize: "12px", padding: "4px 8px" }}
+            <a
+              href={`https://metamart-ar.vercel.app/view/${models.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              View in AR
-            </Button>
-          </a>
+              <Button
+                type="primary"
+                danger
+                icon={<ArrowsAltOutlined />}
+                key="view-in-ar"
+                style={{ fontSize: "12px", padding: "4px 8px" }}
+              >
+                View in AR
+              </Button>
+            </a>,
           ]}
         >
           <Meta
@@ -760,27 +820,31 @@ export default function Page() {
                 onClick={() => {
                   // addItemToCart(models, 1);
                   const model = {
-                    id:getVideoFileName(),
-                    name:"Samsung S23",
-                    price:49000
-                  }
-                  addItemToCart(model,1)
+                    id: getVideoFileName(),
+                    name: "Samsung S23",
+                    price: 49000,
+                  };
+                  addItemToCart(model, 1);
                   toast.success("Added to Cart!");
                 }}
               >
                 Add to Cart
               </Button>,
-              <a href="https://metamart-ar.vercel.app" target="_blank" rel="noopener noreferrer">
-              <Button
-                type="primary"
-                danger
-                icon={<ArrowsAltOutlined />}
-                key="view-in-ar"
-                style={{ fontSize: "12px", padding: "4px 8px" }}
+              <a
+                href="https://metamart-ar.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                View in AR
-              </Button>
-            </a>
+                <Button
+                  type="primary"
+                  danger
+                  icon={<ArrowsAltOutlined />}
+                  key="view-in-ar"
+                  style={{ fontSize: "12px", padding: "4px 8px" }}
+                >
+                  View in AR
+                </Button>
+              </a>,
             ]}
           >
             <Meta
@@ -795,21 +859,32 @@ export default function Page() {
                       <span className="text-xs text-gray-600">Back</span>
                       <div className="flex space-x-1">
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
-                          onClick={()=>setColor_a(1)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_a == 1
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_a(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
-                          onClick={()=>setColor_a(2)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_a == 2
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_a(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
-                            border: "1px solid #000000",
                           }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
-                          onClick={()=>setColor_a(3)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_a == 3
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_a(3)}
                           style={{ backgroundColor: "#000000" }}
                         />
                       </div>
@@ -819,21 +894,32 @@ export default function Page() {
                       <span className="text-xs text-gray-600">Body</span>
                       <div className="flex space-x-1">
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
-                          onClick={()=>setColor_b(1)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_b == 1
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_b(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
-                          onClick={()=>setColor_b(2)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_b == 2
+                              ? "border-4  border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_b(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
-                            border: "1px solid #000000",
                           }}
                         />
                         <div
-                          className="w-6 h-6 rounded-full cursor-pointer"
-                          onClick={()=>setColor_b(3)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_b == 3
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_b(3)}
                           style={{ backgroundColor: "#000000" }}
                         />
                       </div>
@@ -883,6 +969,6 @@ export default function Page() {
           </Card>
         </Modal>
       )}
-    </>
+    </div>
   );
 }

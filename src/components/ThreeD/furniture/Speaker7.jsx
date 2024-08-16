@@ -37,7 +37,7 @@ export function Speaker7(props) {
       position={[6.5, 5.9, 20]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <group position={[0.589, 1.282, 0.017]} scale={[0.757, 0.786, 0.786]}>
         <mesh
@@ -290,6 +290,7 @@ export function Speaker7(props) {
             new MeshStandardMaterial({
               color: hovered ? "blue" : "transparent",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })

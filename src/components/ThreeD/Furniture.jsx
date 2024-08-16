@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Plant } from "./furniture/Plant";
 import { Plant2 } from "./furniture/Plant2";
 import { Sofa } from "./furniture/Sofa";
@@ -117,9 +117,53 @@ import { Barrier1 } from "./furniture/Barrier1";
 import { Barrier2 } from "./furniture/Barrier2";
 import { Forklift } from "./furniture/Forklift";
 import { TollGate } from "./furniture/TollGate";
+import { Crate } from "./furniture/Crate";
+import { Crates2 } from "./furniture/Crates2";
+import { CircleGeometry, MeshStandardMaterial } from "three";
+import { Ps5Box1 } from "./furniture/Ps5Box1";
+import { Ps5Box2 } from "./furniture/Ps5Box2";
+import { Ps5Box3 } from "./furniture/Ps5Box3";
+import { Ps5Box4 } from "./furniture/Ps5Box4";
+import { PlantPot1 } from "./furniture/PlantPot1";
+import { PlantPot2 } from "./furniture/PlantPot2";
+import { Frames } from "./furniture/Frames";
+import { Frames2 } from "./furniture/Frames2";
+import { Open24 } from "./furniture/Open24";
+import { BushRow1 } from "./furniture/BushRow1";
+import { BushRow2 } from "./furniture/BushRow2";
+import { BushRow4 } from "./furniture/BushRow4";
+import { BushRow5 } from "./furniture/BushRow5";
+import { Dumpster } from "./furniture/Dumpster";
+import { Cases } from "./furniture/Cases";
+import { Truck } from "./furniture/Truck";
+import { PhoneBox } from "./furniture/PhoneBox";
+import { PhoneBox2 } from "./furniture/PhoneBox2";
+import { PhoneBox3 } from "./furniture/PhoneBox3";
+import { MainSign } from "./furniture/MainSign";
+import { NoParking1 } from "./furniture/NoParking1";
+import { NoParking2 } from "./furniture/NoParking2";
+import { TrafficLight } from "./furniture/TrafficLight";
+import { CustomPhone } from "./furniture/CustomPhone";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
+  };
+  const [hovered, setHovered] = useState(false);
+  const groupRef = useRef();
+  const outlineRef = useRef();
+
+  const handlePointerOver = () => {
+    setHovered(true);
+    if (groupRef.current) {
+      groupRef.current.position.y += 0.5;
+    }
+  };
+
+  const handlePointerOut = () => {
+    setHovered(false);
+    if (groupRef.current) {
+      groupRef.current.position.y -= 0.5;
+    }
   };
   return (
     <>
@@ -222,9 +266,33 @@ const Furniture = ({ onLaptopClick }) => {
       <Bit />
       <Metal />
       <Metal2 />
-      <Cart1 />
-      <Cart2 />
-      <Cart3 />
+      <group
+        ref={groupRef}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}
+      >
+        <group onClick={() => handleLaptopClick("cart")}>
+          <Cart1 />
+          <Cart2 />
+          <Cart3 />
+        </group>
+        {/* Circular Highlight Mesh */}
+        <mesh
+          ref={outlineRef}
+          geometry={new CircleGeometry(8, 64)} // Adjust radius and segments as needed
+          position={[41.5, 0, -27]} // Adjust position to highlight the desired area
+          rotation={[Math.PI / 2, 0, 0]}
+          material={
+            new MeshStandardMaterial({
+              color: hovered ? "blue" : "transparent",
+              visible: hovered ? true : false,
+              transparent: true,
+              opacity: 0.5,
+              side: 2,
+            })
+          }
+        />
+      </group>
       <Mother />
       <Child />
       <Road />
@@ -232,25 +300,53 @@ const Furniture = ({ onLaptopClick }) => {
       <Cctv2 />
       <Cctv3 />
       <Cctv4 />
-      <Fence/>
-      <Fence3/>
-      <Fence2/>
-      <Fence4/>
-      <Fence5/>
-      <Fence6/>
-      <Fence7/>
-      <Fence8/>
-      <Fence9/>
-      <Fence10/>
-      <Fence11/>
-      <Fence12/>
-      <Warehouse/>
-      <FireExtinguisher/>
-      <Benches/>
-      <Barrier1/>
-      <Barrier2/>
-      <Forklift/>
-      <TollGate/>
+      <Fence />
+      <Fence3 />
+      <Fence2 />
+      <Fence4 />
+      <Fence5 />
+      <Fence6 />
+      <Fence7 />
+      <Fence8 />
+      <Fence9 />
+      <Fence10 />
+      <Fence11 />
+      <Fence12 />
+      <Warehouse />
+      <FireExtinguisher />
+      <Benches />
+      <Barrier1 />
+      <Barrier2 />
+      <Forklift />
+      <TollGate />
+      <Ps5Box1 />
+      <Ps5Box2 />
+      <Ps5Box3 />
+      <Ps5Box4 />
+      <Plant />
+      <Plant2 />
+      <PlantPot1 />
+      <PlantPot2 />
+      <Crate />
+      <Crates2 />
+      <Frames />
+      <Frames2 />
+      <Open24 />
+      <BushRow1 />
+      <BushRow2 />
+      <BushRow4 />
+      <BushRow5 />
+      <Dumpster />
+      <Truck />
+      {/* <Sign/> */}
+      <Cases />
+      <PhoneBox />
+      <PhoneBox2 />
+      <PhoneBox3 />
+      <MainSign />
+      <NoParking1 />
+      <NoParking2 />
+      <TrafficLight />
     </>
   );
 };

@@ -8,7 +8,13 @@ import { useGLTF } from '@react-three/drei'
 export function Frames(props) {
   const { nodes, materials } = useGLTF('./models/frames.glb')
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      position={[0, 13, -49.5]}
+      scale={4}
+      rotation={[0, Math.PI / 2*-1, 0]}
+    >
       <group rotation={[0, 0, -Math.PI / 2]} scale={[1, 1, 0.717]}>
         <mesh
           castShadow
@@ -20,7 +26,7 @@ export function Frames(props) {
           castShadow
           receiveShadow
           geometry={nodes.Plane_2.geometry}
-          material={materials['Material.001']}
+          material={materials["Material.001"]}
         />
         <mesh
           castShadow
@@ -40,7 +46,8 @@ export function Frames(props) {
       <group
         position={[0, 0.465, -1.438]}
         rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-        scale={[0.607, 0.982, 0.436]}>
+        scale={[0.607, 0.982, 0.436]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -51,13 +58,13 @@ export function Frames(props) {
           castShadow
           receiveShadow
           geometry={nodes.Plane002_2.geometry}
-          material={materials['Material.001']}
+          material={materials["Material.001"]}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane002_3.geometry}
-          material={materials['photo.001']}
+          material={materials["photo.001"]}
         />
         <mesh
           castShadow
@@ -72,7 +79,8 @@ export function Frames(props) {
       <group
         position={[0, 0.465, 1.436]}
         rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-        scale={[0.607, 0.982, 0.436]}>
+        scale={[0.607, 0.982, 0.436]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -83,13 +91,13 @@ export function Frames(props) {
           castShadow
           receiveShadow
           geometry={nodes.Plane004_2.geometry}
-          material={materials['Material.001']}
+          material={materials["Material.001"]}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane004_3.geometry}
-          material={materials['photo.003']}
+          material={materials["photo.003"]}
         />
         <mesh
           castShadow
@@ -104,7 +112,8 @@ export function Frames(props) {
       <group
         position={[0, -0.468, -1.438]}
         rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-        scale={[0.607, 0.982, 0.436]}>
+        scale={[0.607, 0.982, 0.436]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -115,13 +124,13 @@ export function Frames(props) {
           castShadow
           receiveShadow
           geometry={nodes.Plane005_2.geometry}
-          material={materials['Material.001']}
+          material={materials["Material.001"]}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane005_3.geometry}
-          material={materials['photo.002']}
+          material={materials["photo.002"]}
         />
         <mesh
           castShadow
@@ -136,7 +145,8 @@ export function Frames(props) {
       <group
         position={[0, -0.468, 1.436]}
         rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-        scale={[0.607, 0.982, 0.436]}>
+        scale={[0.607, 0.982, 0.436]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -147,13 +157,13 @@ export function Frames(props) {
           castShadow
           receiveShadow
           geometry={nodes.Plane006_2.geometry}
-          material={materials['Material.001']}
+          material={materials["Material.001"]}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane006_3.geometry}
-          material={materials['photo.004']}
+          material={materials["photo.004"]}
         />
         <mesh
           castShadow
@@ -168,7 +178,8 @@ export function Frames(props) {
       <group
         position={[0, 0, -2.679]}
         rotation={[0, 0, -Math.PI / 2]}
-        scale={[0.741, 0.979, 0.532]}>
+        scale={[0.741, 0.979, 0.532]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -179,13 +190,13 @@ export function Frames(props) {
           castShadow
           receiveShadow
           geometry={nodes.Plane007_2.geometry}
-          material={materials['Material.001']}
+          material={materials["Material.001"]}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane007_3.geometry}
-          material={materials['photo.006']}
+          material={materials["photo.006"]}
         />
         <mesh
           castShadow
@@ -196,7 +207,11 @@ export function Frames(props) {
           scale={[0.879, 0.666, 0.841]}
         />
       </group>
-      <group position={[0, 0, 2.679]} rotation={[0, 0, -Math.PI / 2]} scale={[0.741, 0.979, 0.532]}>
+      <group
+        position={[0, 0, 2.679]}
+        rotation={[0, 0, -Math.PI / 2]}
+        scale={[0.741, 0.979, 0.532]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -207,13 +222,13 @@ export function Frames(props) {
           castShadow
           receiveShadow
           geometry={nodes.Plane008_2.geometry}
-          material={materials['Material.001']}
+          material={materials["Material.001"]}
         />
         <mesh
           castShadow
           receiveShadow
           geometry={nodes.Plane008_3.geometry}
-          material={materials['photo.005']}
+          material={materials["photo.005"]}
         />
         <mesh
           castShadow
@@ -225,7 +240,7 @@ export function Frames(props) {
         />
       </group>
     </group>
-  )
+  );
 }
 
 useGLTF.preload('./models/frames.glb')

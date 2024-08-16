@@ -37,7 +37,7 @@ export function Headphones(props) {
       rotation={[Math.PI / 2, 0, Math.PI / 2]}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      onClick={(handleClick)}
+      onClick={handleClick}
     >
       <group
         position={[-0.225, 0.042, 0.01]}
@@ -110,6 +110,7 @@ export function Headphones(props) {
             new MeshStandardMaterial({
               color: "blue",
               transparent: true,
+              visible: hovered ? true : false,
               opacity: 0.5,
               side: 2,
             })

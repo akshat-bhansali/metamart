@@ -76,6 +76,7 @@ export function Mobile6(props) {
         material={
           new MeshStandardMaterial({
             color: hovered ? "blue" : "transparent",
+            visible: hovered ? true : false,
             transparent: true,
             opacity: 0.5,
             side: 2, // Double-side rendering

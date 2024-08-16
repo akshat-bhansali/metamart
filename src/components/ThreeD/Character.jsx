@@ -36,7 +36,8 @@ const directionOffset = ({ forward, backward, left, right }) => {
 
 export function Character(props) {
   const { nodes, materials, animations } = useGLTF("./models/diya.glb");
-  const { forward, backward, left, right, jump, shift, break_dance, backflip } = useInput();
+  const { forward, backward, left, right, jump, shift, break_dance, backflip } =
+    useInput();
   const currentAction = useRef("");
   const controlRef = useRef();
   const camera = useThree((state) => state.camera);
@@ -82,7 +83,10 @@ export function Character(props) {
   }, [forward, backward, left, right, jump, shift, break_dance, backflip]);
 
   useFrame((state, delta) => {
-    if (currentAction.current === "running" || currentAction.current === "walking") {
+    if (
+      currentAction.current === "running" ||
+      currentAction.current === "walking"
+    ) {
       let angleYCameraDirection = Math.atan2(
         camera.position.x - gltf.scene.position.x,
         camera.position.z - gltf.scene.position.z
