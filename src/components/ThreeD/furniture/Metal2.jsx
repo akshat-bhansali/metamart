@@ -13,7 +13,7 @@ export function Metal2(props) {
   return (
     <group {...props} dispose={null}>
       <group
-        position={[-40, 7, -5]}
+        position={[-40, 7, -8.8]}
         rotation={[0, Math.PI * 2, 0]}
         scale={[0.08, 0.08, 0.1]}
       >

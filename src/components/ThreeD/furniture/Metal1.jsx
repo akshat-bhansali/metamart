@@ -10,7 +10,7 @@ export function Metal(props) {
   return (
     <group {...props} dispose={null}>
       <group
-        position={[-40, 7, 5.5]}
+        position={[-40, 7, 9.5]}
         rotation={[0, (Math.PI / 2) * 2, 0]}
         scale={[0.08, 0.08, 0.1]}
       >

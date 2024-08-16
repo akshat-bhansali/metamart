@@ -7,6 +7,7 @@ import StoreWalls2 from "./storeWalls/StoreWalls2";
 import StoreWalls3 from "./storeWalls/StoreWalls3";
 import StoreWalls4 from "./storeWalls/StoreWalls4";
 import StoreWalls5 from "./storeWalls/StoreWalls5";
+import { GlassDoor } from "./furniture/GlassDoor";
 
 const StoreFrame = () => {
   return (
@@ -18,7 +19,8 @@ const StoreFrame = () => {
       <StoreWalls4 />
       <StoreWalls5 />
       <StoreWalls6 />
-      <Door />
+      {/* <Door /> */}
+      <GlassDoor/>
     </>
   );
 };
