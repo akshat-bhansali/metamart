@@ -18,7 +18,7 @@ export function SittingChar(props) {
       {...props}
       dispose={null}
       scale={[3, 3, 3]}
-      position={[33, 2, -42]}
+      position={[3, 2, -42]}
     >
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
