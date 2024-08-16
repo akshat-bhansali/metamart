@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function Rickshaw(props) {
   const { nodes, materials } = useGLTF('./models/rickshaw.glb')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={5} rotation={[0,Math.PI*0.5,0]} position={[-80,1.7,-20]}>
       <mesh
         castShadow
         receiveShadow

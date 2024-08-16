@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 export function MakeInIndia(props) {
   const { nodes, materials } = useGLTF('./models/make_in_india.glb')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={3} rotation={[0,Math.PI*0.5,0]} position={[49,10,4]}>
       <mesh
         castShadow
         receiveShadow

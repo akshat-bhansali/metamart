@@ -144,6 +144,8 @@ import { NoParking1 } from "./furniture/NoParking1";
 import { NoParking2 } from "./furniture/NoParking2";
 import { TrafficLight } from "./furniture/TrafficLight";
 import { CustomPhone } from "./furniture/CustomPhone";
+import { MakeInIndia } from "./furniture/MakeInIndia";
+import { Rickshaw } from "./furniture/Rickshaw";
 const Furniture = ({ onLaptopClick }) => {
   const handleLaptopClick = (modelPath) => {
     onLaptopClick(modelPath);
@@ -249,7 +251,6 @@ const Furniture = ({ onLaptopClick }) => {
       <PS52 onClick={() => handleLaptopClick("./models/console2.glb")} />
       <PSLogo />
       <PSLogo2 />
-      <Samsung />
       <PSConsole onClick={() => handleLaptopClick("./models/PSConsole.glb")} />
       <PSConsole2 onClick={() => handleLaptopClick("./models/PSConsole.glb")} />
       <PSConsole3 onClick={() => handleLaptopClick("./models/PSConsole.glb")} />
@@ -261,11 +262,10 @@ const Furniture = ({ onLaptopClick }) => {
       <Speaker10 onClick={() => handleLaptopClick("./models/speaker3.glb")} />
       <BoyStatue />
       <Headphones7 />
-      <Sony />
-      <Apple />
-      <Bit />
       <Metal />
       <Metal2 />
+      <MakeInIndia/>
+      <Rickshaw/>
       <group
         ref={groupRef}
         onPointerOver={handlePointerOver}
