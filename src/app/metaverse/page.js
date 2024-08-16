@@ -10,7 +10,7 @@ import Furniture from "@/components/ThreeD/Furniture";
 import { SittingChar } from "@/components/ThreeD/characters/SittingChar";
 import { SittingChar2 } from "@/components/ThreeD/characters/SittingChar2";
 import { Staff } from "@/components/ThreeD/characters/Staff";
-import { Segmented, Avatar, Button, Modal, Card } from "antd";
+import { Segmented, Avatar, Button, Modal, Card, Select } from "antd";
 import productsData from "../productData";
 import { Sky } from "@react-three/drei";
 import { ToastContainer, toast } from "react-toastify";
@@ -47,8 +47,14 @@ export default function Page() {
   const [messages, setMessages] = useState([]);
   const [orders, setOrders] = useState([]);
   const chatEndRef = useRef(null);
-  const [color_a,setColor_a] = useState(2);
-  const [color_b,setColor_b] = useState(2);
+  const [color_a, setColor_a] = useState(2);
+  const [color_b, setColor_b] = useState(2);
+  const [visionType, setvisionType] = useState("Normal");
+
+  const handleVisionType = (value) => {
+    setvisionType(value);
+    console.log(`Current selected option: ${value}`);
+  };
 
   useEffect(() => {
     // Scroll to bottom when messages change
@@ -91,16 +97,16 @@ export default function Page() {
   };
 
   const getVideoFileName = () => {
-    let colorNameA = '';
-    let colorNameB = '';
+    let colorNameA = "";
+    let colorNameB = "";
 
-    if (color_a === 1) colorNameA = 'Blue';
-    else if (color_a === 2) colorNameA = 'White';
-    else if (color_a === 3) colorNameA = 'Black';
+    if (color_a === 1) colorNameA = "Blue";
+    else if (color_a === 2) colorNameA = "White";
+    else if (color_a === 3) colorNameA = "Black";
 
-    if (color_b === 1) colorNameB = 'Blue';
-    else if (color_b === 2) colorNameB = 'White';
-    else if (color_b === 3) colorNameB = 'Black';
+    if (color_b === 1) colorNameB = "Blue";
+    else if (color_b === 2) colorNameB = "White";
+    else if (color_b === 3) colorNameB = "Black";
 
     return `${colorNameA}_${colorNameB}`;
   };
@@ -142,9 +148,9 @@ export default function Page() {
   };
 
   const handleLaptopClick = (modelPath) => {
-    if(modelPath=="cart"){
+    if (modelPath == "cart") {
       setIsCartModalVisible(true);
-    }else {
+    } else {
       showModelModal(modelPath);
     }
   };
@@ -154,15 +160,20 @@ export default function Page() {
   const showCustomModal = () => {
     setIsCustomModalVisible(true);
   };
-
+  const filterClass = {
+    Normal: '',
+    Protanopia: 'filter sepia-[0.8] hue-rotate-[290deg] saturate-[2]',
+    Deuteranopia: 'filter sepia-[0.6] hue-rotate-[130deg] brightness-[1.2]',
+    Tritanopia: 'filter sepia-[0.8] hue-rotate-[90deg] saturate-[1.5]',
+  };
   return (
-    <>
+    <div className={filterClass[visionType]}>
       <ToastContainer />
       <div className=" h-[100vh] relative">
         {/* Segmented Control in the top center with only icons */}
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
           <Segmented
-            className="bg-blue-500 p-1 opacity-[0.8]"
+            className="bg-blue-500 p-1 opacity-[0.9] "
             options={[
               {
                 label: (
@@ -246,7 +257,14 @@ export default function Page() {
             onChange={(value) => setSegment(value)}
           />
         </div>
-
+        <div className="absolute top-[10vh] left-1/2 transform -translate-x-1/2 z-10">
+          <Segmented
+            options={["Normal", "Protanopia", "Deuteranopia", "Tritanopia"]}
+            value={visionType}
+            onChange={handleVisionType}
+            className="bg-blue-500 p-1 opacity-[0.9]"
+          />
+        </div>
         {/* Floating Button for Edit */}
         <div className="fixed bottom-40 right-4 z-20">
           <Button
@@ -292,129 +310,129 @@ export default function Page() {
 
         {/* Controls for Movement */}
         <div className="absolute bottom-4 left-4 z-20">
-      <div className="flex">
-        <div className="flex flex-col items-center ml-4">
-          <Button
-            shape="default"
-            style={{
-              width: 60,
-              height: 60,
-              margin: 1,
-              borderRadius: 5,
-              opacity: 0.9,
-              backgroundColor: inputs.forward ? 'yellow' : '', // Change to yellow when 'W' is pressed
-            }}
-          >
-            <div className="text-center flex flex-col">
-              <div className="text-lg font-bold">W</div>
-              <div className="text-xs font-thin">Forward</div>
+          <div className="flex">
+            <div className="flex flex-col items-center ml-4">
+              <Button
+                shape="default"
+                style={{
+                  width: 60,
+                  height: 60,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.9,
+                  backgroundColor: inputs.forward ? "yellow" : "", // Change to yellow when 'W' is pressed
+                }}
+              >
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">W</div>
+                  <div className="text-xs font-thin">Forward</div>
+                </div>
+              </Button>
+              <div className="flex flex-row">
+                <Button
+                  shape="default"
+                  style={{
+                    width: 60,
+                    height: 60,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.9,
+                    backgroundColor: inputs.left ? "yellow" : "", // Change to yellow when 'A' is pressed
+                  }}
+                >
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">A</div>
+                    <div className="text-xs font-thin">Left</div>
+                  </div>
+                </Button>
+                <Button
+                  shape="default"
+                  style={{
+                    width: 60,
+                    height: 60,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.9,
+                    backgroundColor: inputs.backward ? "yellow" : "", // Change to yellow when 'S' is pressed
+                  }}
+                >
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">S</div>
+                    <div className="text-xs font-thin">Backward</div>
+                  </div>
+                </Button>
+                <Button
+                  shape="default"
+                  style={{
+                    width: 60,
+                    height: 60,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.9,
+                    backgroundColor: inputs.right ? "yellow" : "", // Change to yellow when 'D' is pressed
+                  }}
+                >
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">D</div>
+                    <div className="text-xs font-thin">Right</div>
+                  </div>
+                </Button>
+              </div>
             </div>
-          </Button>
-          <div className="flex flex-row">
-            <Button
-              shape="default"
-              style={{
-                width: 60,
-                height: 60,
-                margin: 1,
-                borderRadius: 5,
-                opacity: 0.9,
-                backgroundColor: inputs.left ? 'yellow' : '', // Change to yellow when 'A' is pressed
-              }}
-            >
-              <div className="text-center flex flex-col">
-                <div className="text-lg font-bold">A</div>
-                <div className="text-xs font-thin">Left</div>
+            <div className="flex flex-col items-center ml-4">
+              <div className="flex flex-row">
+                <Button
+                  shape="default"
+                  style={{
+                    width: 60,
+                    height: 60,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.9,
+                    backgroundColor: inputs.break_dance ? "yellow" : "", // Change to yellow when '1' is pressed
+                  }}
+                >
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">1</div>
+                    <div className="text-xs font-thin">Emote</div>
+                  </div>
+                </Button>
+                <Button
+                  shape="default"
+                  style={{
+                    width: 60,
+                    height: 60,
+                    margin: 1,
+                    borderRadius: 5,
+                    opacity: 0.9,
+                    backgroundColor: inputs.backflip ? "yellow" : "", // Change to yellow when '2' is pressed
+                  }}
+                >
+                  <div className="text-center flex flex-col">
+                    <div className="text-lg font-bold">2</div>
+                    <div className="text-xs font-thin">Emote</div>
+                  </div>
+                </Button>
               </div>
-            </Button>
-            <Button
-              shape="default"
-              style={{
-                width: 60,
-                height: 60,
-                margin: 1,
-                borderRadius: 5,
-                opacity: 0.9,
-                backgroundColor: inputs.backward ? 'yellow' : '', // Change to yellow when 'S' is pressed
-              }}
-            >
-              <div className="text-center flex flex-col">
-                <div className="text-lg font-bold">S</div>
-                <div className="text-xs font-thin">Backward</div>
-              </div>
-            </Button>
-            <Button
-              shape="default"
-              style={{
-                width: 60,
-                height: 60,
-                margin: 1,
-                borderRadius: 5,
-                opacity: 0.9,
-                backgroundColor: inputs.right ? 'yellow' : '', // Change to yellow when 'D' is pressed
-              }}
-            >
-              <div className="text-center flex flex-col">
-                <div className="text-lg font-bold">D</div>
-                <div className="text-xs font-thin">Right</div>
-              </div>
-            </Button>
+              <Button
+                shape="default"
+                style={{
+                  width: 70,
+                  height: 60,
+                  margin: 1,
+                  borderRadius: 5,
+                  opacity: 0.9,
+                  backgroundColor: inputs.shift ? "yellow" : "", // Change to yellow when 'SHIFT' is pressed
+                }}
+              >
+                <div className="text-center flex flex-col">
+                  <div className="text-lg font-bold">SHIFT</div>
+                  <div className="text-xs font-thin">Sprint</div>
+                </div>
+              </Button>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col items-center ml-4">
-          <div className="flex flex-row">
-            <Button
-              shape="default"
-              style={{
-                width: 60,
-                height: 60,
-                margin: 1,
-                borderRadius: 5,
-                opacity: 0.9,
-                backgroundColor: inputs.break_dance ? 'yellow' : '', // Change to yellow when '1' is pressed
-              }}
-            >
-              <div className="text-center flex flex-col">
-                <div className="text-lg font-bold">1</div>
-                <div className="text-xs font-thin">Emote</div>
-              </div>
-            </Button>
-            <Button
-              shape="default"
-              style={{
-                width: 60,
-                height: 60,
-                margin: 1,
-                borderRadius: 5,
-                opacity: 0.9,
-                backgroundColor: inputs.backflip ? 'yellow' : '', // Change to yellow when '2' is pressed
-              }}
-            >
-              <div className="text-center flex flex-col">
-                <div className="text-lg font-bold">2</div>
-                <div className="text-xs font-thin">Emote</div>
-              </div>
-            </Button>
-          </div>
-          <Button
-            shape="default"
-            style={{
-              width: 70,
-              height: 60,
-              margin: 1,
-              borderRadius: 5,
-              opacity: 0.9,
-              backgroundColor: inputs.shift ? 'yellow' : '', // Change to yellow when 'SHIFT' is pressed
-            }}
-          >
-            <div className="text-center flex flex-col">
-              <div className="text-lg font-bold">SHIFT</div>
-              <div className="text-xs font-thin">Sprint</div>
-            </div>
-          </Button>
-        </div>
-      </div>
-    </div>
 
         <Canvas
           shadows
@@ -426,9 +444,9 @@ export default function Page() {
           <OrbitControls />
           {testing ? <Stats /> : null}
           <Lights />
-          <Sky/>
+          <Sky />
 
-      <CustomPhone onClick={showCustomModal}/>
+          <CustomPhone onClick={showCustomModal} />
           <MapFloor />
           <Character />
           <StoreFrame />
@@ -467,11 +485,15 @@ export default function Page() {
                     msg.type === "user" ? "justify-end" : "justify-start"
                   } mb-2`}
                 >
-                  {msg.type != "user" ?<Avatar
-                    src="./images/staff.png"
-                    shape="circle"
-                    size="large"
-                  />:<></>}
+                  {msg.type != "user" ? (
+                    <Avatar
+                      src="./images/staff.png"
+                      shape="circle"
+                      size="large"
+                    />
+                  ) : (
+                    <></>
+                  )}
                   <div
                     className={`p-2 rounded-lg ${
                       msg.type === "user"
@@ -516,17 +538,21 @@ export default function Page() {
                           >
                             Add to Cart
                           </Button>,
-                          <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
-                          <Button
-                            type="primary"
-                            danger
-                            icon={<ArrowsAltOutlined />}
-                            key="view-in-ar"
-                            style={{ fontSize: "12px", padding: "4px 8px" }}
+                          <a
+                            href={`https://metamart-ar.vercel.app/view/${models.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            View in AR
-                          </Button>
-                        </a>
+                            <Button
+                              type="primary"
+                              danger
+                              icon={<ArrowsAltOutlined />}
+                              key="view-in-ar"
+                              style={{ fontSize: "12px", padding: "4px 8px" }}
+                            >
+                              View in AR
+                            </Button>
+                          </a>,
                         ]}
                       >
                         <Meta
@@ -576,11 +602,15 @@ export default function Page() {
                       </Card>
                     )}
                   </div>
-                  {msg.type == "user" ?<Avatar
-                    src="./images/mod4.png"
-                    shape="circle"
-                    size="large"
-                  />:<></>}
+                  {msg.type == "user" ? (
+                    <Avatar
+                      src="./images/mod4.png"
+                      shape="circle"
+                      size="large"
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </div>
               );
             })}
@@ -609,23 +639,27 @@ export default function Page() {
       </Modal>
 
       {/* Modal for Cart */}
-      {isCartModalVisible && <Modal
-        title="Cart"
-        open={isCartModalVisible}
-        onCancel={handleCartModalCancel}
-        footer={null}
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          height: "calc(100vh - 20px)",
-        }}
-        bodyStyle={{ overflowY: "auto" }}
-      >
-        <div>
-          {isCartModalVisible && <CartComponent isVisible={isCartModalVisible} />}
-        </div>
-      </Modal>}
+      {isCartModalVisible && (
+        <Modal
+          title="Cart"
+          open={isCartModalVisible}
+          onCancel={handleCartModalCancel}
+          footer={null}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            height: "calc(100vh - 20px)",
+          }}
+          bodyStyle={{ overflowY: "auto" }}
+        >
+          <div>
+            {isCartModalVisible && (
+              <CartComponent isVisible={isCartModalVisible} />
+            )}
+          </div>
+        </Modal>
+      )}
 
       {/* Modal for Model */}
       <Modal
@@ -665,17 +699,21 @@ export default function Page() {
             >
               Add to Cart
             </Button>,
-            <a href={`https://metamart-ar.vercel.app/view/${models.id}`} target="_blank" rel="noopener noreferrer">
-            <Button
-              type="primary"
-              danger
-              icon={<ArrowsAltOutlined />}
-              key="view-in-ar"
-              style={{ fontSize: "12px", padding: "4px 8px" }}
+            <a
+              href={`https://metamart-ar.vercel.app/view/${models.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              View in AR
-            </Button>
-          </a>
+              <Button
+                type="primary"
+                danger
+                icon={<ArrowsAltOutlined />}
+                key="view-in-ar"
+                style={{ fontSize: "12px", padding: "4px 8px" }}
+              >
+                View in AR
+              </Button>
+            </a>,
           ]}
         >
           <Meta
@@ -786,27 +824,31 @@ export default function Page() {
                 onClick={() => {
                   // addItemToCart(models, 1);
                   const model = {
-                    id:getVideoFileName(),
-                    name:"Samsung S23",
-                    price:49000
-                  }
-                  addItemToCart(model,1)
+                    id: getVideoFileName(),
+                    name: "Samsung S23",
+                    price: 49000,
+                  };
+                  addItemToCart(model, 1);
                   toast.success("Added to Cart!");
                 }}
               >
                 Add to Cart
               </Button>,
-              <a href="https://metamart-ar.vercel.app" target="_blank" rel="noopener noreferrer">
-              <Button
-                type="primary"
-                danger
-                icon={<ArrowsAltOutlined />}
-                key="view-in-ar"
-                style={{ fontSize: "12px", padding: "4px 8px" }}
+              <a
+                href="https://metamart-ar.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                View in AR
-              </Button>
-            </a>
+                <Button
+                  type="primary"
+                  danger
+                  icon={<ArrowsAltOutlined />}
+                  key="view-in-ar"
+                  style={{ fontSize: "12px", padding: "4px 8px" }}
+                >
+                  View in AR
+                </Button>
+              </a>,
             ]}
           >
             <Meta
@@ -821,20 +863,32 @@ export default function Page() {
                       <span className="text-xs text-gray-600">Back</span>
                       <div className="flex space-x-1">
                         <div
-                          className={`w-6 h-6 rounded-full cursor-pointer ${color_a==1?"border-4 border-yellow-400":" border-2 border-black"}`}
-                          onClick={()=>setColor_a(1)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_a == 1
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_a(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
-                          className={`w-6 h-6 rounded-full cursor-pointer ${color_a==2?"border-4 border-yellow-400":" border-2 border-black"}`}
-                          onClick={()=>setColor_a(2)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_a == 2
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_a(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
                           }}
                         />
                         <div
-                          className={`w-6 h-6 rounded-full cursor-pointer ${color_a==3?"border-4 border-yellow-400":" border-2 border-black"}`}
-                          onClick={()=>setColor_a(3)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_a == 3
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_a(3)}
                           style={{ backgroundColor: "#000000" }}
                         />
                       </div>
@@ -844,20 +898,32 @@ export default function Page() {
                       <span className="text-xs text-gray-600">Body</span>
                       <div className="flex space-x-1">
                         <div
-                          className={`w-6 h-6 rounded-full cursor-pointer ${color_b==1?"border-4 border-yellow-400":" border-2 border-black"}`}
-                          onClick={()=>setColor_b(1)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_b == 1
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_b(1)}
                           style={{ backgroundColor: "#0000FF" }}
                         />
                         <div
-                          className={`w-6 h-6 rounded-full cursor-pointer ${color_b==2?"border-4  border-yellow-400":" border-2 border-black"}`}
-                          onClick={()=>setColor_b(2)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_b == 2
+                              ? "border-4  border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_b(2)}
                           style={{
                             backgroundColor: "#FFFFFF",
                           }}
                         />
                         <div
-                          className={`w-6 h-6 rounded-full cursor-pointer ${color_b==3?"border-4 border-yellow-400":" border-2 border-black"}`}
-                          onClick={()=>setColor_b(3)}
+                          className={`w-6 h-6 rounded-full cursor-pointer ${
+                            color_b == 3
+                              ? "border-4 border-yellow-400"
+                              : " border-2 border-black"
+                          }`}
+                          onClick={() => setColor_b(3)}
                           style={{ backgroundColor: "#000000" }}
                         />
                       </div>
@@ -907,6 +973,6 @@ export default function Page() {
           </Card>
         </Modal>
       )}
-    </>
+    </div>
   );
 }
