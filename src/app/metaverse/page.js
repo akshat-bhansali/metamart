@@ -661,100 +661,109 @@ export default function Page() {
 
       {/* Modal for Model */}
       <Modal
-        open={isModelModalVisible}
-        onCancel={handleModelModalCancel}
-        footer={null}
-        style={{
-          position: "absolute",
-          top: 10,
-          left: 10,
-          right: 0,
-          bottom: 0,
-          padding: 0,
-        }}
+  open={isModelModalVisible}
+  onCancel={handleModelModalCancel}
+  footer={null}
+  style={{
+    position: "absolute",
+    top: 10,
+    left: 10,
+    right: 0,
+    bottom: 0,
+    padding: 0,
+  }}
+>
+  <Card
+    style={{ height: "100%" }}
+    cover={
+      <video
+        src={`./videos/${models.id}.MOV`}
+        style={{ height: "50%", objectFit: "cover", padding: 1 }}
+        autoPlay
+        loop
+        muted
+        className="border-b"
+      />
+    }
+    actions={[
+      <a
+        href={`https://metamart-ar.vercel.app/view/${models.id}`}
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <Card
-          style={{ height: "100%" }}
-          cover={
-            <video
-              src={`./videos/${models.id}.MOV`}
-              style={{ height: "50%", objectFit: "cover", padding: 1 }}
-              autoPlay
-              loop
-              muted
-              className="border-b"
-            />
-          }
-          actions={[
-            <Button
-              type="primary"
-              icon={<ShoppingCartOutlined />}
-              key="add-to-cart"
-              onClick={() => {
-                addItemToCart(models, 1);
-                toast.success("Added to Cart!");
-              }}
-            >
-              Add to Cart
-            </Button>,
-            <a
-              href={`https://metamart-ar.vercel.app/view/${models.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                type="primary"
-                danger
-                icon={<ArrowsAltOutlined />}
-                key="view-in-ar"
-                style={{ fontSize: "12px", padding: "4px 8px" }}
-              >
-                View in AR
-              </Button>
-            </a>,
-          ]}
+        <Button
+          type="primary"
+          danger
+          icon={<ArrowsAltOutlined />}
+          key="view-in-ar"
+          style={{ fontSize: "12px", padding: "4px 8px" }}
         >
-          <Meta
-            title={
-              <div className="flex items-center justify-between">
-                <span>{models.name}</span>
-                <Button
-                  icon={<ShareAltOutlined />}
-                  className="text-blue-500"
-                  type="text"
-                  onClick={() => toast("Share functionality here")}
-                />
-              </div>
-            }
-            description={
-              <>
-                <div className="mb-4">
-                  <p className="text-lg font-semibold text-gray-700">
-                    Price:{" "}
-                    <span className="text-xl font-bold text-green-600">
-                      ₹{models.price}
-                    </span>
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-6 bg-gray-50 p-4 rounded-lg shadow-sm">
-                  {models.specs?.map((spec, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center text-gray-600"
-                    >
-                      <strong className="mr-2 text-sm font-medium text-gray-800">
-                        {spec.key}:
-                      </strong>
-                      <span className="text-sm">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            }
+          View in AR
+        </Button>
+      </a>,
+    ]}
+  >
+    <Meta
+      title={
+        <div className="flex items-center justify-between">
+          <span>{models.name}</span>
+          <Button
+            icon={<ShareAltOutlined />}
+            className="text-blue-500"
+            type="text"
+            onClick={() => toast("Share functionality here")}
           />
-        </Card>
-      </Modal>
+        </div>
+      }
+      description={
+        <>
+          {/* 🔽 Available On Section with Logos and Selection */}
+          <div className="mb-4">
+            <p className="text-lg font-semibold text-gray-700 mb-2 text-center">
+              Available on
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {models.company?.map((site, idx) => (
+                <a
+                  href={site.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  key={idx}
+                  className="flex items-center space-x-3 border p-2 rounded hover:bg-gray-100 transition-all"
+                >
+                  {/* <Image
+                    src={`/logos/${site.c.toLowerCase()}.png`}
+                    alt={site.c}
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  /> */}
+                  <div className="flex flex-col text-sm">
+                    <span className="font-medium">{site.c}</span>
+                    <span className="text-gray-600">₹{site.price}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* 🔽 Specs Grid */}
+          <div className="grid grid-cols-2 gap-6 bg-gray-50 p-4 rounded-lg shadow-sm">
+            {models.specs?.map((spec, index) => (
+              <div key={index} className="flex items-center text-gray-600">
+                <strong className="mr-2 text-sm font-medium text-gray-800">
+                  {spec.key}:
+                </strong>
+                <span className="text-sm">{spec.value}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      }
+    />
+  </Card>
+</Modal>
+
 
       {/* Modal for Orders */}
       <Modal
