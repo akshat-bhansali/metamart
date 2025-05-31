@@ -30,6 +30,7 @@ import { resolveQuery } from "@/chat/chat";
 import { Staff2 } from "@/components/ThreeD/characters/Staff2";
 import { useInput } from "@/hooks/useInput";
 import { CustomPhone } from "@/components/ThreeD/furniture/CustomPhone";
+import Image from "next/image";
 
 const { Meta } = Card;
 
@@ -731,13 +732,13 @@ export default function Page() {
                   key={idx}
                   className="flex items-center space-x-3 border p-2 rounded hover:bg-gray-100 transition-all"
                 >
-                  {/* <Image
+                  <Image
                     src={`/logos/${site.c.toLowerCase()}.png`}
-                    alt={site.c}
+                    alt={site.c.toLowerCase()}
                     width={24}
                     height={24}
                     className="object-contain"
-                  /> */}
+                  />
                   <div className="flex flex-col text-sm">
                     <span className="font-medium">{site.c}</span>
                     <span className="text-gray-600">₹{site.price}</span>
