@@ -59,7 +59,7 @@ We push the boundaries of Web 3‑D, accessibility (color‑blind modes), and 
 
 ---
 
-## 🔑 Key Features
+##  Key Features
 
 ### **1. 3‑D Storefront**
 Built using **React Three Fiber** and **drei**, MetaMart offers a lifelike 3‑D retail environment where users can walk, explore aisles, and interact with products just like in a physical store. Navigation works with keyboard (`W`, `A`, `S`, `D`, `SHIFT`, `SPACE`), mouse, or touch. Real-time lighting, shadows, and model animations create a dynamic experience that blends gaming with online shopping.
@@ -126,24 +126,6 @@ https://github.com/user-attachments/assets/164a9165-4cc1-4090-952a-a84140d9c71b
 
 
 
- 
-
----
-
-<h2 id="visuals">Visual Representation</h2>
-
-| Scene | Preview |
-|-------|---------|
-| Store Entrance | ![Entrance](assets/entrance.png) |
-| Laptop Aisle | ![Aisle](assets/laptop‑aisle.png) |
-| AI Chat Assistant | ![AI](assets/ai‑chat.png) |
-| Cart & Checkout | ![Cart](assets/cart‑checkout.png) |
-| AR Quick‑Look | ![AR](assets/quick‑look.gif) |
-| Color Picker | ![Picker](assets/customiser.png) |
-
-*(Replace `assets/*` with your screenshots / GIFs.)*
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
 
@@ -239,7 +221,7 @@ metamart/
 
 ---
 
-### 🔑 Environment Variables
+###  Environment Variables
 
 | Key | Description |
 |-----|-------------|
@@ -249,7 +231,7 @@ metamart/
 
 ---
 
-### 🧩 Code Highlights
+###  Code Highlights
 
 #### 1 – Gemini Chat Integration (`chat/gemini.js`)
 
@@ -276,7 +258,7 @@ return Response.json({ id: order.id, amount: order.amount, currency: order.curre
 
 ---
 
-## 🔮 Future Prospects
+##  Future Prospects
 
 ### 1. **Voice Navigation & Voice-Based Shopping**
 We aim to integrate voice commands for an even more accessible and intuitive shopping experience. Users will be able to navigate the 3D space, select products, and ask questions using natural language, making the platform hands-free and inclusive for visually impaired or multitasking users.
